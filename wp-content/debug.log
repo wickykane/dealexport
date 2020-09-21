@@ -1,0 +1,19 @@
+[17-Aug-2016 05:54:02 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/ecataloghy/ecatalog-dealexport.com/wp-content/plugins/qtranslate-x/admin/qtx_admin.php on line 14
+[17-Aug-2016 05:54:03 UTC] PHP Warning:  Invalid argument supplied for foreach() in /home/ecataloghy/ecatalog-dealexport.com/wp-content/plugins/qtranslate-x/admin/qtx_admin.php on line 14
+[17-Aug-2016 05:54:04 UTC] PHP Notice:  Trying to get property of non-object in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 467
+[17-Aug-2016 05:54:09 UTC] PHP Notice:  Undefined variable: shop_id in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/woocommerce/single-product/product-thumbnails.php on line 12
+[17-Aug-2016 05:55:16 UTC] PHP Notice:  Undefined variable: shop_id in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/woocommerce/single-product/product-thumbnails.php on line 12
+[17-Aug-2016 05:55:22 UTC] PHP Notice:  Undefined variable: shop_id in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/woocommerce/single-product/product-thumbnails.php on line 12
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: out in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 351
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: out in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 351
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: out in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 351
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: out in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 351
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: out in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 321
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: out in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 351
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: out in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 351
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: out in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 351
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined index: country-filter in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/service-filter.php on line 94
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined index: region-filter in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/service-filter.php on line 95
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: featured_img_name in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 811
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: featured_img_name in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/functions.php on line 811
+[17-Aug-2016 06:00:13 UTC] PHP Notice:  Undefined variable: ship_price_html in /home/ecataloghy/ecatalog-dealexport.com/wp-content/themes/dealexport/woocommerce/loop/price.php on line 26

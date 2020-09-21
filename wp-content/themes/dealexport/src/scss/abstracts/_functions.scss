@@ -1,0 +1,10 @@
+/**
+  * Calculate the rem value based on the px value
+  *
+  * @param $fontsize
+  * @return number in rem
+  */
+@function calculateRem($fontSize) {
+  $remSize: $fontSize / 16px;
+  @return #{$remSize}rem;
+}

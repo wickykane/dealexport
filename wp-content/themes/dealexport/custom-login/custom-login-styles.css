@@ -1,0 +1,22 @@
+/*
+   Custom login page
+   Author : TNH 
+   Theme : dealexport
+*/
+
+body.login {
+  background: url(images/login-bg.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.login h1 a {
+  background-image: url('images/login-logo.png');
+}
+
+/*Remove back to home siteng*/  
+p#nav , p#backtoblog{
+  display: none;
+}
