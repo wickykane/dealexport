@@ -1,0 +1,4 @@
+2020-09-17T16:03:09+00:00 CRITICAL syntax error, unexpected '[' in /var/www/testsite/wordpress/wp-content/themes/dealexport/functions.php on line 1384
+
+2020-09-17T16:04:52+00:00 CRITICAL syntax error, unexpected '}' in /var/www/testsite/wordpress/wp-content/themes/dealexport/functions.php on line 1389
+

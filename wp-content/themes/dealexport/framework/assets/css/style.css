@@ -1,0 +1,699 @@
+/* ======================== GLOBAL ======================== */
+
+.clearfix {	
+    display:block;	
+}
+
+.clearfix:after {
+    display:table;
+    clear:both;
+    content:" ";
+}
+
+.noborder {
+    border-width:0;
+}
+
+.noborder div:last-child {
+    border-width:0;
+}
+
+.themedb-page a {
+    outline:none;
+    box-shadow:none;
+}
+
+.themedb-page h1,
+.themedb-page h2,
+.themedb-page h3,
+.themedb-page h4 {
+    font-weight:normal;
+    color:#333;
+    margin:0;
+}
+
+/* ======================== LAYOUT ======================== */
+
+.themedb-page {
+    width:650px;
+    background:#ececec;
+    margin-top:1.5em;
+    overflow:hidden;
+    border:1px solid #dfdfdf;	
+}
+
+.themedb-popup {
+    background:rgba(0,0,0,0.7);
+    position:fixed;
+    z-index:1000;
+    color:#fff;
+    padding:1em 20px;
+    display:none;
+    left:45%;
+    top:45%;
+    font-size:1.3em;
+    font-weight:bold;
+}
+
+/*------------------------- Header -------------------------*/
+
+.themedb-header {
+    padding:1.5em 15px;
+    overflow:hidden;
+    background:url(../images/icons/icon-settings.png) 15px 1.65em no-repeat;
+}
+
+.themedb-header .themedb-page-title {
+    float:left;
+    font-size:1.4em;
+    line-height:1.5em;
+    font-weight:bold;
+    padding-left:32px;	
+    text-shadow:0 1px 0 rgba(255,255,255,0.3);
+}
+
+/*-------------------------- Menu --------------------------*/
+
+.themedb-menu {
+    float:left;
+    width:25%;
+    position:relative;
+    z-index:1;
+}
+
+.themedb-menu ul {
+    display:block;
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+
+.themedb-menu ul  li {
+    display:block;	
+    border-bottom:1px solid #dfdfdf;
+    margin:0;
+}
+
+.themedb-menu ul  li a {
+    display:block;
+    padding:0.7em 15px;
+    margin-right:1px;
+    text-decoration:none;
+    color:#555;
+    border-top:1px solid #f9f9f9;
+    text-shadow:0 1px 0 rgba(255,255,255,0.3);
+}
+
+.themedb-menu ul  li.current {
+    background:#fff;
+}
+
+/*------------------------ Content ------------------------*/
+
+.themedb-content {
+    overflow:hidden;
+    border:1px solid #dfdfdf;
+    border-left-width:0;
+    border-right-width:0;
+    clear:both;
+}
+
+.themedb-sections {
+    float:left;
+    background:#fff;
+    width:75%;
+    margin-left:-1px;
+    border-left:1px solid #dfdfdf;
+    min-height:400px;
+}
+
+.themedb-section {
+    overflow:hidden;
+    padding:2em 25px;
+    display:none;
+    min-height:400px;
+}
+
+.themedb-section h2 {
+    padding-bottom:0.5em;
+    margin-bottom:0.9em;
+    border-bottom:1px solid #ebebeb;
+}
+
+/*----------------------- Footer -------------------------*/
+
+.themedb-footer {
+    overflow:hidden;
+    padding:1em 15px;
+}
+
+/* ==================== ELEMENTS ======================= */
+
+/*--------------------- Buttons -------------------------*/
+
+.themedb-button {
+    color:#fff;
+    padding:0 8px;
+    line-height:24px;
+    cursor:pointer;
+    background-color:#4da1ec;
+    border:1px solid rgba(0,0,0,0.2);
+    text-shadow:0 -1px 0 rgba(0,0,0,0.15);
+}
+
+.themedb-button:active,
+.themedb-button:focus {
+    outline:0;
+}
+
+.themedb-button.disabled {
+    background-color:#ddd;
+    color:#aaa;
+    text-shadow:0 1px 0 rgba(255,255,255,0.5); 
+    cursor:default;
+    border-color:#ccc;
+}
+
+.themedb-save-button {
+    float:right;
+}
+
+.themedb-reset-button {
+    float:left;
+}
+
+.themedb-trigger {
+    width:16px;
+    height:16px;
+    padding:0;
+    margin:0;
+    background:#fff;
+    border-width:0;
+    position:absolute;
+    right:0;
+    top:3px;
+    z-index:100;
+}
+
+.themedb-trigger.themedb-remove-button {
+    background:url(../images/icons/icon-remove.png) 0 0 no-repeat;
+}
+
+.themedb-trigger.themedb-clone-button,
+.themedb-trigger.themedb-add-button {
+    background:url(../images/icons/icon-add.png) 0 0 no-repeat;
+    right:22px;
+}
+
+/*--------------------- Options -------------------------*/
+
+.themedb-option {
+    border-bottom:1px solid #ebebeb;
+    padding-bottom:1.5em;
+    margin-bottom:1.5em;
+    position:relative;
+}
+
+.themedb-option:last-child {
+    padding:0;
+    margin:0;
+    border-width:0;
+}
+
+.themedb-option:after {
+    content:" ";
+    display:table;
+    clear:both;
+}
+
+.themedb-option .themedb-option-title {
+    font-size:1.1em;
+    font-weight:bold;
+    margin-bottom:0.7em;
+}
+
+.themedb-option select,
+.themedb-option textarea,
+.themedb-option input[type="text"],
+.themedb-option input[type="number"] {
+    width:300px;
+}
+
+.themedb-option textarea {
+    height:8em!important;
+    resize:none;
+}
+
+.themedb-option label,
+.themedb-option input[type="checkbox"] {
+    float:left;
+    font-weight:bold;
+    margin-right:5px;
+    font-size:1.1em;
+    color:#333;
+}
+
+.themedb-option input[type="checkbox"] {
+    margin-top:2px;
+    cursor:pointer;
+}
+
+.themedb-option .themedb-row {
+    margin-bottom:5px;
+}
+
+.themedb-option .themedb-row:last-child {
+    margin-bottom:0;
+}
+
+.themedb-option .themedb-row input,
+.themedb-option .themedb-row select {
+    float:left;
+    margin-right:5px;
+}
+
+
+/*------------------ Colorpicker -----------------------*/
+
+.themedb-color .wp-picker-holder {
+    position:absolute;
+    z-index:1000;
+}
+
+.themedb-color input[type="text"] {
+    width:70px;
+}
+
+/*-------------------- Uploader ------------------------*/
+
+.themedb-uploader .button,
+.themedb-uploader input {
+    float:left;
+    margin-right:5px;
+}
+
+.themedb-image-uploader {
+    width:104px;
+    text-align:center;
+}
+
+.themedb-image-uploader img {
+    display:block;
+    width:96px;
+    padding:3px;
+    border:1px solid #dfdfdf;
+    margin-bottom:6px;
+}
+
+.themedb-image-uploader input {
+    display:none;
+}
+
+/*---------------------- Image--------------------------*/
+
+.themedb-select-image img {
+    float:left;
+    margin-right:5px;
+    cursor:pointer;
+    border:2px solid #fff;
+}
+
+.themedb-select-image img.current {
+    border-color:#999;
+}
+
+/*---------------------- Slider--------------------------*/
+
+.themedb-slider .themedb-slider-value {
+    float:left;
+    font-weight:bold;
+    color:#333;
+    font-size:1.1em;
+}
+
+.themedb-slider .ui-slider {
+    position: relative; 
+    height:4px;
+    width:300px;
+    background:#eee;
+    border:1px solid #dfdfdf;
+    float:left;
+    margin:0.5em 10px 0 0;
+}
+
+.themedb-slider .ui-slider-handle {
+    position: absolute;
+    z-index: 2;
+    width: 8px; 
+    height: 14px; 
+    background:#e2e2e2;
+    border:1px solid #ccc;
+    cursor:move;
+    top: -6px; 
+    margin-left:-5px;
+}
+
+/*--------------------- Tooltip ------------------------*/
+
+.themedb-tooltip {
+    position:absolute;
+    right:0;
+    top:0;
+}
+
+.themedb-tooltip .themedb-tooltip-icon {
+    width:16px;
+    height:16px;
+    background:url(../images/icons/icon-info.png) 0 0 no-repeat;
+    cursor:pointer;
+}
+
+.themedb-tooltip .themedb-tooltip-text {
+    display:none;
+    background:rgba(0,0,0,0.7);
+    color:#fff;
+    padding:0.5em 10px;
+    font-size:0.9em;
+    position:absolute;
+    right:26px;
+    top:-5px;
+    width:180px;
+    z-index:1000;
+}
+
+.themedb-tooltip .themedb-tooltip-text:after {
+    content:" ";
+    display:block;
+    border:4px solid #fff;
+    border-left-color:rgba(0,0,0,0.7);
+    position:absolute;
+    right:-8px;
+    top:9px;
+}
+
+.themedb-tooltip:hover .themedb-tooltip-text {
+    display:block;
+}
+
+/*--------------------- Metabox ------------------------*/
+
+.themedb-metabox {
+    width:100%;
+    text-align:left;
+}
+
+.themedb-metabox th,
+.themedb-metabox td {
+    padding:0.7em 0;
+    vertical-align:top;
+    border-bottom:1px solid #ebebeb;
+}
+
+.themedb-metabox tr:last-child th,
+.themedb-metabox tr:last-child td {
+    padding-bottom:0;
+    border-width:0;
+}
+
+.themedb-metabox th {
+    width:17%;
+}
+
+.themedb-metabox .themedb-option {
+    padding:0;
+    margin:0;
+    border-width:0;
+}
+
+.themedb-metabox .themedb-option-title {
+    display:none;
+}
+
+.themedb-metabox .themedb-meta-title {
+    margin:0.2em 0 0.5em 0;
+    font-size:1.1em;
+    font-weight:bold;
+}
+
+.themedb-metabox .themedb-meta-value {
+    text-align:right;
+}
+
+.themedb-metabox .themedb-tooltip {
+    top:0.3em;
+}
+
+.themedb-metabox #_themedb_rate {
+    float:right;
+    width:60px;
+}
+
+/*--------------------- Sidebar ------------------------*/
+
+.themedb-sidebar input,
+.themedb-sidebar .button {
+    float:left;
+    margin-right:5px;
+}
+
+.themedb-sidebar-item .themedb-sidebar-title {
+    font-weight:bold;
+    font-size:1.2em;
+    margin-bottom:0.6em;
+}
+
+.themedb-sidebar-item .themedb-option {
+    width:48%;
+    float:left;
+    border-width:0;
+    padding:0;
+    margin:0;
+}
+
+.themedb-sidebar-item .themedb-option select {
+    width:185px;
+}
+
+.themedb-sidebar-item .themedb-option-title {
+    color:#555;
+}
+
+/*----------------------- Form ---------------------------*/
+
+.themedb-form-item input,
+.themedb-form-item select {
+    display:block;
+    margin-bottom:0.8em;
+}
+
+.themedb-form-item input:last-child {
+    margin-bottom:0;
+}
+
+.themedb-form .themedb-title {
+    border-bottom:0;
+    padding-bottom:0;
+    margin-bottom:0.3em;
+}
+
+.themedb-clone-item {
+    position:relative;
+    margin-bottom:1em;
+    padding-bottom:1em;
+    border-bottom:1px solid #ebebeb;
+}
+
+.themedb-clone-item:last-child,
+.themedb-clone-item .themedb-clone-item {
+    margin-bottom:0;
+    padding-bottom:0;
+    border-bottom:none;
+}
+
+.themedb-clone-item input,
+.themedb-clone-item textarea,
+.themedb-clone-item select {
+    display:block;
+    margin-bottom:0.8em;
+}
+
+.themedb-clone-item .themedb-clone-item {
+    margin-bottom:0.6em;
+    width:372px;
+}
+
+.themedb-clone-item .themedb-clone-item input {
+    float:left;
+    margin-right:9px;
+}
+
+.themedb-clone-item .themedb-clone-item input[type="checkbox"] {
+    margin-top:5px;
+}
+
+.themedb-clone-item .themedb-clone-item:last-child,
+.themedb-clone-item .themedb-option input,
+.themedb-clone-item .themedb-clone-item input,
+.themedb-clone-item input:last-child,
+.themedb-clone-item textarea:last-child,
+.themedb-clone-item select:last-child {
+    margin-bottom:0;
+}
+
+/*--------------------- Shortcode ------------------------*/
+
+.themedb-shortcode table {
+    width:100%;
+    text-align:left;	
+}
+
+.themedb-shortcode th,
+.themedb-shortcode td {
+    padding:0.7em 0;
+    vertical-align:top;
+    border-bottom:1px solid #ebebeb;
+}
+
+.themedb-shortcode tr:last-child th,
+.themedb-shortcode tr:last-child td {
+    padding-bottom:0;
+    border-width:0;
+}
+
+.themedb-shortcode th {
+    width:108px;
+}
+
+.themedb-shortcode .themedb-option-title {
+    display:none;
+}
+
+.themedb-shortcode .themedb-shortcode-title {
+    margin:0.2em 0 0.5em 0;
+    font-size:1.1em;
+    font-weight:bold;
+}
+
+.themedb-shortcode .themedb-tooltip {
+    top:0.3em;
+}
+
+.themedb-shortcode .themedb-submit {
+    width:302px;
+    float:left;
+}
+
+.themedb-shortcode .themedb-button {
+    float:right;
+}
+
+i.themedb-shortcode-icon {
+    background-image:url(../images/icons/icon-shortcode.png);
+}
+
+.themedb-shortcode-clone {
+    padding:10px;
+    border:1px solid #dadada;
+    background:#f3f3f3;
+    position:relative;
+    margin-bottom:1em;
+}
+
+.themedb-shortcode-clone .themedb-option:last-child,
+.themedb-shortcode-clone:last-child {
+    margin-bottom:0;
+}
+
+.themedb-shortcode-clone .themedb-option {
+    padding-bottom:0;
+    border-bottom-width:0;
+    margin-bottom:0.5em;
+}
+
+.themedb-shortcode-clone .themedb-option-title {
+    display:block;
+    float:left;
+    margin-top:0.25em;
+    width:99px;
+}
+
+.themedb-shortcode-clone .themedb-clone-button,
+.themedb-shortcode-clone .themedb-remove-button {
+    top:11px;
+    right:11px;
+}
+
+.themedb-shortcode-clone .themedb-clone-button {
+    right:33px;
+}
+
+/*----------------------- Profile ------------------------*/
+
+.themedb-profile input,
+.themedb-profile select,
+.themedb-profile .wp-editor-wrap {
+    width:25em;
+}
+
+.themedb-profile .mceStatusbar {
+    border-top:1px solid #dedede!important;
+    background-color:#f5f5f5!important;
+}
+
+/*------------------------ Posts -------------------------*/
+
+#menu-posts-shop .wp-menu-image,
+#menu-posts-withdrawal .wp-menu-image,
+#menu-posts-slide .wp-menu-image,
+#menu-posts-testimonial .wp-menu-image {	
+    font-size:0;
+}
+
+#menu-posts-shop .wp-menu-image:before { content: "\f174"!important; }
+#menu-posts-withdrawal .wp-menu-image:before { content: "\f310"!important; }
+#menu-posts-slide .wp-menu-image:before { content: "\f161"!important; }
+#menu-posts-testimonial .wp-menu-image:before { content: "\f125"!important; }
+
+.post-type-shop #authordiv,
+.post-type-withdrawal #authordiv,
+.post-type-shop_order #authordiv,
+.post-type-product #authordiv {
+    display:none;
+}
+
+/* ================= CSS3 STYLES ==================== */
+
+.themedb-page,
+.themedb-popup,
+.themedb-button,
+.themedb-slider .ui-slider,
+.themedb-slider .ui-slider-handle,
+.themedb-tooltip .themedb-tooltip-text,
+.themedb-shortcode-clone,
+.themedb-image-uploader img,
+.themedb-select-image img {
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+
+.themedb-content {
+    -moz-box-shadow:0 0 5px rgba(0,0,0,0.05);
+    -webkit-box-shadow:0 0 5px rgba(0,0,0,0.05);
+    box-shadow:0 0 5px rgba(0,0,0,0.05);
+}
+
+.themedb-button {
+    -moz-box-shadow:0 1px 0 rgba(255,255,255,0.3) inset;
+    -webkit-box-shadow:0 1px 0 rgba(255,255,255,0.3) inset;
+    box-shadow:0 1px 0 rgba(255,255,255,0.3) inset;
+}
+
+.themedb-button {
+    background-image: -moz-linear-gradient(top, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.2)), color-stop(100%,rgba(255,255,255,0)));
+    background-image: -webkit-linear-gradient(top, rgba(255,255,255,0.2) 0%,rgba(255,255,255,0) 100%);
+    background-image: -o-linear-gradient(top, rgba(255,255,255,0.2) 0%,rgba(255,255,255,0) 100%);
+    background-image: -ms-linear-gradient(top, rgba(255,255,255,0.2) 0%,rgba(255,255,255,0) 100%);
+    background-image: linear-gradient(to bottom, rgba(255,255,255,0.2) 0%,rgba(255,255,255,0) 100%);
+}

@@ -1,0 +1,123 @@
+@import "./font.scss";
+
+/*****************************************
+    font-family: 'Swiss721BT';
+******************************************/
+$family-title: "FuturaPTBold", "Helvetica Neue", Arial, sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$family-body: "FuturaPTLight", "Helvetica Neue", Arial, sans-serif,
+  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+$family-subtitle: "FuturaPTHeavy", sans-serif;
+
+body {
+  .slide-inner-content-wrapper h2 {
+    @include fontSize(60px);
+  }
+  h1,
+  h2 {
+    @include fontSize($f1);
+    margin-bottom: 1rem !important;
+  }
+  h3 {
+    @include fontSize($f4);
+  }
+  h4 {
+    @include fontSize($f4);
+  }
+  .deals-inner-content-wrapper h2 {
+    @include fontSize($fp);
+    margin-bottom: 0 !important;
+  }
+  div.wpb_text_column h4 {
+    @include fontSize($f3);
+  }
+}
+
+// body {
+//   h1,
+//   h2,
+//   h3,
+//   h4,
+//   h5,
+//   h6 {
+//   }
+//   input,
+//   select,
+//   textarea {
+//     font-family: $family-body;
+//   }
+//   &.page,
+//   &.single-services,
+//   &.single-portfolio {
+//     h1 {
+//       @include fontSize($f1);
+//       font-family: $family-title;
+//       -webkit-font-smoothing: antialiased;
+//     }
+//     h2 {
+//       @include fontSize($f2);
+//       font-family: $family-title;
+//       font-weight: 700;
+//       -webkit-font-smoothing: antialiased;
+//     }
+//     h3 {
+//       @include fontSize($f3);
+//       font-family: $family-title;
+//       -webkit-font-smoothing: antialiased;
+//       @include respond(small-desktop) {
+//         @include fontSize(50px);
+//       }
+//     }
+//     h4 {
+//       @include fontSize($f4);
+//       font-family: $family-title;
+//       -webkit-font-smoothing: antialiased;
+//     }
+//     h5 {
+//       @include fontSize($f5);
+//       font-family: $family-subtitle;
+//       -webkit-font-smoothing: antialiased;
+//     }
+//     h6 {
+//       @include fontSize($f6);
+//       word-spacing: 8px;
+//       font-family: $family-subtitle;
+//       -webkit-font-smoothing: antialiased;
+//     }
+//     p {
+//       @include style-body-text();
+//     }
+//   }
+//   #mk-footer {
+//     p {
+//       @include style-body-text();
+//       @include fontSize(14px);
+//       letter-spacing: 2px;
+//       word-spacing: 8px;
+//       font-family: $family-subtitle;
+//     }
+//   }
+//   .heading {
+//     h2 {
+//       @include fontSize(80px);
+//       letter-spacing: 2px;
+//       -webkit-font-smoothing: antialiased;
+//     }
+//   }
+//   #mk-page-introduce {
+//     h1 {
+//       @include fontSize(50px);
+//       font-family: $family-title;
+//       font-weight: 700;
+//       -webkit-font-smoothing: antialiased;
+//       color: black;
+//     }
+//   }
+//   .main-navigation-ul {
+//     .menu-item {
+//       a {
+//         font-family: $family-body;
+//       }
+//     }
+//   }
+// }

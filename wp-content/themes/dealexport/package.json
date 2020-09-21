@@ -1,0 +1,12 @@
+{
+  "name": "dealexporttrading",
+  "version": "0.0.1",
+  "description": "dealexporttrading child theme",
+  "main": "index.js",
+  "scripts": {
+    "start": "gulp",
+    "build": "gulp build --prod"
+  },
+  "author": "Duc",
+  "license": "ISC"
+}

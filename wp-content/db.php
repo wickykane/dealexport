@@ -1,0 +1,1 @@
+/home/saigonaut/webapps/dealexport231/wp-content/plugins/query-monitor/wp-content/db.php

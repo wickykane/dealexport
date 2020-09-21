@@ -1,0 +1,1340 @@
+<?php
+
+include_once 'framework/devb_utilities.php';
+
+//Define constants
+define('SITE_URL', home_url() . '/');
+define('AJAX_URL', admin_url('admin-ajax.php'));
+define('THEME_PATH', get_template_directory() . '/');
+define('CHILD_PATH', get_stylesheet_directory() . '/');
+define('THEME_URI', get_template_directory_uri() . '/');
+define('CHILD_URI', get_stylesheet_directory_uri() . '/');
+define('THEMEDB_PATH', THEME_PATH . 'framework/');
+define('THEMEDB_URI', THEME_URI . 'framework/');
+define('THEMEDB_PREFIX', 'themedb_');
+
+//Set content width
+$content_width = 940;
+
+//Load language files
+load_theme_textdomain('dealexport', THEME_PATH . 'languages');
+
+//Include theme functions
+include(THEMEDB_PATH . 'functions.php');
+
+//Include configuration
+include(THEMEDB_PATH . 'config.php');
+
+//Include core class
+include(THEMEDB_PATH . 'classes/themedb.core.php');
+
+// add Email Template page
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page(__('Email Template', 'dealexport'));
+}
+
+//Create theme instance
+$themedb = new ThemedbCore($config);
+
+// remove item-options right
+function remove_loop_button() {
+    remove_action('woocommerce_after_shop_loop_item', 'woocommerce_template_loop_add_to_cart', 10);
+    remove_action('woocommerce_single_product_summary', 'woocommerce_template_single_add_to_cart', 30);
+}
+
+add_action('init', 'remove_loop_button');
+
+// create email template editor page
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page(__('Email Template', 'sb_theme'));
+}
+
+/*
+ *  CUSTOM LOGIN PAGE
+ */
+
+function db_custom_login() {
+    echo '<link rel="stylesheet" type="text/css" href="' . get_bloginfo('stylesheet_directory') . '/custom-login/custom-login-styles.css" />';
+}
+
+add_action('login_head', 'db_custom_login');
+
+function db_login_logo_url() {
+    return get_bloginfo('url');
+}
+
+add_filter('login_headerurl', 'db_login_logo_url');
+
+function db_login_logo_url_title() {
+    return 'Deal Export - Connecting market';
+}
+
+add_filter('login_headertitle', 'db_login_logo_url_title');
+
+function de_add_select2_script() {
+    wp_dequeue_style('select2');
+    wp_deregister_style('select2');
+
+    wp_dequeue_script('select2');
+    wp_deregister_script('select2');
+    //-- CSS HTML here
+    wp_enqueue_style('select2', THEME_URI . 'js/select2/select2.min.css', array(), '4.0.1', 'screen');
+
+    //-- JS HTML here
+    //-- JS IN HEADER
+    wp_enqueue_script('select2', THEME_URI . 'js/select2/select2.min.js', array('jquery'), '4.0.1', false);
+
+
+    //-- AOS animate on scroll
+    wp_enqueue_style( 'aos-css', 'https://unpkg.com/aos@2.3.1/dist/aos.css', false );
+    wp_enqueue_script( 'aos-script', 'https://unpkg.com/aos@2.3.1/dist/aos.js', array('jquery'), true );
+}
+
+add_action('wp_enqueue_scripts', 'de_add_select2_script', 100);
+
+function de_create_taxonomy() {
+
+    // Add new "Country/Region" taxonomy to Product
+    register_taxonomy('product_country_region', 'product', array(
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => _x('Country/Region', 'taxonomy general name', 'dealexport'),
+            'singular_name' => _x('Country/Region', 'taxonomy singular name', 'dealexport'),
+            'search_items' => __('Search Country/Region', 'dealexport'),
+            'all_items' => __('All Country/Region', 'dealexport'),
+            'parent_item' => __('Parent Country/Region', 'dealexport'),
+            'parent_item_colon' => __('Parent Country/Region:', 'dealexport'),
+            'edit_item' => __('Edit Country/Region', 'dealexport'),
+            'update_item' => __('Update Country/Region', 'dealexport'),
+            'add_new_item' => __('Add New Country/Region', 'dealexport'),
+            'new_item_name' => __('New Country/Region Name', 'dealexport'),
+            'menu_name' => __('Country/Region', 'dealexport'),
+        ),
+        // Control the slugs used for this taxonomy
+        'rewrite' => array(
+            'slug' => 'product_country_region', // This controls the base slug that will display before each term
+            'with_front' => false, // Don't display the category base before "/locations/"
+            'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+        ),
+    ));
+
+    // Add new "Country/Region" taxonomy to Shop
+    register_taxonomy('shop_country_region', 'shop', array(
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => _x('Country/Region', 'taxonomy general name', 'dealexport'),
+            'singular_name' => _x('Country/Region', 'taxonomy singular name', 'dealexport'),
+            'search_items' => __('Search Country/Region', 'dealexport'),
+            'all_items' => __('All Country/Region', 'dealexport'),
+            'parent_item' => __('Parent Country/Region', 'dealexport'),
+            'parent_item_colon' => __('Parent Country/Region:', 'dealexport'),
+            'edit_item' => __('Edit Country/Region', 'dealexport'),
+            'update_item' => __('Update Country/Region', 'dealexport'),
+            'add_new_item' => __('Add New Country/Region', 'dealexport'),
+            'new_item_name' => __('New Country/Region Name', 'dealexport'),
+            'menu_name' => __('Country/Region', 'dealexport'),
+        ),
+        // Control the slugs used for this taxonomy
+        'rewrite' => array(
+            'slug' => 'shop_country_region', // This controls the base slug that will display before each term
+            'with_front' => false, // Don't display the category base before "/locations/"
+            'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+        ),
+    ));
+
+    // Add new "Type" taxonomy to Product
+    register_taxonomy('product_custome_type', 'product', array(
+        'hierarchical' => true,
+        'labels' => array(
+            'name' => _x('Type', 'taxonomy general name', 'dealexport'),
+            'singular_name' => _x('Type', 'taxonomy singular name', 'dealexport'),
+            'search_items' => __('Search Type', 'dealexport'),
+            'all_items' => __('All Types', 'dealexport'),
+            'parent_item' => __('Parent Type', 'dealexport'),
+            'parent_item_colon' => __('Parent Type:', 'dealexport'),
+            'edit_item' => __('Edit Type', 'dealexport'),
+            'update_item' => __('Update Type', 'dealexport'),
+            'add_new_item' => __('Add New Type', 'dealexport'),
+            'new_item_name' => __('New Type Name', 'dealexport'),
+            'menu_name' => __('Type', 'dealexport'),
+        ),
+        // Control the slugs used for this taxonomy
+        'rewrite' => array(
+            'slug' => 'product_custome_type', // This controls the base slug that will display before each term
+            'with_front' => false, // Don't display the category base before "/locations/"
+            'hierarchical' => true // This will allow URL's like "/locations/boston/cambridge/"
+        ),
+    ));
+}
+
+add_action('init', 'de_create_taxonomy', 0);
+
+/*
+ * 
+ * Product filter function 
+ *  
+ */
+
+function de_get_product_country() {
+    $country_arr = array();
+    $args = array(
+        'orderby' => 'name',
+        'order' => 'ASC',
+        'hide_empty' => FALSE,
+    );
+    $taxonomy = 'product_country_region';
+    $terms = get_terms($taxonomy, $args);
+    foreach ($terms as $term) {
+        if ($term->parent == 0) {
+            $country_arr[] = array('id' => $term->term_id, 'text' => $term->name);
+        }
+    }
+    return $country_arr;
+}
+
+function de_get_region_by_country_id($country_id) {
+    $child_term_arr = get_term_children($country_id, 'product_country_region');
+    return $child_term_arr;
+}
+
+function de_get_list_region_by_country_id($country_id) {
+    $region_list = array();
+	$sort = array();
+    $region_id_arr = de_get_region_by_country_id($country_id);
+    foreach ($region_id_arr as $region_id) {
+        $region_data = get_term($region_id, 'product_country_region', OBJECT);
+        $region_list[] = array('id' => $region_id, 'text' => $region_data->name);
+    }
+	if(!empty($region_list)){
+		foreach($region_list as $k=>$v) {
+			$sort['text'][$k] = $v['text'];
+		}
+		array_multisort($sort['text'], SORT_ASC,SORT_STRING, $region_list);
+	}
+    return $region_list;
+//    return $region_list;
+}
+
+function de_get_list_region_of_country() {
+    if (isset($_REQUEST['country_id']) && $_REQUEST['country_id'] != NULL) {
+        $country_id = $_REQUEST['country_id'];
+        $region_list = de_get_list_region_by_country_id($country_id);
+    }
+    wp_send_json($region_list);
+//    return $region_list;
+}
+
+add_action('wp_ajax_de_get_list_region_of_country', 'de_get_list_region_of_country');
+add_action('wp_ajax_nopriv_de_get_list_region_of_country', 'de_get_list_region_of_country');
+
+function de_add_product_country_filter_query($query) {
+    if (is_shop()) {
+        if (!$query->is_main_query() || is_admin()) {
+            return $query;
+        }
+        $query->set('tax_query', array(
+            array(
+                'taxonomy' => 'product_custome_type',
+                'field' => 'slug',
+                'terms' => 'service',
+                'operator' => 'NOT IN'
+            ),
+        ));
+        if (((isset($_GET['country-filter']) && $_GET['country-filter'] != NULL) || (isset($_GET['region-filter']) && $_GET['region-filter'] != NULL)) && !isset($_GET['product-cat'])) {
+            if (isset($_GET['country-filter']) && $_GET['country-filter'] != NULL && (!isset($_GET['region-filter']) || $_GET['region-filter'] == NULL)) {
+                $term_filter = $_GET['country-filter'];
+            } else {
+                $term_filter = $_GET['region-filter'];
+            }
+            $query->set('tax_query', array(
+                'relation' => 'AND',
+                array(
+                    'taxonomy' => 'product_country_region',
+                    'field' => 'id',
+                    'terms' => $term_filter,
+                ),
+                array(
+                    'taxonomy' => 'product_custome_type',
+                    'field' => 'slug',
+                    'terms' => 'service',
+                    'operator' => 'NOT IN'
+                ),
+            ));
+        } elseif ((!isset($_GET['country-filter']) || $_GET['country-filter'] == NULL) && (isset($_GET['product-cat']) && $_GET['product-cat'] != NULL)) {
+            $term_filter = $_GET['product-cat'];
+            $query->set('tax_query', array(
+                'relation' => 'AND',
+                array(
+                    'taxonomy' => 'product_cat',
+                    'field' => 'id',
+                    'terms' => $term_filter,
+                ),
+                array(
+                    'taxonomy' => 'product_custome_type',
+                    'field' => 'slug',
+                    'terms' => 'service',
+                    'operator' => 'NOT IN'
+                ),
+            ));
+        } elseif (isset($_GET['country-filter']) && isset($_GET['region-filter']) && isset($_GET['product-cat'])) {
+            if (isset($_GET['country-filter']) && $_GET['country-filter'] != NULL && (!isset($_GET['region-filter']) || $_GET['region-filter'] == NULL)) {
+                $location_term_filter = $_GET['country-filter'];
+            } else {
+                $location_term_filter = $_GET['region-filter'];
+            }
+            $cat_term_filter = $_GET['product-cat'];
+            $tax_query = array();
+            $tax_query[] = array(
+                'taxonomy' => 'product_country_region',
+                'field' => 'id',
+                'terms' => $location_term_filter,
+            );
+            $tax_query[] = array(
+                'taxonomy' => 'product_cat',
+                'field' => 'id',
+                'terms' => $cat_term_filter,
+            );
+            $tax_query[] = array(
+                'taxonomy' => 'product_custome_type',
+                'field' => 'slug',
+                'terms' => 'service',
+                'operator' => 'NOT IN'
+            );
+            if (!empty($tax_query)) {
+                $tax_query['relation'] = 'AND'; // you can also use 'OR' here
+                $query->set('tax_query', $tax_query);
+            }
+        }
+        $query->set( 'orderby', array('menu_order' => 'ASC', 'title' => 'ASC') );
+        return $query;
+    }
+}
+
+add_filter('pre_get_posts', 'de_add_product_country_filter_query');
+
+// Remove breadcrumb
+remove_action('woocommerce_before_main_content', 'woocommerce_breadcrumb', 20, 0);
+
+function de_get_product_categories() {
+    $args = array(
+        'orderby' => 'name',
+        'order' => 'ASC',
+        'hide_empty' => FALSE,
+    );
+    $taxonomy = 'product_cat';
+    $terms = get_terms($taxonomy, $args);
+
+    return $terms;
+}
+
+function hierarchical_category_tree($pterm, $taxonomy, $termType, $type, $is_service, $service_term_id) {
+    $terms = get_terms($taxonomy, array('parent' => $pterm->term_id, 'orderby' => 'slug', 'hide_empty' => false));
+    if (count($terms) > 0) {
+        $out .= "<ul class='product-child-categorie'>";
+        foreach ($terms as $term) {
+            $termID = $term->term_id;
+            if (!isset($_GET['country-filter']) || ($_GET['country-filter'] == NULL && $_GET['region-filter'] == NULL)) {
+                $term_count = de_count_item_in_category_with_filter('', $termID, $type, $is_service, $service_term_id);
+            } else {
+                if ($_GET['region-filter'] == NULL) {
+                    $location_filter_to_count = $_GET['country-filter'];
+                } else {
+                    $location_filter_to_count = $_GET['region-filter'];
+                }
+                $term_count = de_count_item_in_category_with_filter($location_filter_to_count, $termID, $type, $is_service, $service_term_id);
+            }
+            if ($type != 'shop') {
+                $product_cat_url = get_permalink(woocommerce_get_page_id('shop')) .
+                        (isset($_GET['country-filter']) ? '?country-filter=' . $_GET['country-filter'] : '?') .
+                        (isset($_GET['region-filter']) ? '&region-filter=' . $_GET['region-filter'] : '') . '&' . $termType . '=' . $termID;
+            } else {
+                $product_cat_url = get_permalink(get_page_by_path('shops')) .
+                        (isset($_GET['country-filter']) ? '?country-filter=' . $_GET['country-filter'] : '?') .
+                        (isset($_GET['region-filter']) ? '&region-filter=' . $_GET['region-filter'] : '') . '&' . $termType . '=' . $termID;
+            }
+            if ($term_count > 0):
+                $out.= "<li class='cat-item'>
+                            <a href='" . $product_cat_url . "'>" . $term->name . "</a>
+                                    <span class='count'>(" . $term_count . ")</span>";
+            endif;
+            $out.= hierarchical_category_tree($term, $taxonomy, $termType, $type, $is_service, $service_term_id);
+        }
+    } else {
+        return $out .= "</li>";
+    }
+
+    $out.='</ul>';
+    return $out;
+}
+
+/*
+ * 
+ * Shop filter function 
+ *  
+ */
+
+function de_get_shop_country() {
+    $country_arr = array();
+    $args = array(
+        'orderby' => 'name',
+        'order' => 'ASC',
+        'hide_empty' => FALSE,
+    );
+    $taxonomy = 'shop_country_region';
+    $terms = get_terms($taxonomy, $args);
+    foreach ($terms as $term) {
+        if ($term->parent == 0) {
+            $country_arr[] = array('id' => $term->term_id, 'text' => $term->name);
+        }
+    }
+    return $country_arr;
+}
+
+function de_get_shop_region_by_country_id($country_id) {
+    $child_term_arr = get_term_children($country_id, 'shop_country_region');
+    return $child_term_arr;
+}
+
+function de_get_shop_list_region_by_country_id($country_id) {
+    $region_list = array();
+	$sort = array();
+    $region_id_arr = de_get_shop_region_by_country_id($country_id);
+    foreach ($region_id_arr as $region_id) {
+        $region_data = get_term($region_id, 'shop_country_region', OBJECT);
+        $region_list[] = array('id' => $region_id, 'text' => $region_data->name);
+    }
+    if(!empty($region_list)){
+	    foreach($region_list as $k=>$v) {
+		    $sort['text'][$k] = $v['text'];
+	    }
+	    array_multisort($sort['text'], SORT_ASC,SORT_STRING, $region_list);
+    }
+    return $region_list;
+}
+
+function de_get_shop_list_region_of_country() {
+    if (isset($_REQUEST['country_id']) && $_REQUEST['country_id'] != NULL) {
+        $country_id = $_REQUEST['country_id'];
+        $region_list = de_get_shop_list_region_by_country_id($country_id);
+    }
+    wp_send_json($region_list);
+//    return $region_list;
+}
+
+add_action('wp_ajax_de_get_shop_list_region_of_country', 'de_get_shop_list_region_of_country');
+add_action('wp_ajax_nopriv_de_get_shop_list_region_of_country', 'de_get_shop_list_region_of_country');
+
+function de_get_shop_categories() {
+    $args = array(
+        'orderby' => 'name',
+        'order' => 'ASC',
+        'hide_empty' => FALSE,
+    );
+    $taxonomy = 'shop_category';
+    $terms = get_terms($taxonomy, $args);
+    return $terms;
+}
+
+function de_count_item_in_category_with_filter($location_id = '', $category_id = '', $post_type = '', $is_service = false, $service_id = '') {
+    global $wpdb;
+    $sql = "SELECT DISTINCT object_id FROM " . $wpdb->prefix . "term_relationships tr INNER JOIN " . $wpdb->prefix . "posts p"
+            . " ON tr.object_id = p.ID"
+            . " WHERE p.post_type = '" . $post_type . "' AND p.post_status = 'publish' AND"
+            . " object_id IN (SELECT object_id FROM " . $wpdb->prefix . "term_relationships WHERE term_taxonomy_id = " . $category_id . ")";
+    if ($is_service == false && $service_id != '') {
+        $sql.= " AND object_id NOT IN (SELECT object_id FROM " . $wpdb->prefix . "term_relationships WHERE term_taxonomy_id = " . $service_id . ")";
+    }
+    if ($is_service == true && $service_id != '') {
+        $sql.= " AND object_id IN (SELECT object_id FROM " . $wpdb->prefix . "term_relationships WHERE term_taxonomy_id = " . $service_id . ")";
+    }
+    if ($location_id != '') {
+        $sql.= " AND object_id IN (SELECT object_id FROM " . $wpdb->prefix . "term_relationships WHERE term_taxonomy_id = " . $location_id . ")";
+    }
+    $result = $wpdb->get_results($sql);
+    return count($result);
+}
+
+/*
+ * 
+ * Add arrival price field for product 
+ *  
+ */
+
+function de_product_arrival_price_field() {
+    woocommerce_wp_text_input(array('id' => 'arv_price', 'class' => 'wc_input_price short', 'label' => __('Arrival Price', 'dealexport') . ' (' . get_woocommerce_currency_symbol() . ')'));
+}
+
+add_action('woocommerce_product_options_pricing', 'de_product_arrival_price_field');
+
+function de_product_arrival_price_save($product_id) {
+    // If this is a auto save do nothing, we only save when update button is clicked
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+        return;
+    if (isset($_POST['arv_price'])) {
+        if (is_numeric($_POST['arv_price']))
+            update_post_meta($product_id, 'arv_price', $_POST['arv_price']);
+    } else
+        delete_post_meta($product_id, 'arv_price');
+}
+
+add_action('save_post', 'de_product_arrival_price_save');
+
+function de_update_shop_author_to_product($product_id) {
+
+
+    if (get_field('de_shop', $product_id)->post_author != NULL) {
+        $shop_author_id = get_field('de_shop', $product_id)->post_author;
+    } else {
+        $shop_author_id = get_field('de_shop_manager', $product_id)['ID'];
+    }
+
+    if (!wp_is_post_revision($product_id)) {
+
+        // unhook this function so it doesn't loop infinitely
+        remove_action('save_post', 'de_update_shop_author_to_product');
+
+        // If this is a auto save do nothing, we only save when update button is clicked
+
+        $args = array(
+            'ID' => $product_id,
+            'post_author' => (int) $shop_author_id,
+        );
+// Update the post into the database
+        wp_update_post($args);
+
+        // re-hook this function
+        add_action('save_post', 'de_update_shop_author_to_product');
+    }
+}
+
+add_action('save_post', 'de_update_shop_author_to_product');
+
+// return youtube video id 
+function get_video_id($video_url) {
+    $str1 = str_replace('watch?v=', '', array_pop(explode("/", $video_url)));
+    if (strpos($str1, '&list=') != FALSE) {
+        $str2 = substr($str1, 0, strpos($str1, '&list='));
+    } elseif (strpos($str1, '?list=') != FALSE) {
+        $str2 = substr($str1, 0, strpos($str1, '?list='));
+    } else {
+        $str2 = $str1;
+    }
+    return $str2;
+}
+
+// Function remove character from file name when upload
+function de_sanitize_filename_on_upload($filename) {
+//    $special_chars = array("á", "é", "í", "ó", "ú", "Á", "É", "Í", "Ó", "Ú", "ñ", "Ñ", "Ç", "ç", "è", "ï");
+//    $replacement_chars = array("a", "e", "i", "o", "u", "A", "E", "I", "O", "U", "n", "N", "C", "c", "e", "i");
+//    $replaced_string = str_replace($special_chars, $replacement_chars, $filename);
+//    return $replaced_string;
+    $replace = array(
+        "ъ" => "-", "Ь" => "-", "Ъ" => "-", "ь" => "-",
+        "Ă" => "A", "Ą" => "A", "À" => "A", "Ã" => "A", "Á" => "A", "Æ" => "A", "Â" => "A", "Å" => "A", "Ä" => "Ae",
+        "Þ" => "B",
+        "Ć" => "C", "ץ" => "C", "Ç" => "C",
+        "È" => "E", "Ę" => "E", "É" => "E", "Ë" => "E", "Ê" => "E",
+        "Ğ" => "G",
+        "İ" => "I", "Ï" => "I", "Î" => "I", "Í" => "I", "Ì" => "I",
+        "Ł" => "L",
+        "Ñ" => "N", "Ń" => "N",
+        "Ø" => "O", "Ó" => "O", "Ò" => "O", "Ô" => "O", "Õ" => "O", "Ö" => "Oe",
+        "Ş" => "S", "Ś" => "S", "Ș" => "S", "Š" => "S",
+        "Ț" => "T",
+        "Ù" => "U", "Û" => "U", "Ú" => "U", "Ü" => "Ue",
+        "Ý" => "Y",
+        "Ź" => "Z", "Ž" => "Z", "Ż" => "Z",
+        "â" => "a", "ǎ" => "a", "ą" => "a", "á" => "a", "ă" => "a", "ã" => "a", "Ǎ" => "a", "а" => "a", "А" => "a", "å" => "a", "à" => "a", "א" => "a", "Ǻ" => "a", "Ā" => "a", "ǻ" => "a", "ā" => "a", "ä" => "ae", "æ" => "ae", "Ǽ" => "ae", "ǽ" => "ae",
+        "б" => "b", "ב" => "b", "Б" => "b", "þ" => "b",
+        "ĉ" => "c", "Ĉ" => "c", "Ċ" => "c", "ć" => "c", "ç" => "c", "ц" => "c", "צ" => "c", "ċ" => "c", "Ц" => "c", "Č" => "c", "č" => "c", "Ч" => "ch", "ч" => "ch",
+        "ד" => "d", "ď" => "d", "Đ" => "d", "Ď" => "d", "đ" => "d", "д" => "d", "Д" => "D", "ð" => "d",
+        "є" => "e", "ע" => "e", "е" => "e", "Е" => "e", "Ə" => "e", "ę" => "e", "ĕ" => "e", "ē" => "e", "Ē" => "e", "Ė" => "e", "ė" => "e", "ě" => "e", "Ě" => "e", "Є" => "e", "Ĕ" => "e", "ê" => "e", "ə" => "e", "è" => "e", "ë" => "e", "é" => "e",
+        "ф" => "f", "ƒ" => "f", "Ф" => "f",
+        "ġ" => "g", "Ģ" => "g", "Ġ" => "g", "Ĝ" => "g", "Г" => "g", "г" => "g", "ĝ" => "g", "ğ" => "g", "ג" => "g", "Ґ" => "g", "ґ" => "g", "ģ" => "g",
+        "ח" => "h", "ħ" => "h", "Х" => "h", "Ħ" => "h", "Ĥ" => "h", "ĥ" => "h", "х" => "h", "ה" => "h",
+        "î" => "i", "ï" => "i", "í" => "i", "ì" => "i", "į" => "i", "ĭ" => "i", "ı" => "i", "Ĭ" => "i", "И" => "i", "ĩ" => "i", "ǐ" => "i", "Ĩ" => "i", "Ǐ" => "i", "и" => "i", "Į" => "i", "י" => "i", "Ї" => "i", "Ī" => "i", "І" => "i", "ї" => "i", "і" => "i", "ī" => "i", "ĳ" => "ij", "Ĳ" => "ij",
+        "й" => "j", "Й" => "j", "Ĵ" => "j", "ĵ" => "j", "я" => "ja", "Я" => "ja", "Э" => "je", "э" => "je", "ё" => "jo", "Ё" => "jo", "ю" => "ju", "Ю" => "ju",
+        "ĸ" => "k", "כ" => "k", "Ķ" => "k", "К" => "k", "к" => "k", "ķ" => "k", "ך" => "k",
+        "Ŀ" => "l", "ŀ" => "l", "Л" => "l", "ł" => "l", "ļ" => "l", "ĺ" => "l", "Ĺ" => "l", "Ļ" => "l", "л" => "l", "Ľ" => "l", "ľ" => "l", "ל" => "l",
+        "מ" => "m", "М" => "m", "ם" => "m", "м" => "m",
+        "ñ" => "n", "н" => "n", "Ņ" => "n", "ן" => "n", "ŋ" => "n", "נ" => "n", "Н" => "n", "ń" => "n", "Ŋ" => "n", "ņ" => "n", "ŉ" => "n", "Ň" => "n", "ň" => "n",
+        "о" => "o", "О" => "o", "ő" => "o", "õ" => "o", "ô" => "o", "Ő" => "o", "ŏ" => "o", "Ŏ" => "o", "Ō" => "o", "ō" => "o", "ø" => "o", "ǿ" => "o", "ǒ" => "o", "ò" => "o", "Ǿ" => "o", "Ǒ" => "o", "ơ" => "o", "ó" => "o", "Ơ" => "o", "œ" => "oe", "Œ" => "oe", "ö" => "oe",
+        "פ" => "p", "ף" => "p", "п" => "p", "П" => "p",
+        "ק" => "q",
+        "ŕ" => "r", "ř" => "r", "Ř" => "r", "ŗ" => "r", "Ŗ" => "r", "ר" => "r", "Ŕ" => "r", "Р" => "r", "р" => "r",
+        "ș" => "s", "с" => "s", "Ŝ" => "s", "š" => "s", "ś" => "s", "ס" => "s", "ş" => "s", "С" => "s", "ŝ" => "s", "Щ" => "sch", "щ" => "sch", "ш" => "sh", "Ш" => "sh", "ß" => "ss",
+        "т" => "t", "ט" => "t", "ŧ" => "t", "ת" => "t", "ť" => "t", "ţ" => "t", "Ţ" => "t", "Т" => "t", "ț" => "t", "Ŧ" => "t", "Ť" => "t", "™" => "tm",
+        "ū" => "u", "у" => "u", "Ũ" => "u", "ũ" => "u", "Ư" => "u", "ư" => "u", "Ū" => "u", "Ǔ" => "u", "ų" => "u", "Ų" => "u", "ŭ" => "u", "Ŭ" => "u", "Ů" => "u", "ů" => "u", "ű" => "u", "Ű" => "u", "Ǖ" => "u", "ǔ" => "u", "Ǜ" => "u", "ù" => "u", "ú" => "u", "û" => "u", "У" => "u", "ǚ" => "u", "ǜ" => "u", "Ǚ" => "u", "Ǘ" => "u", "ǖ" => "u", "ǘ" => "u", "ü" => "ue",
+        "в" => "v", "ו" => "v", "В" => "v",
+        "ש" => "w", "ŵ" => "w", "Ŵ" => "w",
+        "ы" => "y", "ŷ" => "y", "ý" => "y", "ÿ" => "y", "Ÿ" => "y", "Ŷ" => "y",
+        "Ы" => "y", "ž" => "z", "З" => "z", "з" => "z", "ź" => "z", "ז" => "z", "ż" => "z", "ſ" => "z", "Ж" => "zh", "ж" => "zh"
+    );
+    return strtr($filename, $replace);
+}
+
+add_filter('sanitize_file_name', 'de_sanitize_filename_on_upload', 10, 2);
+
+/**
+ * Custom walker class.
+ */
+class db_Walker_Nav_Menu extends Walker_Nav_Menu {
+
+    /**
+     * Starts the list before the elements are added.
+     *
+     * Adds classes to the unordered list sub-menus.
+     *
+     * @param string $output Passed by reference. Used to append additional content.
+     * @param int    $depth  Depth of menu item. Used for padding.
+     * @param array  $args   An array of arguments. @see wp_nav_menu()
+     */
+    function start_lvl(&$output, $depth = 0, $args = array()) {
+        // Depth-dependent classes.
+        $indent = ( $depth > 0 ? str_repeat("\t", $depth) : '' ); // code indent
+        $display_depth = ( $depth + 1); // because it counts the first submenu as 0
+        $classes = array(
+            'ui-beacon-subs'
+                /* ,( $display_depth % 2  ? 'menu-odd' : 'menu-even' ),
+                  ( $display_depth >=2 ? 'sub-sub-menu' : '' ),
+                  'menu-depth-' . $display_depth */
+        );
+        $class_names = implode(' ', $classes);
+
+        // Build HTML for output.
+        $output .= "\n" . $indent . '<ul class="' . $class_names . '">' . "\n";
+    }
+
+    /**
+     * Start the element output.
+     *
+     * Adds main/sub-classes to the list items and links.
+     *
+     * @param string $output Passed by reference. Used to append additional content.
+     * @param object $item   Menu item data object.
+     * @param int    $depth  Depth of menu item. Used for padding.
+     * @param array  $args   An array of arguments. @see wp_nav_menu()
+     * @param int    $id     Current item ID.
+     */
+    function start_el(&$output, $item, $depth = 0, $args = array(), $id = 0) {
+        global $wp_query;
+        $indent = ( $depth > 0 ? str_repeat("\t", $depth) : '' ); // code indent
+        // Depth-dependent classes.
+        $depth_classes = array(
+            ( $depth == 0 ? 'ui-beacon-item ui-beacon-drop' : 'ui-beacon-sub' )
+        );
+        $depth_class_names = esc_attr(implode(' ', $depth_classes));
+
+        // Passed classes.
+        $classes = empty($item->classes) ? array() : (array) $item->classes;
+        $class_names = esc_attr(implode(' ', apply_filters('nav_menu_css_class', array_filter($classes), $item)));
+
+        // Build HTML.
+        $output .= $indent . '<li id="nav-menu-item-' . $item->ID . '" class="' . $depth_class_names . '">';
+
+        // Link attributes.
+        $attributes = !empty($item->attr_title) ? ' title="' . esc_attr($item->attr_title) . '"' : '';
+        $attributes .=!empty($item->target) ? ' target="' . esc_attr($item->target) . '"' : '';
+        $attributes .=!empty($item->xfn) ? ' rel="' . esc_attr($item->xfn) . '"' : '';
+        $attributes .=!empty($item->url) ? ' href="' . esc_attr($item->url) . '"' : '';
+        $attributes .= ' class=" ' . ( $depth > 0 ? 'ui-beacon-sub-link' : 'ui-beacon-item-link' ) . '"';
+
+        // Build HTML output and pass through the proper filter.
+        $item_output = sprintf('%1$s<a%2$s>%3$s%4$s%5$s</a>%6$s', $args->before, $attributes, $args->link_before, apply_filters('the_title', $item->title, $item->ID), ( ($item->hasChildren) ? $args->link_after : ''), $args->after
+        );
+        $output .= apply_filters('walker_nav_menu_start_el', $item_output, $item, $depth, $args);
+    }
+
+    function display_element($element, &$children_elements, $max_depth, $depth = 0, $args, &$output) {
+        // check, whether there are children for the given ID and append it to the element with a (new) ID
+        $element->hasChildren = isset($children_elements[$element->ID]) && !empty($children_elements[$element->ID]);
+
+        return parent::display_element($element, $children_elements, $max_depth, $depth, $args, $output);
+    }
+    
+    
+    // overide image size of woocomerce
+    private function add_image_sizes() {
+        $shop_thumbnail = wc_get_image_size( 'shop_thumbnail' );
+        $shop_catalog	= wc_get_image_size( 'shop_catalog' );
+        $shop_single	= wc_get_image_size( 'shop_single' );
+    
+        add_image_size( 'shop_thumbnail', $shop_thumbnail['width'], $shop_thumbnail['height'], false );
+        add_image_size( 'shop_catalog', $shop_catalog['width'], $shop_catalog['height'], false );
+        add_image_size( 'shop_single', $shop_single['width'], $shop_single['height'], false );
+    }
+
+}
+
+add_filter('woocommerce_shortcode_products_query', 'removeAudioTags');
+function removeAudioTags($args){
+
+	$args['tax_query'] = array(array(
+
+			'taxonomy' => 'product_custome_type',
+
+			'field' => 'slug',
+
+			'terms' => array('service'),
+
+			'operator' => 'NOT IN'
+	));
+
+	return $args;
+
+}
+
+
+
+/*===================================================================================================================================================================================================*/
+/*========================== Duc - HEADER ==========================*/
+/**
+ * Register new Feature Menu
+ */
+add_action( 'after_setup_theme', 'register_icon_menu_func' );
+function register_icon_menu_func() {
+  register_nav_menu( 'feature_menu', __( 'Feature Menu', 'dealexport' ) );
+}
+
+
+/**
+ * Append the User navigation (My account, Logout) to the top menu
+ * @require Top menu ID = 60
+ */
+//add_filter( 'wp_nav_menu_items', 'add_custom_menu_item_func', 10, 2 );
+function add_custom_menu_item_func( $items, $args ) {
+    if ($args->theme_location == 'top_menu' && $args->menu->term_id==60) {
+        if (is_user_logged_in()) {
+            $user = wp_get_current_user();
+            $user_name = sprintf(__( 'Hello <strong>%1$s</strong>', 'woocommerce' ),$user->display_name);
+            $items .= '<li id="nav-menu-item-user" class="ui-beacon-item ui-beacon-drop"><svg class="user_icon" data-name="mk-moon-user-4" data-cacheid="icon-5bf7a9166cf66" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><path d="M256 64c52.935 0 96 43.065 96 96s-43.065 96-96 96-96-43.065-96-96 43.065-96 96-96m0-32c-70.692 0-128 57.308-128 128s57.308 128 128 128 128-57.308 128-128-57.308-128-128-128zm128 320c52.935 0 96 43.065 96 96h-448c0-52.935 43.065-96 96-96h256m0-32h-256c-70.692 0-128 57.309-128 128v32h512v-32c0-70.691-57.308-128-128-128z"></path></svg><a class="ui-beacon-item-link">'.$user_name.'</a><ul class="ui-beacon-subs">
+    <li id="nav-menu-item-349" class="ui-beacon-sub"><a href="'.ThemedbUser::$data['current']['links']['profile']['url'].'" class="user-link ui-beacon-sub-link">'. __('My Account', 'dealexport') .'</a><a href="'.wp_logout_url(SITE_URL).'" class="user-link ui-beacon-sub-link">'. __('Sign Out', 'dealexport') .'</a></li>
+</ul></li>';
+        } 
+    } else if ($args->theme_location == 'feature_menu') {
+         $items_array = array();
+        while ( false !== ( $item_pos = strpos ( $items, '<li', 3 ) ) )
+        {
+            $items_array[] = substr($items, 0, $item_pos);
+            $items = substr($items, $item_pos);
+        }
+        $items_array[] = $items;
+        array_splice($items_array, 2, 0, '<li class="ui-beacon-item ui-beacon-drop"><a href="'.SITE_URL.'" rel="home"><img src="'.ThemedbCore::getOption("site_logo", THEME_URI . "images/logo.png").'" alt='.bloginfo("name").'/></a></li>'); // insert custom item after 2nd one
+
+        $items = implode('', $items_array);
+    }
+    return $items;
+}
+
+
+/**
+ * Append the icons to each Menu item
+ */
+add_filter('wp_nav_menu_objects', 'add_icon_menu_objects_func', 10, 2);
+function add_icon_menu_objects_func( $items, $args ) {
+    foreach( $items as &$item ) {
+        $svgImg = get_field('menu_icon', $item, 'option');
+
+        if( $svgImg ) {
+            $item->title = '<span class="menu_icon">'. file_get_contents( $svgImg ) . '</span>' . $item->title;
+        }    
+    }
+    return $items;
+}
+
+// if (!function_exists('in_array')) {
+//     function acf_get_field() {
+//         if (!class_exists('ACF')) {
+            
+//         }
+//     }
+// }
+
+
+/*========================== Duc - WooCommerce Template Customization ==========================*/
+/**
+ * Modify Loop Product Template
+ */
+remove_action( 'woocommerce_after_shop_loop_item_title', 'woocommerce_template_loop_price', 10 );
+add_action( 'woocommerce_after_shop_loop_item_title', 'add_woocommerce_template_loop_price', 10 );
+if(!function_exists('add_woocommerce_template_loop_price')){
+    function add_woocommerce_template_loop_price() {
+        global $product;
+?>
+<?php if ( $price_html = $product->get_price_html() ) : ?>
+        <div class="item-category">
+            <?php 
+                $recentCategory = get_category_by_level(get_the_id(), 0);
+                echo $recentCategory->name;
+            ?>
+        </div>
+        <div class="item-price">
+            <div style="" class="main-price">
+                <!-- TODO: need to translate Price -->
+                <!-- <span class="price"> <?php //_e('Departing', 'dealexport'); ?>: </span> -->
+                <span class="amount"><?php echo $price_html; ?></span>
+            </div>
+
+
+        <!-- TODO: Enable if necessary -->
+        <?php //if ($ship_price_html) { ?>
+           <!--  <div style="" class="ship-price"> -->
+                <!-- <span class="price"><?php //__('Ship price', 'dealexport') ?>: </span> -->
+                <!-- <span class="amount"><?php //echo $price_html; ?></span> -->
+            <!-- </div>   -->
+        <?php //} ?>
+
+
+    </div>
+<?php endif; ?>
+<?php
+    }
+}
+
+/**
+ * Get The most recent category name
+ */
+function get_category_by_level($product_id, $level) {
+    // get all product cats for the current post
+    $categories = get_the_terms( get_the_ID(), 'product_cat' ); 
+
+    // wrapper to hide any errors from top level categories or products without category
+    if ( $categories && ! is_wp_error( $category ) ) : 
+
+        // loop through each cat
+        foreach($categories as $category) :
+        // get the children (if any) of the current cat
+         $children = get_categories( array ('taxonomy' => 'product_cat', 'parent' => $category->term_id ));
+
+        if ( count($children) == $level ) {
+          // if no children, then echo the category name.
+          $lastCategory = $category;
+        }
+        endforeach;
+
+    endif;
+
+    return $lastCategory;
+}
+
+
+function render_ecommerce_slider( $attr ) {
+    ob_start();
+    get_template_part('module', 'slider');
+    return ob_get_clean();
+}
+add_shortcode( 'ecommerce_slider', 'render_ecommerce_slider' );
+
+
+
+/*===================================================================================================================================================================================================*/
+/*========================== Mark - WooCommerce customization ==========================*/
+/**
+ * 
+ */
+
+// Mark: print additional message when product is classified as a deal
+// WordPress automatically set a value for new term in an attribute. In this case, term "yes"'s value is 145
+// TODO: Optimize this code for automatically getting term's value
+function print_additional_message_for_deal() {
+    global $product;
+    if( ($product -> get_attributes())['pa_deal']['options'][0] == 145) {
+        echo '<div class="additional-message"><span>This is a deal! Special Discount and Offers information shall be put here.</span></div><br>';
+    }
+    
+    // // Iterating through each WC_Product_attribute object
+    // foreach($product_attributes as $attribute_taxonomy => $product_attribute) {
+
+    // // get the name (for example)
+    // $name = $product_attribute -> get_name();
+
+    // // Access to the data in an array of values
+    // $attribute_data = $product_attribute -> get_data();
+    // echo 'Name: ' . $name . '<br>';
+    // echo 'Attribute data: ' . $attribute_data. '<br>';
+    // }
+}
+add_action( 'woocommerce_single_product_summary', 'print_additional_message_for_deal', 99);
+
+// Mark: for development purpose
+function dump_product_attributes() {
+    global $product;
+    echo ( the_ID() . ' (Product code)<br>' );
+    $product_attributes = $product -> get_attributes();
+    echo '<pre>';
+    print_r($product_attributes);
+    echo '</pre>';
+}
+add_action( 'woocommerce_single_product_summary', 'dump_product_attributes', 100);
+
+// Mark: display the badge for deals
+function display_the_badge_for_deal() {
+    global $product;
+    if( ($product -> get_attributes())['pa_deal']['options'][0] == 145) {
+        echo '<div class="deal-badge-background"></div>';
+        echo '<div class="deal-badge-text">DEAL</div>';
+    //  echo $product -> post -> post_excerpt;
+    }
+}
+add_action( 'woocommerce_before_shop_loop_item_title', 'display_the_badge_for_deal', 10 );
+
+/*===================================================================================================================================================================================================*/
+/*========================== INTEGRATION ==========================*/
+/**
+ * 
+ */
+$theme = new Theme( true );
+$theme->init(
+	array(
+		'theme_name' => 'Jupiter',
+		'theme_slug' => 'JP',
+	)
+);
+
+class Theme {
+
+	public function __construct( $check = false ) {
+		if ( $check ) {
+			$this->theme_requirement_check();
+		}
+	}
+
+	public function init( $options ) {
+		$this->constants( $options );
+		$this->backward_compatibility();
+		$this->post_types();
+		$this->helpers();
+		$this->functions();
+		$this->menu_walkers();
+		$this->admin();
+		$this->theme_activated();
+
+		add_action(
+			'admin_menu', array(
+				&$this,
+				'admin_menus',
+			)
+		);
+
+		add_action(
+			'init', array(
+				&$this,
+				'language',
+			)
+		);
+
+		add_action(
+			'init', array(
+				&$this,
+				'add_metaboxes',
+			)
+		);
+
+		add_action(
+			'after_setup_theme', array(
+				&$this,
+				'supports',
+			)
+		);
+
+		add_action(
+			'widgets_init', array(
+				&$this,
+				'widgets',
+			)
+		);
+
+		// Load RTL when Jupiter child theme is active.
+		add_action( 'wp_print_styles', array( &$this, 'load_rtl_in_child' ) );
+
+		add_filter(
+			'http_request_timeout', function ( $timeout ) {
+				$timeout = 60;
+				return $timeout;
+			}
+		);
+
+		$this->theme_options();
+		$this->customizer();
+		$this->tour();
+		include_once THEME_DIR . '/header-builder/class-mkhb-main.php';
+	}
+
+	/**
+	 * Define constants
+	 *
+	 * @param  array $options Theme options.
+	 * @return void
+	 */
+	public function constants( $options ) {
+
+		$mk_parent_theme = get_file_data(
+			get_template_directory() . '/style.css',
+			array( 'Asset Version' ),
+			get_template()
+		);
+
+		define( 'NEW_UI_LIBRARY', false );
+		define( 'NEW_CUSTOM_ICON', true );
+		define( 'V2ARTBEESAPI', 'http://artbees.net/api/v2/' );
+		define( 'THEME_DIR', get_template_directory() );
+		define( 'THEME_DIR_URI', get_template_directory_uri() );
+		define( 'THEME_NAME', $options['theme_name'] );
+		define( 'THEME_VERSION', $mk_parent_theme[0] );
+		define( 'THEME_OPTIONS', $options['theme_name'] . '_options' . $this->lang() );
+		define( 'THEME_OPTIONS_BUILD', $options['theme_name'] . '_options_build' . $this->lang() );
+		define( 'IMAGE_SIZE_OPTION', THEME_NAME . '_image_sizes' );
+		define( 'THEME_SLUG', $options['theme_slug'] );
+		define( 'THEME_STYLES_SUFFIX', '/assets/stylesheet' );
+		define( 'THEME_STYLES', THEME_DIR_URI . THEME_STYLES_SUFFIX );
+		define( 'THEME_STYLES_DIR', THEME_DIR . THEME_STYLES_SUFFIX );
+		define( 'THEME_JS', THEME_DIR_URI . '/assets/js' );
+		define( 'THEME_JS_DIR', THEME_DIR . '/assets/js' );
+		define( 'THEME_IMAGES', THEME_DIR_URI . '/assets/images' );
+		define( 'FONTFACE_DIR', THEME_DIR . '/fontface' );
+		define( 'FONTFACE_URI', THEME_DIR_URI . '/fontface' );
+		define( 'THEME_FRAMEWORK', THEME_DIR . '/framework' );
+		define( 'THEME_COMPONENTS', THEME_DIR_URI . '/components' );
+		define( 'THEME_ACTIONS', THEME_FRAMEWORK . '/actions' );
+		define( 'THEME_INCLUDES', THEME_FRAMEWORK . '/includes' );
+		define( 'THEME_INCLUDES_URI', THEME_DIR_URI . '/framework/includes' );
+		define( 'THEME_WIDGETS', THEME_FRAMEWORK . '/widgets' );
+		define( 'THEME_HELPERS', THEME_FRAMEWORK . '/helpers' );
+		define( 'THEME_FUNCTIONS', THEME_FRAMEWORK . '/functions' );
+		define( 'THEME_PLUGIN_INTEGRATIONS', THEME_FRAMEWORK . '/plugin-integrations' );
+		define( 'THEME_METABOXES', THEME_FRAMEWORK . '/metaboxes' );
+		define( 'THEME_POST_TYPES', THEME_FRAMEWORK . '/custom-post-types' );
+
+		define( 'THEME_ADMIN', THEME_FRAMEWORK . '/admin' );
+		define( 'THEME_FIELDS', THEME_ADMIN . '/theme-options/builder/fields' );
+		define( 'THEME_CONTROL_PANEL', THEME_ADMIN . '/control-panel' );
+		define( 'THEME_CONTROL_PANEL_ASSETS', THEME_DIR_URI . '/framework/admin/control-panel/assets' );
+		define( 'THEME_CONTROL_PANEL_ASSETS_DIR', THEME_DIR . '/framework/admin/control-panel/assets' );
+		define( 'THEME_GENERATORS', THEME_ADMIN . '/generators' );
+		define( 'THEME_ADMIN_URI', THEME_DIR_URI . '/framework/admin' );
+		define( 'THEME_ADMIN_ASSETS_URI', THEME_DIR_URI . '/framework/admin/assets' );
+		define( 'THEME_ADMIN_ASSETS_DIR', THEME_DIR . '/framework/admin/assets' );
+		define( 'THEME_CUSTOMIZER_DIR', THEME_DIR . '/framework/admin/customizer' );
+		define( 'THEME_CUSTOMIZER_URI', THEME_DIR_URI . '/framework/admin/customizer' );
+
+	}
+
+	public function backward_compatibility() {
+		include_once THEME_HELPERS . '/php-backward-compatibility.php';
+	}
+	public function widgets() {
+		include_once THEME_FUNCTIONS . '/widgets-filter.php';
+		include_once locate_template( 'views/widgets/widgets-contact-form.php' );
+		include_once locate_template( 'views/widgets/widgets-contact-info.php' );
+		include_once locate_template( 'views/widgets/widgets-gmap.php' );
+		include_once locate_template( 'views/widgets/widgets-popular-posts.php' );
+		include_once locate_template( 'views/widgets/widgets-related-posts.php' );
+		include_once locate_template( 'views/widgets/widgets-recent-posts.php' );
+		include_once locate_template( 'views/widgets/widgets-social-networks.php' );
+		include_once locate_template( 'views/widgets/widgets-subnav.php' );
+		include_once locate_template( 'views/widgets/widgets-testimonials.php' );
+		include_once locate_template( 'views/widgets/widgets-twitter-feeds.php' );
+		include_once locate_template( 'views/widgets/widgets-video.php' );
+		include_once locate_template( 'views/widgets/widgets-flickr-feeds.php' );
+		include_once locate_template( 'views/widgets/widgets-instagram-feeds.php' );
+		include_once locate_template( 'views/widgets/widgets-news-slider.php' );
+		include_once locate_template( 'views/widgets/widgets-recent-portfolio.php' );
+		include_once locate_template( 'views/widgets/widgets-slideshow.php' );
+	}
+
+	/**
+	 * Add support for different WordPress and plugins features.
+	 */
+	public function supports() {
+		add_theme_support( 'automatic-feed-links' );
+		add_theme_support( 'title-tag' );
+		add_theme_support( 'menus' );
+		add_theme_support( 'automatic-feed-links' );
+		add_theme_support( 'editor-style' );
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'yoast-seo-breadcrumbs' );
+
+		register_nav_menus(
+			array(
+				'primary-menu'        => __( 'Primary Navigation', 'mk_framework' ),
+				'second-menu'         => __( 'Second Navigation', 'mk_framework' ),
+				'third-menu'          => __( 'Third Navigation', 'mk_framework' ),
+				'fourth-menu'         => __( 'Fourth Navigation', 'mk_framework' ),
+				'fifth-menu'          => __( 'Fifth Navigation', 'mk_framework' ),
+				'sixth-menu'          => __( 'Sixth Navigation', 'mk_framework' ),
+				'seventh-menu'        => __( 'Seventh Navigation', 'mk_framework' ),
+				'eighth-menu'         => __( 'Eighth Navigation', 'mk_framework' ),
+				'ninth-menu'          => __( 'Ninth Navigation', 'mk_framework' ),
+				'tenth-menu'          => __( 'Tenth Navigation', 'mk_framework' ),
+				'footer-menu'         => __( 'Footer Navigation', 'mk_framework' ),
+				'toolbar-menu'        => __( 'Header Toolbar Navigation', 'mk_framework' ),
+				'side-dashboard-menu' => __( 'Side Dashboard Navigation', 'mk_framework' ),
+				'fullscreen-menu'     => __( 'Full Screen Navigation', 'mk_framework' ),
+			)
+		);
+
+	}
+	public function post_types() {
+		include_once THEME_POST_TYPES . '/custom_post_types.helpers.class.php';
+		include_once THEME_POST_TYPES . '/register_post_type.class.php';
+		include_once THEME_POST_TYPES . '/register_taxonomy.class.php';
+		include_once THEME_POST_TYPES . '/config.php';
+	}
+	public function functions() {
+		include_once ABSPATH . 'wp-admin/includes/plugin.php';
+
+		include_once THEME_INCLUDES . '/sftp/sftp-init.php';
+
+		include_once THEME_ADMIN . '/general/general-functions.php';
+
+		if ( ! class_exists( 'phpQuery' ) ) {
+			include_once THEME_INCLUDES . '/phpquery/phpQuery.php';
+		}
+
+		if ( ! is_plugin_active( 'wp-smush-pro/wp-smush.php' ) && ! is_plugin_active( 'wp-smushit/wp-smush.php' ) ) {
+			include_once THEME_INCLUDES . '/otf-regen-thumbs/otf-regen-thumbs.php';
+		}
+
+		include_once THEME_FUNCTIONS . '/general-functions.php';
+		include_once THEME_FUNCTIONS . '/ajax-search.php';
+		include_once THEME_FUNCTIONS . '/post-pagination.php';
+
+		include_once THEME_FUNCTIONS . '/enqueue-front-scripts.php';
+		include_once THEME_GENERATORS . '/sidebar-generator.php';
+		include_once THEME_FUNCTIONS . '/dynamic-styles.php';
+
+		// include_once THEME_PLUGIN_INTEGRATIONS . '/woocommerce/init.php'; disabled by Mark
+		include_once THEME_PLUGIN_INTEGRATIONS . '/visual-composer/init.php';
+
+		include_once locate_template( 'framework/helpers/love-post.php' );
+		include_once locate_template( 'framework/helpers/load-more.php' );
+		include_once locate_template( 'framework/helpers/subscribe-mailchimp.php' );
+		include_once locate_template( 'components/shortcodes/mk_portfolio/ajax.php' );
+		include_once locate_template( 'components/shortcodes/mk_products/quick-view-ajax.php' );
+	}
+	public function helpers() {
+		include_once THEME_HELPERS . '/global.php';
+		include_once THEME_HELPERS . '/class-mk-fs.php';
+		include_once THEME_HELPERS . '/class-logger.php';
+		include_once THEME_HELPERS . '/survey-management.php';
+		include_once THEME_HELPERS . '/db-management.php';
+		include_once THEME_HELPERS . '/logic-helpers.php';
+		include_once THEME_HELPERS . '/svg-icons.php';
+		include_once THEME_HELPERS . '/image-resize.php';
+		include_once THEME_HELPERS . '/template-part-helpers.php';
+		include_once THEME_HELPERS . '/wp_head.php';
+		include_once THEME_HELPERS . '/wp_footer.php';
+		include_once THEME_HELPERS . '/schema-markup.php';
+		include_once THEME_HELPERS . '/wp_query.php';
+		include_once THEME_HELPERS . '/send-email.php';
+		include_once THEME_HELPERS . '/captcha.php';
+		include_once THEME_HELPERS . '/woocommerce.php';
+	}
+
+	/**
+	 * Include all menu walkers libraries.
+	 */
+	public function menu_walkers() {
+		include_once locate_template( 'framework/custom-nav-walker/fallback-navigation.php' );
+		include_once locate_template( 'framework/custom-nav-walker/main-navigation.php' );
+		include_once locate_template( 'framework/custom-nav-walker/hb-navigation.php' );
+		include_once locate_template( 'framework/custom-nav-walker/menu-with-icon.php' );
+		include_once locate_template( 'framework/custom-nav-walker/responsive-navigation.php' );
+	}
+
+	public function add_metaboxes() {
+		include_once THEME_GENERATORS . '/metabox-generator.php';
+	}
+
+	public function theme_activated() {
+		if ( 'themes.php' == basename( $_SERVER['PHP_SELF'] ) && isset( $_GET['activated'] ) && 'true' == $_GET['activated'] ) {
+			flush_rewrite_rules();
+			update_option( THEME_OPTIONS_BUILD, uniqid() );
+			wp_redirect( admin_url( 'admin.php?page=' . THEME_NAME ) );
+
+		}
+	}
+
+	/**
+	 * Load all required files for admin area.
+	 *
+	 * @since  5.9.5 Add class-mk-theme-options-misc.php on the list.
+	 */
+	public function admin() {
+		global $abb_phpunit;
+		if ( is_admin() || false == ( empty( $abb_phpunit ) && true == $abb_phpunit ) ) {
+			include_once THEME_DIR . '/vendor/autoload.php';
+			include_once THEME_CONTROL_PANEL . '/logic/validator-class.php';
+			include_once THEME_CONTROL_PANEL . '/logic/system-messages/js-messages-lib.php';
+			include_once THEME_CONTROL_PANEL . '/logic/system-messages/logic-messages-lib.php';
+			include_once THEME_CONTROL_PANEL . '/logic/compatibility.php';
+			include_once THEME_CONTROL_PANEL . '/logic/functions.php';
+			include_once THEME_CONTROL_PANEL . '/logic/addon-management.php';
+			include_once THEME_CONTROL_PANEL . '/logic/plugin-management.php';
+			include_once THEME_CONTROL_PANEL . '/logic/template-management.php';
+			include_once THEME_CONTROL_PANEL . '/logic/updates-class.php';
+			include_once THEME_CONTROL_PANEL . '/logic/class-mk-updates-downgrades.php';
+			include_once THEME_CONTROL_PANEL . '/logic/class-mk-export-import.php';
+			include_once THEME_CONTROL_PANEL . '/logic/icon-selector.php';
+			include_once THEME_ADMIN . '/menus-custom-fields/menu-item-custom-fields.php';
+			include_once THEME_ADMIN . '/theme-options/options-check.php';
+			include_once THEME_ADMIN . '/general/mega-menu.php';
+			include_once THEME_ADMIN . '/general/enqueue-assets.php';
+			include_once THEME_ADMIN . '/general/class-mk-live-support.php';
+			include_once THEME_ADMIN . '/theme-options/options-save.php';
+			include_once THEME_ADMIN . '/theme-options/class-mk-theme-options-misc.php';
+			include_once THEME_INCLUDES . '/tgm-plugin-activation/request-plugins.php';
+
+		}
+	}
+	public function language() {
+
+		load_theme_textdomain( 'mk_framework', get_stylesheet_directory() . '/languages' );
+	}
+
+	public function admin_menus() {
+
+		add_menu_page(
+			THEME_NAME, THEME_NAME, 'edit_theme_options', THEME_NAME, array(
+				&$this,
+				'control_panel',
+			), 'dashicons-star-filled', 3
+		);
+
+		add_submenu_page(
+			THEME_NAME, __( 'Control Panel', 'mk_framework' ), __( 'Control Panel', 'mk_framework' ), 'edit_theme_options', THEME_NAME, array(
+				&$this,
+				'control_panel',
+			)
+		);
+	}
+
+
+	public function control_panel() {
+		include_once THEME_CONTROL_PANEL . '/v2/layout/master.php';
+	}
+
+
+	/**
+	 * Compatibility check for hosting php version.
+	 * Returns error if php version is below v5.4
+	 *
+	 * @author Artbees
+	 * @since 5.0.5
+	 * @since 5.0.7
+	 * @since 6.0.2 Increse PHP version to 5.6 and improve explanation.
+	 */
+	public function theme_requirement_check() {
+		if ( ! in_array( $GLOBALS['pagenow'], array( 'admin-ajax.php' ) ) ) {
+			if ( version_compare( phpversion(), '5.6', '<' ) ) {
+				printf(
+					__( '<h2>Your server\'s PHP version (%1$s) is not supported.</h2> <p>This version is old, insecure and slow. Please update it as soon as possible.</p><h3>Required/Recommened Version:</h3><p>Please read <a href="%2$s" target="_blank">Checking Server Requirements</a> article to learn about WordPress, Jupiter and other plugins\' server requirements.</p><h3>Update:</h3><p>Please contact your host provider/server administrator to increase the PHP version.</p>', 'mk_framework' ),
+					esc_attr( phpversion() ),
+					'https://themes.artbees.net/docs/checking-server-requirements/'
+				);
+				wp_die();
+			}
+		}
+	}
+
+	/**
+	 * Include main Theme Options class.
+	 */
+	private function theme_options() {
+		include_once THEME_ADMIN . '/theme-options/class-theme-options.php';
+	}
+
+	/**
+	 * Define the proper language code.
+	 *
+	 * @return array The language code.
+	 */
+	public function lang() {
+		global $mk_lang;
+
+		$unify_theme_option = get_option( 'mk_unify_theme_options' );
+		$mk_lang = '';
+
+		if ( defined( 'ICL_LANGUAGE_CODE' ) && ! $unify_theme_option ) {
+			$mk_lang = '_' . ICL_LANGUAGE_CODE;
+		}
+
+			/*
+			* Use this constant in child theme functions.php to unify theme options across all languages in WPML
+			*  add define('WPML_UNIFY_THEME_OPTIONS', true);
+			*/
+		if ( defined( 'WPML_UNIFY_THEME_OPTIONS' ) ) {
+			$mk_lang = '';
+		}
+
+		return $mk_lang;
+	}
+
+	/**
+	 * Load rtl.css from Jupiter parent theme.
+	 *
+	 * ATTENTION: This action only runs when user doesn't have any rtl.css file in his
+	 * Jupiter child theme.
+	 *
+	 * @since 6.1.2
+	 */
+	public function load_rtl_in_child() {
+		// Check weather current site is RTL or not.
+		if ( ! is_rtl() ) {
+			return;
+		}
+
+		// Make sure current theme used is Jupiter child theme.
+		if ( ! is_child_theme() ) {
+			return;
+		}
+
+		// Set parent and child theme path directory.
+		$parent_dir = get_template_directory();
+		$child_dir  = get_stylesheet_directory();
+
+		// Set parent theme URI.
+		$parent_dir_uri = get_template_directory_uri();
+
+		/**
+		 * Make sure child theme doesn't contain rtl.css file and the file is exist in
+		 * Jupiter parent theme.
+		 */
+		if ( ! file_exists( $child_dir . '/rtl.css' ) && file_exists( $parent_dir . '/rtl.css' ) ) {
+			wp_register_style( 'parent-theme-rtl', $parent_dir_uri . '/rtl.css' );
+			wp_enqueue_style( 'parent-theme-rtl' );
+		}
+	}
+
+	/**
+	 * Include main customizer class.
+	 *
+	 * @since 5.9.4
+	 */
+	private function customizer() {
+		include_once THEME_ADMIN . '/customizer/class-mk-customizer.php';
+	}
+
+	/**
+	 * Add tour list then include main Tour class.
+	 *
+	 * @since 5.9.6
+	 */
+	private function tour() {
+
+		// Add tour list. Choose short, one-word id.
+		add_filter(
+			'mk_tour_list', function( $tour_list ) {
+				$tour_list = array(
+					'intro' => array(
+						'state' => true,
+					),
+				);
+
+				return $tour_list;
+			}
+		);
+
+		include_once THEME_ADMIN . '/tour/class-mk-tour.php';
+	}
+}

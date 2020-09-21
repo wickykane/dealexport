@@ -1,0 +1,69 @@
+@include keyframes( floaty )
+{
+    0% {
+        top: 0px;
+    }
+    50% {
+        top: 15px;
+    }
+    100% {
+        top: 0px;
+    }
+}
+
+@include keyframes( floatx )
+{
+    0% {
+        left: 0px;
+    }
+    50% {
+        left: 15px;
+    }
+    100% {
+        left: 0px;
+    }
+}
+
+@include keyframes( tossing )
+{
+    0% {
+        @include transform(rotate(-6deg));
+    }
+    50% {
+        @include transform(rotate(6deg));
+    }
+    100% {
+        @include transform(rotate(-6deg));
+    }
+}
+
+@include keyframes( rotation )
+{
+    from {
+        @include transform(rotate(0deg));
+    }
+    to {
+        @include transform(rotate(359deg));
+    }
+}
+
+.is-floating-vertical {
+    @include animation('floaty 2s infinite linear');
+    position: relative;
+}
+
+
+.is-floating-horizontal {
+    @include animation('floatx 2s infinite linear');
+    position: relative;
+}
+
+.is-rotation {
+    @include animation('rotation 6s infinite linear');
+    position: relative;
+}
+
+.is-tossing {
+    @include animation('tossing 6s infinite linear');
+    position: relative;
+}

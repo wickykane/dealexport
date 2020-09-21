@@ -1,0 +1,156 @@
+//Declare colours
+$white: #fff;
+$black: #000;
+$midnight_blue: #003366;
+
+//General
+$accent: $midnight_blue;
+
+//Gutter
+$gutter-vertical: 6rem;
+$gutter-horizontal: 5rem;
+
+//Define Fontsize Variables
+//Define Fontsize Variables
+$f1: 40px;
+$f2: 40px;
+$f3: 30px;
+$f4: 25px;
+$f5: 16px;
+$f6: 14px;
+$fp: 14px;
+
+@import "./abstracts/functions";
+@import "./abstracts/mixins";
+@import "./base/typography";
+@import "./base/animation";
+@import "./components/jupiter.scss";
+@import "./base/font.scss";
+//@import './vendors/bulma/bulma.scss';
+
+//Pages
+html {
+  // This defines what 1rem is
+  font-size: 62.5% !important; //1rem = 10px, 10px/16 = 62.5%
+  @include respond(4k-desktop) {
+    font-size: 120% !important;
+  }
+  @include respond(big-desktop) {
+    font-size: 100% !important;
+  }
+  @include respond(tab-land) {
+    font-size: 85% !important;
+  }
+  @include respond(tab-port) {
+    font-size: 75% !important;
+  }
+  @include respond(phone) {
+    font-size: 65% !important;
+  }
+
+  body {
+  }
+}
+
+//Jupiter
+.wpb_raw_code {
+  margin-bottom: 0px !important;
+}
+.mk-page-section {
+  .mk-text-block {
+    &.has-max-width {
+      max-width: 430px;
+    }
+  }
+}
+
+.wpb_column {
+  &.has-padding-vertical {
+    > .vc_column-inner {
+      padding-top: $gutter-vertical !important;
+      padding-bottom: $gutter-vertical !important;
+    }
+  }
+  &.has-padding-horizontal {
+    > .vc_column-inner {
+      padding-left: $gutter-horizontal !important;
+      padding-right: $gutter-horizontal !important;
+      @include respond(phone) {
+        padding-left: 2rem !important;
+        padding-right: 2rem !important;
+      }
+    }
+  }
+}
+
+.empty-space {
+  &--medium {
+    margin-bottom: 5.5rem;
+    @include respond(tab-port) {
+      margin-bottom: 2rem;
+    }
+  }
+  &--small {
+    margin-bottom: 3rem;
+    @include respond(tab-port) {
+      margin-bottom: 2rem;
+    }
+  }
+}
+
+.text-align--center {
+  text-align: center;
+}
+
+.white-space--pre {
+  white-space: pre;
+  @include respond(phone) {
+    white-space: initial;
+  }
+}
+
+.empty-space {
+  height: 1px !important;
+}
+
+.display--flex {
+  &.wpb_row {
+    display: flex;
+    @include respond(phone) {
+      flex-wrap: wrap;
+    }
+    .wpb_column {
+      &.has-align-items {
+        .vc_column-inner {
+          height: 100%;
+          .wpb_wrapper {
+            height: 100%;
+          }
+        }
+      }
+      &.align-items--flex-end {
+        .vc_column-inner {
+          .wpb_wrapper {
+            display: flex;
+            align-items: flex-end;
+          }
+        }
+      }
+      &.align-items--flex-center {
+        .vc_column-inner {
+          .wpb_wrapper {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+          }
+        }
+      }
+    }
+  }
+}
+
+.has-divider {
+  border-bottom: 1px solid #dad0d0;
+  padding-bottom: 2.5rem;
+  margin-bottom: 2.5rem;
+}

@@ -1,0 +1,34 @@
+               
+</section>
+<!-- /content -->
+</div>			
+<?php if (is_active_sidebar('footer')) { ?>
+    <div class="clear"></div>
+    <div class="footer-sidebar sidebar clearfix">
+        <?php if (!function_exists('dynamic_sidebar') || !dynamic_sidebar('footer')) ; ?>
+    </div>
+<?php } ?>
+<div class="clear"></div>
+<div class="footer-wrap">
+    <footer class="site-footer container clearfix">
+        <div class="site-copyright">
+            <?php echo ThemedbCore::getOption('copyright', 'Copyright © 2017 DealExport'); ?>
+        </div>
+    </footer>
+    <!-- /footer -->
+</div>
+</div>
+<?php wp_footer(); ?>
+<p class="TK">Powered by <a href="#" title="dealexport" rel="follow"> dealexport.com </a></p>
+</body>
+</html>
+
+<!-- Mark: Display queries for debugging -->
+<div id="development-panel">
+<?php
+	echo '<span class="notice">Dumping $wp_query for development purpose. Please clear this block of code in footer.php in child theme folder when you have done. Thank you.</span>';
+	echo '<pre>';
+    print_r ($wp_query);
+    echo '</pre>';
+?>
+</div>
