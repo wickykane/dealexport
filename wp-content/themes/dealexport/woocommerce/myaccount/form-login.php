@@ -42,7 +42,7 @@ if(!defined('ABSPATH')) {
 <?php } ?>
 <div class="column fourcol last">
     <div class="element-title">
-        <h1><?php _e('Sign In', 'dealexport'); ?></h1>
+        <h1><?php _e('[:en]Sign In[:fr]Se connecter[:vi]Đăng nhập[:]', 'dealexport'); ?></h1>
     </div>
     <form class="site-form element-form" method="POST" action="<?php echo AJAX_URL; ?>">
         <div class="field-wrap">
@@ -51,7 +51,7 @@ if(!defined('ABSPATH')) {
         <div class="field-wrap">
             <input type="password" name="user_password" value="" placeholder="<?php _e('Password', 'dealexport'); ?>">
         </div>
-        <a href="#" class="element-button element-submit"><?php _e('Sign In', 'dealexport'); ?></a>
+        <a href="#" class="element-button element-submit"><?php _e('[:en]Sign In[:fr]Se connecter[:vi]Đăng nhập[:]', 'dealexport'); ?></a>
         <?php if(ThemedbFacebook::isActive()) { ?>
         <a href="<?php echo home_url('?facebook_login=1'); ?>" class="element-button element-facebook square facebook" title="<?php _e('Sign in with Facebook', 'dealexport'); ?>"><span class="fa fa-facebook"></span></a>
         <?php } ?>

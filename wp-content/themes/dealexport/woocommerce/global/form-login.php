@@ -27,7 +27,7 @@ if(is_user_logged_in()){
     <div class="clear"></div>
     <?php do_action('woocommerce_login_form'); ?>		
     <?php wp_nonce_field('woocommerce-login'); ?>
-    <a href="#" class="element-button element-submit primary"><?php _e('Sign In', 'dealexport'); ?></a>
+    <a href="#" class="element-button element-submit primary"><?php _e('[:en]Sign In[:fr]Se connecter[:vi]Đăng nhập[:]', 'dealexport'); ?></a>
     <a href="#password_form" class="element-button element-colorbox square" title="<?php _e('Lost your password?', 'dealexport'); ?>"><span class="fa fa-life-ring"></span></a>
     <input type="hidden" name="redirect" value="<?php echo esc_url($redirect)?>" />
     <input name="rememberme" type="hidden" id="rememberme" value="forever" />

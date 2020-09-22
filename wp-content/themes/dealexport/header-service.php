@@ -134,7 +134,7 @@
                         	 <span id="nav-menu-guest"  class='user-name right clearfix' >
                         	 	<a class="sponsorBtn lastBtn" href="#"><?php _e('[:en]Refer[:fr]Recommander[:vi]Khuyến khích[:]', 'dealexport'); ?></a>
                         	 	<span class="item-split"></span>
-                                <a href="#login_form" class="element-colorbox signInBtn"><?php _e('Sign In', 'dealexport'); ?></a>
+                                <a href="#login_form" class="element-colorbox signInBtn"><?php _e('[:en]Sign In[:fr]Se connecter[:vi]Đăng nhập[:]', 'dealexport'); ?></a>
                               
                             <?php //if (get_option('users_can_register')) { ?>
                                 <!-- <span class="item-split"></span>
@@ -152,7 +152,7 @@
                                             <div class="field-wrap">
                                                 <input type="password" name="user_password" value="" placeholder="<?php _e('Password', 'dealexport'); ?>" />
                                             </div>
-                                            <a href="#" class="element-button element-submit"><?php _e('Sign In', 'dealexport'); ?></a>
+                                            <a href="#" class="element-button element-submit"><?php _e('[:en]Sign In[:fr]Se connecter[:vi]Đăng nhập[:]', 'dealexport'); ?></a>
                                             <?php if (ThemedbFacebook::isActive()) { ?>
                                                 <a href="<?php echo home_url('?facebook_login=1'); ?>" class="element-button element-facebook square facebook" title="<?php _e('Sign in with Facebook', 'dealexport'); ?>"><span class="fa fa-facebook"></span></a>
                                             <?php } ?>
