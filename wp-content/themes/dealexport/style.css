@@ -2488,11 +2488,22 @@ TNH remove :focus for search allway expand
     line-height:1em;
     margin-bottom:0.3em;
     color: #777;
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
     font-weight: 200;
-    font-family: 'FuturaPTLightOblique', sans-serif;
+    /* font-family: 'FuturaPTLightOblique', sans-serif; */
+    font-size: 14px;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
 }
 
+.shop-author .author-name  a {
+    font-size: 14px !important;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+
+.sidebar-widget .widget-title h4 {
+    font-size: 16px !important;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
 .shop-attributes {
     margin:-.3em 0;
 }
@@ -4913,6 +4924,28 @@ div.wpb_text_column.color--white h2::before {
     background-color: rgba(255, 255, 255, 0.22);
 }
 .sub-title {margin-bottom: var(--margin-bottom-title);}
+
+.newsletter-email-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: .5rem;
+}
+.newsletter-email-field  .wpcf7-email  {
+    margin: 0; 
+    margin-right: .5rem;
+}
+.newsletter-email-field  .wpcf7-submit  {
+   padding: 6.5px 9px;
+}
+.mb-3 {
+    margin-bottom: 1.5rem;
+}
+
+.mt-3 {
+    margin-top: 1.5rem;
+}
+
 div.has-sub-title.wpb_text_column h2 {
     margin-bottom: .1em !important;
 }

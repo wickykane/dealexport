@@ -8655,10 +8655,13 @@ msgid "Add to basket"
 msgstr "Ajouter au panier"
 
 msgid "Shop"
-msgstr "Fournisseur"
+msgstr "Vignerons"
 
 msgid "Departing"
-msgstr "Prix"
+msgstr "Prix Hors TVA"
+
+msgid "DepartingAvec"
+msgstr "Prix avec TVA"
 
 msgid "Related Items"
 msgstr "Produits Similaires"
