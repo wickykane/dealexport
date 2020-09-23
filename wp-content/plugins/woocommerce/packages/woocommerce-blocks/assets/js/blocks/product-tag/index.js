@@ -4,7 +4,6 @@
 import { __ } from '@wordpress/i18n';
 import { registerBlockType } from '@wordpress/blocks';
 import { DEFAULT_COLUMNS, DEFAULT_ROWS } from '@woocommerce/block-settings';
-import { Icon, more } from '@woocommerce/icons';
 
 /**
  * Internal dependencies
@@ -18,23 +17,18 @@ import Block from './block';
 registerBlockType( 'woocommerce/product-tag', {
 	title: __( 'Products by Tag', 'woocommerce' ),
 	icon: {
-		src: <Icon srcElement={ more } />,
+		src: 'tag',
 		foreground: '#96588a',
 	},
 	category: 'woocommerce',
 	keywords: [ __( 'WooCommerce', 'woocommerce' ) ],
 	description: __(
-		'Display a grid of products with selected tags.',
+		'Display a grid of products from your selected tags.',
 		'woocommerce'
 	),
 	supports: {
 		align: [ 'wide', 'full' ],
 		html: false,
-	},
-	example: {
-		attributes: {
-			isPreview: true,
-		},
 	},
 	attributes: {
 		/**
@@ -97,20 +91,10 @@ registerBlockType( 'woocommerce/product-tag', {
 			type: 'string',
 			default: 'date',
 		},
-
-		/**
-		 * Are we previewing?
-		 */
-		isPreview: {
-			type: 'boolean',
-			default: false,
-		},
 	},
 
 	/**
 	 * Renders and manages the block.
-	 *
-	 * @param {Object} props Props to pass to block.
 	 */
 	edit( props ) {
 		return <Block { ...props } />;

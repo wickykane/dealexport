@@ -3,7 +3,7 @@
  */
 import { __ } from '@wordpress/i18n';
 import { createBlock, registerBlockType } from '@wordpress/blocks';
-import { Icon, thumbUp } from '@woocommerce/icons';
+import Gridicon from 'gridicons';
 import { without } from 'lodash';
 
 /**
@@ -11,16 +11,14 @@ import { without } from 'lodash';
  */
 import Block from './block';
 import { deprecatedConvertToShortcode } from '../../utils/deprecations';
-import sharedAttributes, {
-	sharedAttributeBlockTypes,
-} from '../../utils/shared-attributes';
+import sharedAttributes, { sharedAttributeBlockTypes } from '../../utils/shared-attributes';
 
 const blockTypeName = 'woocommerce/product-top-rated';
 
 registerBlockType( blockTypeName, {
 	title: __( 'Top Rated Products', 'woocommerce' ),
 	icon: {
-		src: <Icon srcElement={ thumbUp } />,
+		src: <Gridicon icon="trophy" />,
 		foreground: '#96588a',
 	},
 	category: 'woocommerce',
@@ -33,11 +31,6 @@ registerBlockType( blockTypeName, {
 		align: [ 'wide', 'full' ],
 		html: false,
 	},
-	example: {
-		attributes: {
-			isPreview: true,
-		},
-	},
 	attributes: {
 		...sharedAttributes,
 	},
@@ -47,8 +40,10 @@ registerBlockType( blockTypeName, {
 			{
 				type: 'block',
 				blocks: without( sharedAttributeBlockTypes, blockTypeName ),
-				transform: ( attributes ) =>
-					createBlock( 'woocommerce/product-top-rated', attributes ),
+				transform: ( attributes ) => createBlock(
+					'woocommerce/product-top-rated',
+					attributes
+				),
 			},
 		],
 	},
@@ -63,8 +58,6 @@ registerBlockType( blockTypeName, {
 
 	/**
 	 * Renders and manages the block.
-	 *
-	 * @param {Object} props Props to pass to block.
 	 */
 	edit( props ) {
 		return <Block { ...props } />;

@@ -755,12 +755,6 @@ S2.define('select2/utils',[
     });
   };
 
-  Utils.entityDecode = function(html) {
-    var txt = document.createElement("textarea");
-    txt.innerHTML = html;
-    return txt.value;
-  }
-
   // Append an array of jQuery nodes to a given element.
   Utils.appendMany = function ($element, $nodes) {
     // jQuery 1.7.x does not support $.fn.append() with an array
@@ -1617,9 +1611,9 @@ S2.define('select2/selection/single',[
     var selection = data[0];
 
     var $rendered = this.$selection.find('.select2-selection__rendered');
-    var formatted = Utils.entityDecode(this.display(selection, $rendered));
+    var formatted = this.display(selection, $rendered);
 
-    $rendered.empty().text(formatted);
+    $rendered.empty().append(formatted);
     $rendered.prop('title', selection.title || selection.text);
   };
 
@@ -1748,14 +1742,12 @@ S2.define('select2/selection/multiple',[
       var selection = data[d];
 
       var $selection = this.selectionContainer();
-      var removeItemTag = $selection.html();
       var formatted = this.display(selection, $selection);
       if ('string' === typeof formatted) {
-        formatted = Utils.entityDecode(formatted.trim());
+        formatted = formatted.trim();
       }
 
-      $selection.text(formatted);
-      $selection.prepend(removeItemTag);
+      $selection.append(formatted);
       $selection.prop('title', selection.title || selection.text);
 
       $selection.data('data', selection);
@@ -1794,7 +1786,7 @@ S2.define('select2/selection/placeholder',[
   Placeholder.prototype.createPlaceholder = function (decorated, placeholder) {
     var $placeholder = this.selectionContainer();
 
-    $placeholder.text(Utils.entityDecode(this.display(placeholder)));
+    $placeholder.html(this.display(placeholder));
     $placeholder.addClass('select2-selection__placeholder')
                 .removeClass('select2-selection__choice');
 

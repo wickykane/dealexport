@@ -2,7 +2,7 @@
 /**
  * Abstract Product importer
  *
- * @package  WooCommerce\Import
+ * @package  WooCommerce/Import
  * @version  3.1.0
  */
 
@@ -120,13 +120,7 @@ abstract class WC_Product_Importer implements WC_Importer_Interface {
 	 * @return array
 	 */
 	public function get_parsed_data() {
-		/**
-		 * Filter product importer parsed data.
-		 *
-		 * @param array $parsed_data Parsed data.
-		 * @param WC_Product_Importer $importer Importer instance.
-		 */
-		return apply_filters( 'woocommerce_product_importer_parsed_data', $this->parsed_data, $this );
+		return apply_filters( 'woocommerce_product_importer_parsed_data', $this->parsed_data, $this->get_raw_data() );
 	}
 
 	/**
@@ -179,21 +173,13 @@ abstract class WC_Product_Importer implements WC_Importer_Interface {
 				return new WP_Error( 'woocommerce_product_importer_invalid_type', __( 'Invalid product type.', 'woocommerce' ), array( 'status' => 401 ) );
 			}
 
-			try {
-				// Prevent getting "variation_invalid_id" error message from Variation Data Store.
-				if ( 'variation' === $data['type'] ) {
-					$id = wp_update_post(
-						array(
-							'ID'        => $id,
-							'post_type' => 'product_variation',
-						)
-					);
-				}
+			$classname = WC_Product_Factory::get_classname_from_product_type( $data['type'] );
 
-				$product = wc_get_product_object( $data['type'], $id );
-			} catch ( WC_Data_Exception $e ) {
-				return new WP_Error( 'woocommerce_product_csv_importer_' . $e->getErrorCode(), $e->getMessage(), array( 'status' => 401 ) );
+			if ( ! class_exists( $classname ) ) {
+				$classname = 'WC_Product_Simple';
 			}
+
+			$product = new $classname( $id );
 		} elseif ( ! empty( $data['id'] ) ) {
 			$product = wc_get_product( $id );
 
@@ -209,7 +195,7 @@ abstract class WC_Product_Importer implements WC_Importer_Interface {
 				);
 			}
 		} else {
-			$product = wc_get_product_object( 'simple', $id );
+			$product = new WC_Product_Simple( $id );
 		}
 
 		return apply_filters( 'woocommerce_product_import_get_product_object', $product, $data );

@@ -1,6 +1,8 @@
 <?php
 /**
  * Includes the composer Autoloader used for packages and classes in the src/ directory.
+ *
+ * @package Automattic/WooCommerce
  */
 
 namespace Automattic\WooCommerce;
@@ -34,12 +36,7 @@ class Autoloader {
 			return false;
 		}
 
-		$autoloader_result = require $autoloader;
-		if ( ! $autoloader_result ) {
-			return false;
-		}
-
-		return $autoloader_result;
+		return require $autoloader;
 	}
 
 	/**
