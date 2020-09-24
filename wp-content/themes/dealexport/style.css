@@ -3245,7 +3245,7 @@ TNH remove :focus for search allway expand
     display:inline;
     -webkit-font-smoothing:antialiased;
     position: relative;
-    top: 25%;
+    /* top: 25%; */
 }
 
 .pagination a.prev:after {
@@ -5867,4 +5867,96 @@ div.additional-message, div.additional-message-2 {color: red}
     -webkit-box-pack: center;
     -ms-flex-pack: center;
             justify-content: center;
+}
+
+
+
+/** Grid Layout **/
+
+.et_pb_blog_grid .column {
+	float: left;
+	max-width: 100%;
+}
+
+.et_pb_blog_grid .column.size-1of3:nth-child(3n),
+.et_pb_blog_grid .column.size-1of2:nth-child(2n) {
+	margin-right: 0 !important;
+}
+
+.et_pb_blog_grid .et_pb_post {
+	padding: 19px;
+	border: 1px solid #d8d8d8;
+	background-color: #fff;
+	word-wrap: break-word;
+}
+
+.et_pb_blog_grid_dropshadow .et_pb_post {
+	-webkit-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+	box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.et_pb_blog_grid .et_pb_image_container {
+	position: relative;
+}
+
+.et_pb_image_container,
+.et_pb_blog_grid .et_main_video_container,
+.et_pb_blog_grid .et_audio_content,
+.et_pb_blog_grid .et_pb_post .et_pb_slider {
+	margin: -20px -20px 10px;
+}
+
+.et_pb_image_container img,
+.et_pb_post a img {
+	max-width: 100%;
+	vertical-align: bottom;
+}
+
+.et_pb_blog_grid .et_pb_image_container img {
+	min-width: 100%;
+	max-width: 100%;
+	height: auto;
+}
+
+.et_pb_blog_grid .et_pb_no_thumb h2 {
+	margin-top: 0;
+}
+
+.et_pb_blog_grid .et_audio_content {
+	margin-bottom: 0;
+}
+
+.et_pb_blog_grid h2 {
+	margin-top: 19px;
+	font-size: 18px;
+}
+
+.et_pb_blog_grid[data-columns]::before {
+	display: none;
+	opacity: 0;
+	line-height: 0;
+}
+
+.et_pb_blog_grid[data-columns] .et_pb_post {
+	opacity: 0;
+}
+
+.et_ie9 .et_pb_blog_grid[data-columns] .et_pb_post {
+	opacity: 1;
+}
+
+.et_pb_blog_grid[data-columns] .column .et_pb_post {
+	opacity: 1;
+	-webkit-animation: gridFadeIn 1s 1 cubic-bezier(0.77, 0, 0.175, 1);
+	-moz-animation: gridFadeIn 1s 1 cubic-bezier(0.77, 0, 0.175, 1);
+	-o-animation: gridFadeIn 1s 1 cubic-bezier(0.77, 0, 0.175, 1);
+	animation: gridFadeIn 1s 1 cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.mod-sidebar .sidebar-widget li a {
+    color: rgb(102, 102, 102);
+}
+.mod-sidebar .sidebar-widget li a:hover {
+    color: rgb(1, 72, 142);
 }
