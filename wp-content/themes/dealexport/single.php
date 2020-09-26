@@ -4,12 +4,12 @@ get_header();
 $layout=ThemedbCore::getOption('posts_layout', 'right');
 if($layout=='left') {
 ?>
-<aside class="sidebar column fourcol">
+<aside class="sidebar column fourcol mt-3">
 <?php get_sidebar(); ?>
 </aside>
-<div class="column eightcol last">
+<div class="column eightcol last mt-3">
 <?php } else if($layout=='right') { ?>
-<div class="column eightcol">
+<div class="column eightcol mt-3">
 <?php } else { ?>
 <div class="fullcol">
 <?php } ?>
@@ -59,7 +59,7 @@ if($layout=='left') {
     <?php comments_template(); ?>
 </div>
 <?php if($layout=='right') { ?>
-<aside class="sidebar column fourcol last">
+<aside class="sidebar column fourcol last mt-3">
 <?php get_sidebar(); ?>
 </aside>
 <?php } ?>
