@@ -3542,3 +3542,6 @@ msgstr "Select a region"
 
 msgid "Company Name"
 msgstr "Company"
+
+msgid "DepartingAvec"
+msgstr "Arrival Price"

@@ -4928,7 +4928,7 @@ div.wpb_text_column.color--white h2::before {
 .newsletter-email-field {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     margin-top: .5rem;
 }
 .newsletter-email-field  .wpcf7-email  {
