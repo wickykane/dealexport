@@ -5976,8 +5976,12 @@ div.additional-message, div.additional-message-2 {color: red}
     font-family: FuturaPTLight, "Helvetica Neue";
 }
 
+.contact-us-section p{
+    font-size: 16px;
+}
+
 .contact-us-section .wpcf7-submit{
-    font-size: 14px;
+    font-size: 12px;
 }
 
 .icon-text-group {
