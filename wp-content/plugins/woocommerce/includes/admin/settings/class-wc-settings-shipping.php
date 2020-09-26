@@ -2,11 +2,9 @@
 /**
  * WooCommerce Shipping Settings
  *
- * @package     WooCommerce\Admin
+ * @package     WooCommerce/Admin
  * @version     2.6.0
  */
-
-use Automattic\Jetpack\Constants;
 
 defined( 'ABSPATH' ) || exit;
 
@@ -51,7 +49,7 @@ class WC_Settings_Shipping extends WC_Settings_Page {
 			'classes' => __( 'Shipping classes', 'woocommerce' ),
 		);
 
-		if ( ! Constants::is_defined( 'WC_INSTALLING' ) ) {
+		if ( ! defined( 'WC_INSTALLING' ) ) {
 			// Load shipping methods so we can show any global options they may have.
 			$shipping_methods = WC()->shipping()->load_shipping_methods();
 
@@ -286,7 +284,7 @@ class WC_Settings_Shipping extends WC_Settings_Page {
 	 * Show zones
 	 */
 	protected function zones_screen() {
-		$method_count = wc_get_shipping_method_count( false, true );
+		$method_count = wc_get_shipping_method_count();
 
 		wp_localize_script(
 			'wc-shipping-zones',

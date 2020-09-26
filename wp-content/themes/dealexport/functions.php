@@ -1316,7 +1316,7 @@ function amagumo_count_posts_for_exporter_by_slug($slug) {
     $sql = "SELECT
                 count( filter_result.object_id ) AS result
             FROM
-                (
+                
                     (
                     SELECT
                         db_term_relationships.object_id,
@@ -1331,7 +1331,7 @@ function amagumo_count_posts_for_exporter_by_slug($slug) {
                         count >= 1 
                         AND ( countpfe >= 1 OR countsfe >= 1 ) 
                     ) filter_result 
-                )";
+                ";
     $temp_array = $wpdb->get_results($sql); //
     $result_array = array();
     foreach ($temp_array as $temp_item) {
@@ -1351,7 +1351,7 @@ function amagumo_count_posts_for_buyer_by_slug($slug) {
     $sql = "SELECT
                 count( filter_result.object_id ) AS result
             FROM
-                (
+                
                     (
                     SELECT
                         db_term_relationships.object_id,
@@ -1366,7 +1366,7 @@ function amagumo_count_posts_for_buyer_by_slug($slug) {
                         count >= 1 
                         AND ( countpfb >= 1 OR countsfb >= 1 ) 
                     ) filter_result 
-                )";
+                ";
     $temp_array = $wpdb->get_results($sql); //
     $result_array = array();
     foreach ($temp_array as $temp_item) {

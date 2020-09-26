@@ -30,7 +30,7 @@ else {
 if ($layout == 'left') {
     ?>
     <aside class="column threecol">
-        <?php ThemedbSidebar::renderSidebar('products', true); ?>
+        <?php ThemedbSidebar::renderSidebar('products', false); ?>
 <!--        --><?php //include_once 'product-filter.php'; ?>
         <?php if( has_term('product-for-exporter', 'product_custome_type') || has_term('service-for-exporter', 'product_custome_type') ) {
             include_once 'service-filter.php';
@@ -83,7 +83,7 @@ if ($layout == 'left') {
         </div>
         <?php if ($layout == 'right') { ?>
             <aside class="column fourcol last">
-                <?php ThemedbSidebar::renderSidebar('products', true); ?>
+                <?php ThemedbSidebar::renderSidebar('products', false); ?>
             </aside>
         <?php } ?>
         <?php if (!isset($woocommerce_loop['single'])) { ?>

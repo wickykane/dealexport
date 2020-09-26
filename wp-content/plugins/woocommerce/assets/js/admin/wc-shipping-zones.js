@@ -161,9 +161,7 @@
 								class_name = 'method_enabled';
 							}
 
-							$method_list.append(
-								'<li class="wc-shipping-zone-method ' + class_name + '">' + shipping_method.title + '</li>'
-							);
+							$method_list.append( '<li class="wc-shipping-zone-method ' + class_name + '">' + shipping_method.title + '</li>' );
 						} );
 					} else {
 						$method_list.append( '<li class="wc-shipping-zone-method">' + data.strings.no_shipping_methods_offered + '</li>' );

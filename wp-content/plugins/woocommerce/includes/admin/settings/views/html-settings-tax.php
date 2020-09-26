@@ -1,10 +1,4 @@
 <?php
-/**
- * Admin view: Settings tax
- *
- * @package WooCommerce\Admin\Settings
- */
-
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }

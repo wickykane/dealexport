@@ -2,7 +2,7 @@
 /**
  * Order items HTML for meta box.
  *
- * @package WooCommerce\Admin
+ * @package WooCommerce/Admin
  */
 
 defined( 'ABSPATH' ) || exit;
@@ -66,14 +66,6 @@ if ( wc_tax_enabled() ) {
 			do_action( 'woocommerce_admin_order_items_after_line_items', $order->get_id() );
 			?>
 		</tbody>
-		<tbody id="order_fee_line_items">
-			<?php
-			foreach ( $line_items_fee as $item_id => $item ) {
-				include 'html-order-fee.php';
-			}
-			do_action( 'woocommerce_admin_order_items_after_fees', $order->get_id() );
-			?>
-		</tbody>
 		<tbody id="order_shipping_line_items">
 			<?php
 			$shipping_methods = WC()->shipping() ? WC()->shipping()->load_shipping_methods() : array();
@@ -81,6 +73,14 @@ if ( wc_tax_enabled() ) {
 				include 'html-order-shipping.php';
 			}
 			do_action( 'woocommerce_admin_order_items_after_shipping', $order->get_id() );
+			?>
+		</tbody>
+		<tbody id="order_fee_line_items">
+			<?php
+			foreach ( $line_items_fee as $item_id => $item ) {
+				include 'html-order-fee.php';
+			}
+			do_action( 'woocommerce_admin_order_items_after_fees', $order->get_id() );
 			?>
 		</tbody>
 		<tbody id="order_refunds">
@@ -107,7 +107,7 @@ if ( wc_tax_enabled() ) {
 				<li><strong><?php esc_html_e( 'Coupon(s)', 'woocommerce' ); ?></strong></li>
 				<?php
 				foreach ( $coupons as $item_id => $item ) :
-					$post_id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_title = %s AND post_type = 'shop_coupon' AND post_status = 'publish' LIMIT 1;", $item->get_code() ) ); // phpcs:disable WordPress.WP.GlobalVariablesOverride.Prohibited
+					$post_id = $wpdb->get_var( $wpdb->prepare( "SELECT ID FROM {$wpdb->posts} WHERE post_title = %s AND post_type = 'shop_coupon' AND post_status = 'publish' LIMIT 1;", $item->get_code() ) ); // phpcs:disable WordPress.WP.GlobalVariablesOverride.OverrideProhibited
 					$class   = $order->is_editable() ? 'code editable' : 'code';
 					?>
 					<li class="<?php echo esc_attr( $class ); ?>">
@@ -143,28 +143,12 @@ if ( wc_tax_enabled() ) {
 		</div>
 	<?php endif; ?>
 	<table class="wc-order-totals">
-			<tr>
-				<td class="label"><?php esc_html_e( 'Items Subtotal:', 'woocommerce' ); ?></td>
-				<td width="1%"></td>
-				<td class="total">
-					<?php echo wc_price( $order->get_subtotal(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</td>
-			</tr>
 		<?php if ( 0 < $order->get_total_discount() ) : ?>
 			<tr>
-				<td class="label"><?php esc_html_e( 'Coupon(s):', 'woocommerce' ); ?></td>
-				<td width="1%"></td>
-				<td class="total">-
-					<?php echo wc_price( $order->get_total_discount(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</td>
-			</tr>
-		<?php endif; ?>
-		<?php if ( 0 < $order->get_total_fees() ) : ?>
-			<tr>
-				<td class="label"><?php esc_html_e( 'Fees:', 'woocommerce' ); ?></td>
+				<td class="label"><?php esc_html_e( 'Discount:', 'woocommerce' ); ?></td>
 				<td width="1%"></td>
 				<td class="total">
-					<?php echo wc_price( $order->get_total_fees(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php echo wc_price( $order->get_total_discount(), array( 'currency' => $order->get_currency() ) ); // WPCS: XSS ok. ?>
 				</td>
 			</tr>
 		<?php endif; ?>
@@ -176,7 +160,14 @@ if ( wc_tax_enabled() ) {
 				<td class="label"><?php esc_html_e( 'Shipping:', 'woocommerce' ); ?></td>
 				<td width="1%"></td>
 				<td class="total">
-					<?php echo wc_price( $order->get_shipping_total(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+					<?php
+					$refunded = $order->get_total_shipping_refunded();
+					if ( $refunded > 0 ) {
+						echo '<del>' . wp_strip_all_tags( wc_price( $order->get_shipping_total(), array( 'currency' => $order->get_currency() ) ) ) . '</del> <ins>' . wc_price( $order->get_shipping_total() - $refunded, array( 'currency' => $order->get_currency() ) ) . '</ins>'; // WPCS: XSS ok.
+					} else {
+						echo wc_price( $order->get_shipping_total(), array( 'currency' => $order->get_currency() ) ); // WPCS: XSS ok.
+					}
+					?>
 				</td>
 			</tr>
 		<?php endif; ?>
@@ -189,7 +180,14 @@ if ( wc_tax_enabled() ) {
 					<td class="label"><?php echo esc_html( $tax_total->label ); ?>:</td>
 					<td width="1%"></td>
 					<td class="total">
-						<?php echo wc_price( $tax_total->amount, array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+						<?php
+						$refunded = $order->get_total_tax_refunded_by_rate_id( $tax_total->rate_id );
+						if ( $refunded > 0 ) {
+							echo '<del>' . wp_strip_all_tags( $tax_total->formatted_amount ) . '</del> <ins>' . wc_price( WC_Tax::round( $tax_total->amount, wc_get_price_decimals() ) - WC_Tax::round( $refunded, wc_get_price_decimals() ), array( 'currency' => $order->get_currency() ) ) . '</ins>'; // WPCS: XSS ok.
+						} else {
+							echo wp_kses_post( $tax_total->formatted_amount );
+						}
+						?>
 					</td>
 				</tr>
 			<?php endforeach; ?>
@@ -198,75 +196,26 @@ if ( wc_tax_enabled() ) {
 		<?php do_action( 'woocommerce_admin_order_totals_after_tax', $order->get_id() ); ?>
 
 		<tr>
-			<td class="label"><?php esc_html_e( 'Order Total', 'woocommerce' ); ?>:</td>
+			<td class="label"><?php esc_html_e( 'Total', 'woocommerce' ); ?>:</td>
 			<td width="1%"></td>
 			<td class="total">
-				<?php echo wc_price( $order->get_total(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+				<?php echo $order->get_formatted_order_total(); // WPCS: XSS ok. ?>
 			</td>
 		</tr>
 
-	</table>
+		<?php do_action( 'woocommerce_admin_order_totals_after_total', $order->get_id() ); ?>
 
-	<div class="clear"></div>
-
-	<?php if ( in_array( $order->get_status(), array( 'processing', 'completed', 'refunded' ), true ) && ! empty( $order->get_date_paid() ) ) : ?>
-
-		<table class="wc-order-totals" style="border-top: 1px solid #999; margin-top:12px; padding-top:12px">
-			<tr>
-				<td class="<?php echo $order->get_total_refunded() ? 'label' : 'label label-highlight'; ?>"><?php esc_html_e( 'Paid', 'woocommerce' ); ?>: <br /></td>
-				<td width="1%"></td>
-				<td class="total">
-					<?php echo wc_price( $order->get_total(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</td>
-			</tr>
-			<tr>
-				<td>
-					<span class="description">
-					<?php
-					if ( $order->get_payment_method_title() ) {
-						/* translators: 1: payment date. 2: payment method */
-						echo esc_html( sprintf( __( '%1$s via %2$s', 'woocommerce' ), $order->get_date_paid()->date_i18n( get_option( 'date_format' ) ), $order->get_payment_method_title() ) );
-					} else {
-						echo esc_html( $order->get_date_paid()->date_i18n( get_option( 'date_format' ) ) );
-					}
-					?>
-					</span>
-				</td>
-				<td colspan="2"></td>
-			</tr>
-		</table>
-
-	<div class="clear"></div>
-
-	<?php endif; ?>
-
-	<?php if ( $order->get_total_refunded() ) : ?>
-		<table class="wc-order-totals" style="border-top: 1px solid #999; margin-top:12px; padding-top:12px">
+		<?php if ( $order->get_total_refunded() ) : ?>
 			<tr>
 				<td class="label refunded-total"><?php esc_html_e( 'Refunded', 'woocommerce' ); ?>:</td>
 				<td width="1%"></td>
-				<td class="total refunded-total">-<?php echo wc_price( $order->get_total_refunded(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></td>
+				<td class="total refunded-total">-<?php echo wc_price( $order->get_total_refunded(), array( 'currency' => $order->get_currency() ) ); // WPCS: XSS ok. ?></td>
 			</tr>
+		<?php endif; ?>
 
-			<?php do_action( 'woocommerce_admin_order_totals_after_refunded', $order->get_id() ); ?>
+		<?php do_action( 'woocommerce_admin_order_totals_after_refunded', $order->get_id() ); ?>
 
-			<tr>
-				<td class="label label-highlight"><?php esc_html_e( 'Net Payment', 'woocommerce' ); ?>:</td>
-				<td width="1%"></td>
-				<td class="total">
-				<?php echo wc_price( $order->get_total() - $order->get_total_refunded(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
-				</td>
-			</tr>
-
-		</table>
-	<?php endif; ?>
-
-	<div class="clear"></div>
-
-	<table class="wc-order-totals">
-		<?php do_action( 'woocommerce_admin_order_totals_after_total', $order->get_id() ); ?>
 	</table>
-
 	<div class="clear"></div>
 </div>
 <div class="wc-order-data-row wc-order-bulk-actions wc-order-data-row-toggle">
@@ -316,11 +265,11 @@ if ( wc_tax_enabled() ) {
 		<?php endif; ?>
 		<tr>
 			<td class="label"><?php esc_html_e( 'Amount already refunded', 'woocommerce' ); ?>:</td>
-			<td class="total">-<?php echo wc_price( $order->get_total_refunded(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></td>
+			<td class="total">-<?php echo wc_price( $order->get_total_refunded(), array( 'currency' => $order->get_currency() ) ); // WPCS: XSS ok. ?></td>
 		</tr>
 		<tr>
 			<td class="label"><?php esc_html_e( 'Total available to refund', 'woocommerce' ); ?>:</td>
-			<td class="total"><?php echo wc_price( $order->get_total() - $order->get_total_refunded(), array( 'currency' => $order->get_currency() ) ); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?></td>
+			<td class="total"><?php echo wc_price( $order->get_total() - $order->get_total_refunded(), array( 'currency' => $order->get_currency() ) ); // WPCS: XSS ok. ?></td>
 		</tr>
 		<tr>
 			<td class="label">
@@ -396,12 +345,12 @@ if ( wc_tax_enabled() ) {
 							</thead>
 							<?php
 								$row = '
-									<td><select class="wc-product-search" name="item_id" data-allow_clear="true" data-display_stock="true" data-exclude_type="variable" data-placeholder="' . esc_attr__( 'Search for a product&hellip;', 'woocommerce' ) . '"></select></td>
+									<td><select class="wc-product-search" name="item_id" data-allow_clear="true" data-display_stock="true" data-placeholder="' . esc_attr__( 'Search for a product&hellip;', 'woocommerce' ) . '"></select></td>
 									<td><input type="number" step="1" min="0" max="9999" autocomplete="off" name="item_qty" placeholder="1" size="4" class="quantity" /></td>';
 							?>
 							<tbody data-row="<?php echo esc_attr( $row ); ?>">
 								<tr>
-									<?php echo $row; // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
+									<?php echo $row; // WPCS: XSS ok. ?>
 								</tr>
 							</tbody>
 						</table>
@@ -441,17 +390,18 @@ if ( wc_tax_enabled() ) {
 								</tr>
 							</thead>
 						<?php
-						$rates = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}woocommerce_tax_rates ORDER BY tax_rate_name LIMIT 100" );
+							$rates = $wpdb->get_results( "SELECT * FROM {$wpdb->prefix}woocommerce_tax_rates ORDER BY tax_rate_name LIMIT 100" );
+
 						foreach ( $rates as $rate ) {
 							echo '
 									<tr>
 										<td><input type="radio" id="add_order_tax_' . absint( $rate->tax_rate_id ) . '" name="add_order_tax" value="' . absint( $rate->tax_rate_id ) . '" /></td>
-										<td><label for="add_order_tax_' . absint( $rate->tax_rate_id ) . '">' . esc_html( WC_Tax::get_rate_label( $rate ) ) . '</label></td>
-										<td>' . ( isset( $classes_options[ $rate->tax_rate_class ] ) ? esc_html( $classes_options[ $rate->tax_rate_class ] ) : '-' ) . '</td>
-										<td>' . esc_html( WC_Tax::get_rate_code( $rate ) ) . '</td>
-										<td>' . esc_html( WC_Tax::get_rate_percent( $rate ) ) . '</td>
+										<td><label for="add_order_tax_' . absint( $rate->tax_rate_id ) . '">' . WC_Tax::get_rate_label( $rate ) . '</label></td>
+										<td>' . ( isset( $classes_options[ $rate->tax_rate_class ] ) ? $classes_options[ $rate->tax_rate_class ] : '-' ) . '</td>
+										<td>' . WC_Tax::get_rate_code( $rate ) . '</td>
+										<td>' . WC_Tax::get_rate_percent( $rate ) . '</td>
 									</tr>
-								';
+								'; // WPCS: XSS ok.
 						}
 						?>
 						</table>

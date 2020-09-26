@@ -222,13 +222,7 @@ jQuery(function( $ ) {
 					csv_data += '"' + index + '",';
 				} else {
 					if ( groupby === 'day' ) {
-						csv_data += '"' +
-							date.getUTCFullYear() +
-							'-' +
-							parseInt( date.getUTCMonth() + 1, 10 ) +
-							'-' +
-							date.getUTCDate() +
-							'",';
+						csv_data += '"' + date.getUTCFullYear() + '-' + parseInt( date.getUTCMonth() + 1, 10 ) + '-' + date.getUTCDate() + '",';
 					} else {
 						csv_data += '"' + date.getUTCFullYear() + '-' + parseInt( date.getUTCMonth() + 1, 10 ) + '",';
 					}

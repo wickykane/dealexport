@@ -3,7 +3,7 @@
  * WooCommerce Admin
  *
  * @class    WC_Admin
- * @package  WooCommerce\Admin
+ * @package  WooCommerce/Admin
  * @version  2.6.0
  */
 
@@ -33,9 +33,6 @@ class WC_Admin {
 
 		// Disable WXR export of schedule action posts.
 		add_filter( 'action_scheduler_post_type_args', array( $this, 'disable_webhook_post_export' ) );
-
-		// Add body class for WP 5.3+ compatibility.
-		add_filter( 'admin_body_class', array( $this, 'include_admin_body_class' ), 9999 );
 	}
 
 	/**
@@ -75,8 +72,8 @@ class WC_Admin {
 		}
 
 		// Setup/welcome.
-		if ( ! empty( $_GET['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
-			switch ( $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification.Recommended
+		if ( ! empty( $_GET['page'] ) ) { // phpcs:ignore WordPress.Security.NonceVerification.NoNonceVerification
+			switch ( $_GET['page'] ) { // phpcs:ignore WordPress.Security.NonceVerification.NoNonceVerification
 				case 'wc-setup':
 					include_once dirname( __FILE__ ) . '/class-wc-admin-setup-wizard.php';
 					break;
@@ -130,13 +127,7 @@ class WC_Admin {
 	 * For setup wizard, transient must be present, the user must have access rights, and we must ignore the network/bulk plugin updaters.
 	 */
 	public function admin_redirects() {
-		// Don't run this fn from Action Scheduler requests, as it would clear _wc_activation_redirect transient.
-		// That means OBW would never be shown.
-		if ( wc_is_running_from_async_action_scheduler() ) {
-			return;
-		}
-
-		// phpcs:disable WordPress.Security.NonceVerification.Recommended
+		// phpcs:disable WordPress.Security.NonceVerification.NoNonceVerification
 		// Nonced plugin install redirects (whitelisted).
 		if ( ! empty( $_GET['wc-install-plugin-redirect'] ) ) {
 			$plugin_slug = wc_clean( wp_unslash( $_GET['wc-install-plugin-redirect'] ) );
@@ -174,7 +165,7 @@ class WC_Admin {
 				exit;
 			}
 		}
-		// phpcs:enable WordPress.Security.NonceVerification.Recommended
+		// phpcs:enable WordPress.Security.NonceVerification.NoNonceVerification
 	}
 
 	/**
@@ -308,35 +299,6 @@ class WC_Admin {
 	public function disable_webhook_post_export( $args ) {
 		$args['can_export'] = false;
 		return $args;
-	}
-
-	/**
-	 * Include admin classes.
-	 *
-	 * @since 4.2.0
-	 * @param string $classes Body classes string.
-	 * @return string
-	 */
-	public function include_admin_body_class( $classes ) {
-		if ( in_array( array( 'wc-wp-version-gte-53', 'wc-wp-version-gte-55' ), explode( ' ', $classes ), true ) ) {
-			return $classes;
-		}
-
-		$raw_version   = get_bloginfo( 'version' );
-		$version_parts = explode( '-', $raw_version );
-		$version       = count( $version_parts ) > 1 ? $version_parts[0] : $raw_version;
-
-		// Add WP 5.3+ compatibility class.
-		if ( $raw_version && version_compare( $version, '5.3', '>=' ) ) {
-			$classes .= ' wc-wp-version-gte-53';
-		}
-
-		// Add WP 5.5+ compatibility class.
-		if ( $raw_version && version_compare( $version, '5.5', '>=' ) ) {
-			$classes .= ' wc-wp-version-gte-55';
-		}
-
-		return $classes;
 	}
 }
 

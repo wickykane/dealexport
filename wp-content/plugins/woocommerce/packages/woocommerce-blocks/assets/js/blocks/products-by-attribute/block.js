@@ -2,8 +2,11 @@
  * External dependencies
  */
 import { __ } from '@wordpress/i18n';
-import { BlockControls, InspectorControls } from '@wordpress/block-editor';
-import { ServerSideRender } from '@wordpress/editor';
+import {
+	BlockControls,
+	InspectorControls,
+	ServerSideRender,
+} from '@wordpress/editor';
 import {
 	Button,
 	Disabled,
@@ -13,13 +16,16 @@ import {
 	withSpokenMessages,
 } from '@wordpress/components';
 import { Component, Fragment } from '@wordpress/element';
-import { Icon, tags } from '@woocommerce/icons';
+import Gridicon from 'gridicons';
 import PropTypes from 'prop-types';
-import GridContentControl from '@woocommerce/block-components/grid-content-control';
-import GridLayoutControl from '@woocommerce/block-components/grid-layout-control';
-import ProductAttributeTermControl from '@woocommerce/block-components/product-attribute-term-control';
-import ProductOrderbyControl from '@woocommerce/block-components/product-orderby-control';
-import { gridBlockPreview } from '@woocommerce/resource-previews';
+
+/**
+ * Internal dependencies
+ */
+import GridContentControl from '../../components/grid-content-control';
+import GridLayoutControl from '../../components/grid-layout-control';
+import ProductAttributeControl from '../../components/product-attribute-control';
+import ProductOrderbyControl from '../../components/product-orderby-control';
 
 /**
  * Component to handle edit mode of "Products by Attribute".
@@ -56,9 +62,7 @@ class ProductsByAttributeBlock extends Component {
 				>
 					<GridContentControl
 						settings={ contentVisibility }
-						onChange={ ( value ) =>
-							setAttributes( { contentVisibility: value } )
-						}
+						onChange={ ( value ) => setAttributes( { contentVisibility: value } ) }
 					/>
 				</PanelBody>
 				<PanelBody
@@ -68,17 +72,13 @@ class ProductsByAttributeBlock extends Component {
 					) }
 					initialOpen={ false }
 				>
-					<ProductAttributeTermControl
+					<ProductAttributeControl
 						selected={ attributes }
 						onChange={ ( value = [] ) => {
-							/* eslint-disable camelcase */
-							const result = value.map(
-								( { id, attr_slug } ) => ( {
-									id,
-									attr_slug,
-								} )
-							);
-							/* eslint-enable camelcase */
+							const result = value.map( ( { id, attr_slug } ) => ( { // eslint-disable-line camelcase
+								id,
+								attr_slug,
+							} ) );
 							setAttributes( { attributes: result } );
 						} }
 						operator={ attrOperator }
@@ -115,11 +115,8 @@ class ProductsByAttributeBlock extends Component {
 
 		return (
 			<Placeholder
-				icon={ <Icon srcElement={ tags } /> }
-				label={ __(
-					'Products by Attribute',
-					'woocommerce'
-				) }
+				icon={ <Gridicon icon="custom-post-type" /> }
+				label={ __( 'Products by Attribute', 'woocommerce' ) }
 				className="wc-block-products-grid wc-block-products-by-attribute"
 			>
 				{ __(
@@ -127,17 +124,13 @@ class ProductsByAttributeBlock extends Component {
 					'woocommerce'
 				) }
 				<div className="wc-block-products-by-attribute__selection">
-					<ProductAttributeTermControl
+					<ProductAttributeControl
 						selected={ blockAttributes.attributes }
 						onChange={ ( value = [] ) => {
-							/* eslint-disable camelcase */
-							const result = value.map(
-								( { id, attr_slug } ) => ( {
-									id,
-									attr_slug,
-								} )
-							);
-							/* eslint-enable camelcase */
+							const result = value.map( ( { id, attr_slug } ) => ( { // eslint-disable-line camelcase
+								id,
+								attr_slug,
+							} ) );
 							setAttributes( { attributes: result } );
 						} }
 						operator={ blockAttributes.attrOperator }
@@ -145,7 +138,7 @@ class ProductsByAttributeBlock extends Component {
 							setAttributes( { attrOperator: value } )
 						}
 					/>
-					<Button isPrimary onClick={ onDone }>
+					<Button isDefault onClick={ onDone }>
 						{ __( 'Done', 'woocommerce' ) }
 					</Button>
 				</div>
@@ -157,10 +150,6 @@ class ProductsByAttributeBlock extends Component {
 		const { attributes, name, setAttributes } = this.props;
 		const { editMode } = attributes;
 
-		if ( attributes.isPreview ) {
-			return gridBlockPreview;
-		}
-
 		return (
 			<Fragment>
 				<BlockControls>
@@ -169,8 +158,7 @@ class ProductsByAttributeBlock extends Component {
 							{
 								icon: 'edit',
 								title: __( 'Edit' ),
-								onClick: () =>
-									setAttributes( { editMode: ! editMode } ),
+								onClick: () => setAttributes( { editMode: ! editMode } ),
 								isActive: editMode,
 							},
 						] }
@@ -181,10 +169,7 @@ class ProductsByAttributeBlock extends Component {
 					this.renderEditMode()
 				) : (
 					<Disabled>
-						<ServerSideRender
-							block={ name }
-							attributes={ attributes }
-						/>
+						<ServerSideRender block={ name } attributes={ attributes } />
 					</Disabled>
 				) }
 			</Fragment>
