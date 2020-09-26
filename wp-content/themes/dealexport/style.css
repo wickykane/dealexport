@@ -4938,12 +4938,21 @@ div.wpb_text_column.color--white h2::before {
 .newsletter-email-field  .wpcf7-submit  {
    padding: 6.5px 9px;
 }
+
 .mb-3 {
     margin-bottom: 1.5rem;
 }
 
 .mt-3 {
     margin-top: 1.5rem;
+}
+
+.pt-3 {
+    padding-top: 1.5rem;
+}
+
+.pb-3 {
+    padding-bottom: 1.5rem;
 }
 
 div.has-sub-title.wpb_text_column h2 {
@@ -5959,4 +5968,24 @@ div.additional-message, div.additional-message-2 {color: red}
 }
 .mod-sidebar .sidebar-widget li a:hover {
     color: rgb(1, 72, 142);
+}
+
+.contact-us-section {
+    padding-bottom: 2rem;
+    margin-top: 1.5rem;
+    font-family: FuturaPTLight, "Helvetica Neue";
+}
+
+.contact-us-section .wpcf7-submit{
+    font-size: 14px;
+}
+
+.icon-text-group {
+    list-style: none;
+    font-size: 16px;
+    margin-bottom: 1rem !important;
+    margin-top: 1.5rem;
+}
+.icon-text-group .fa {
+    margin-right: 1rem;
 }
