@@ -13,7 +13,7 @@ if(get_option('woocommerce_enable_shipping_calc')=== 'no' || ! WC()->cart->needs
 ?>
 <?php do_action('woocommerce_before_shipping_calculator'); ?>
 <form class="woocommerce-shipping-calculator site-form" action="<?php echo esc_url(WC()->cart->get_cart_url()); ?>" method="post">
-    <a href="#" class="shipping-calculator-button element-button secondary"><?php _e('Calculate Shipping', 'dealeport'); ?></a>
+    <a href="#" class="shipping-calculator-button element-button"><?php _e('Calculate Shipping', 'dealeport'); ?></a>
     <div class="clear"></div>
     <section class="shipping-calculator-form">
         <div class="element-select">
