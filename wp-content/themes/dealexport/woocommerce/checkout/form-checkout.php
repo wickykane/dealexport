@@ -21,6 +21,7 @@ $get_checkout_url=apply_filters('woocommerce_get_checkout_url', WC()->cart->get_
     <div class="sixcol column">
     <?php if(sizeof($checkout->checkout_fields)> 0): ?>
         <?php do_action('woocommerce_checkout_before_customer_details'); ?>
+        <h5><?php _e('Personal Information', 'dealexport'); ?></h5>
         <div id="customer_details">
             <?php do_action('woocommerce_checkout_billing'); ?>
             <?php do_action('woocommerce_checkout_shipping'); ?>

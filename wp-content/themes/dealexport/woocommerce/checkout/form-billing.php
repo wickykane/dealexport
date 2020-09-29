@@ -16,7 +16,7 @@ if(!defined('ABSPATH')) {
     <?php do_action('woocommerce_before_order_notes', $checkout); ?>
     <?php if(apply_filters('woocommerce_enable_order_notes_field', get_option('woocommerce_enable_order_comments', 'yes')=== 'yes')): ?>
         <?php if(! WC()->cart->needs_shipping()|| WC()->cart->ship_to_billing_address_only()): ?>
-            <h3><?php _e('Additional Information', 'dealexport'); ?></h3>
+            <h5 class="mt-3"><?php _e('Additional Information', 'dealexport'); ?></h5>
         <?php endif; ?>
         <?php foreach($checkout->checkout_fields['order'] as $key => $field): ?>
             <?php woocommerce_form_field($key, $field, $checkout->get_value($key)); ?>
