@@ -8731,3 +8731,9 @@ msgstr "Code Postal"
 
 msgid "My Address"
 msgstr "Coordonnées Entreprise"
+
+msgid "Personal Information"
+msgstr "Informations personnelles"
+
+msgid "Payment"
+msgstr "Paiement"

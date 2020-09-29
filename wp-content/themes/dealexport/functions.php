@@ -1751,3 +1751,19 @@ add_shortcode('get_current_year', 'get_current_year');
 
 include( get_template_directory() . '/dealexport-child-functions.php' );
 
+/**
+ * CUSTOM EMPTY CART MESSAGE
+ */
+
+remove_action( 'woocommerce_cart_is_empty', 'wc_empty_cart_message', 10 );
+add_action( 'woocommerce_cart_is_empty', 'custom_empty_cart_message', 10 );
+
+function custom_empty_cart_message() {
+    $html  = '<p class="cart-empty mt-3">';
+    $html .= wp_kses_post( apply_filters( 'wc_empty_cart_message', __( 'Your cart is currently empty.', 'woocommerce' ) ) ) ;
+    echo $html . '</p>';
+}
+
+// if ( function_exists( 'add_image_size' ) ) {
+// 	add_image_size( 'custom-thumb', 100, 100 ); // 100 wide and 100 high
+// }
