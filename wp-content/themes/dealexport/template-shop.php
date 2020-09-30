@@ -120,10 +120,10 @@ $shop_content_video = get_field('shop_content_video', $post->ID);
                             <a href="#report_form" class="element-button element-colorbox square secondary" title="<?php _e('Send a Report', 'dealexport'); ?>"><span class="fa fa-flag"></span></a>
                         <?php } ?>
                         <!-- TNH add btn like -->
-                        <a href="#contact_form" class="element-button element-colorbox square like-button aligncenter" title="<?php _e('Like', 'dealexport'); ?>" style="width: 132px;">
+                        <!-- <a href="#contact_form" class="element-button element-colorbox square like-button aligncenter" title="<?php _e('Like', 'dealexport'); ?>" style="width: 132px;">
 					        <span class="fa fa-heart large"></span>
 					        <span class="like-text"><?php _e('Like', 'dealexport'); ?></span>
-					    </a>
+					    </a> -->
                         <!-- End btn like -->
                         <input type="hidden" name="relation_type" value="shop" />
                         <input type="hidden" name="relation_id" value="<?php echo ThemedbShop::$data['ID']; ?>" />					
