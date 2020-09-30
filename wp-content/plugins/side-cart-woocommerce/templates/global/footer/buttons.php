@@ -35,7 +35,7 @@ $buttonHTML = '<a href="%1$s" class="%2$s">%3$s</a>';
 			$buttonHTML,
 			esc_attr( $button_data['url'] ),
 			implode( ' ', $button_data['class'] ),
-			esc_html( $button_data['label'] )
+			esc_html( __($button_data['label'], 'dealexport' ))
 		);
 
 	} ?>
