@@ -5980,6 +5980,10 @@ div.additional-message, div.additional-message-2 {color: red}
     font-size: 16px;
 }
 
+.contact-us-section  .wpcf7-submit {
+    max-width: 125px;
+}
+
 .contact-us-section input, .contact-us-section textarea {
    width: 60%;
 }
