@@ -6104,3 +6104,6 @@ div.additional-message, div.additional-message-2 {color: red}
     border-color: #ffffff;
     background-color: #f8f9fc;
 } 
+.theme-dealexport #menu-language-menu a[title="English"] {
+    display: none;
+}
