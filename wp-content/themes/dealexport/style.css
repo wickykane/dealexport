@@ -5976,8 +5976,12 @@ div.additional-message, div.additional-message-2 {color: red}
     font-family: FuturaPTLight, "Helvetica Neue";
 }
 
-.contact-us-section p{
+.contact-us-section p {
     font-size: 16px;
+}
+
+.contact-us-section input, .contact-us-section textarea {
+   width: 60%;
 }
 
 .contact-us-section .wpcf7-submit{
@@ -6080,3 +6084,19 @@ div.additional-message, div.additional-message-2 {color: red}
 .shop-author .author-image {
     width: 35px;
 }
+.product-quantity {
+    display: flex;
+    align-items: center;
+    margin: 1rem 0; 
+}
+.product-quantity label {
+    font-size: 15px;
+    width: 100px;
+    float: left;;
+}
+.product-quantity input {
+    margin-bottom: 0;
+    width: 75px !important;
+    border-color: #ffffff;
+    background-color: #f8f9fc;
+} 

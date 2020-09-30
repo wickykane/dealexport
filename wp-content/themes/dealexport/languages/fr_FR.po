@@ -8646,7 +8646,10 @@ msgid "Shopping Cart"
 msgstr "Mon Panier"
 
 msgid "Owner"
-msgstr "Contact Fournisseur"
+msgstr "Contact Vigneron"
+
+msgid "Their Great Products"
+msgstr "Les produits incontournables"
 
 msgid "Like"
 msgstr "J'aime"
@@ -8655,7 +8658,19 @@ msgid "Add to basket"
 msgstr "Ajouter au panier"
 
 msgid "Shop"
-msgstr "Vignerons"
+msgstr "Vigneron"
+
+msgid "Quantity"
+msgstr "Quantité"
+
+msgid "Your Cart"
+msgstr "Votre panier"
+
+msgid "Subtotal"
+msgstr "Sous Total"
+
+msgid "Order"
+msgstr "Commander"
 
 msgid "Departing"
 msgstr "Prix Hors TVA"
