@@ -72,7 +72,7 @@ function db_login_logo_url_title() {
 
 add_filter('login_headertitle', 'db_login_logo_url_title');
 
-function de_add_select2_script() {
+function de_add_select2_script() {      
     wp_dequeue_style('select2');
     wp_deregister_style('select2');
 
@@ -92,6 +92,14 @@ function de_add_select2_script() {
 }
 
 add_action('wp_enqueue_scripts', 'de_add_select2_script', 100);
+
+function add_semantic_ui_scripts() {
+     //-- Semantic JS
+     wp_enqueue_style( 'sematic-ui-css', THEME_URI . 'assets/semantic-ui/semantic.min.css', false );
+     wp_enqueue_script( 'sematic-ui-script', THEME_URI . 'assets/semantic-ui/semantic.min.js', array('jquery'), true );
+}
+
+add_action('wp_enqueue_scripts', 'add_semantic_ui_scripts', 10);
 
 function de_create_taxonomy() {
 
