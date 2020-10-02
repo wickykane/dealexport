@@ -197,9 +197,20 @@ class Xoo_Wsc_Cart{
 		$showSubtotal 	= in_array( 'subtotal', xoo_wsc_helper()->get_general_option('scf-show') );
 
 		if( $showSubtotal ){
+	
 			$totals['subtotal'] = array(
 				'label' 	=> __( 'Subtotal', 'side-cart-woocommerce' ),
 				'value' 	=> WC()->cart->get_cart_subtotal(),
+			);
+
+			$totals['shipping_fee'] = array(
+				'label' 	=> __( 'Livraison', 'dealexport' ),
+				'value' 	=> apply_filters('woocommerce_get_shipping_flat_rate', null),
+			);
+			
+			$totals['total'] = array(
+				'label' 	=> __( 'Total', 'dealexport' ),
+				'value' 	=> WC()->cart->get_total(),
 			);
 		}
 

@@ -7,89 +7,84 @@ if (!defined('ABSPATH')) {
   exit;
 }
 ?>
-<div class="mt-3 cart_totals <?php if (WC()->customer->has_calculated_shipping()) echo 'calculated_shipping'; ?>">
+<div class="mt-3 cart_totals cart-totals-summary <?php if (WC()->customer->has_calculated_shipping()) echo 'calculated_shipping'; ?>">
   <?php do_action('woocommerce_before_cart_totals'); ?>
-  <div class="element-title">
-    <h3><?php _e('Cart Totals', 'dealexport'); ?></h3>
-  </div>
-  <table cellspacing="0">
-    <tr class="cart-subtotal">
-      <th><?php _e('Cart Subtotal', 'dealexport'); ?></th>
-      <td><?php wc_cart_totals_subtotal_html(); ?></td>
-    </tr>
 
-    <?php if (WC()->cart->coupons_enabled()) { ?>
-      <tr class="order-coupon">
-        <th><?php _e('Coupon', 'dealexport'); ?></th>
-        <td>
-          <form action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
-            <div class="coupon">
-              <input type="text" name="coupon_code" class="input-text" id="coupon_code" value="" placeholder="<?php _e('Coupon code', 'dealexport'); ?>" />
-              <input type="submit" class="button secondary" name="apply_coupon" value="<?php _e('Apply', 'dealexport'); ?>" />
-              <?php do_action('woocommerce_cart_coupon'); ?>
+  <div class="cart-page-summary">
+    <div class="cart-page-summary-item">
+      <div class="cart-page-summary-item-label a-cart-total-items">
+        <?php echo WC()->cart->get_cart_contents_count() . ' articles'; ?>
+      </div>
+      <div class="cart-page-summary-item-value a-cart-subtotal-price">
+        <span class="cart-page-table-item-total-price">
+          <?php
+          echo WC()->cart->get_cart_subtotal(); ?>
+        </span>
+      </div>
+    </div>
+    <div class="cart-page-summary-item">
+      <div class="cart-page-summary-item-label">
+        Livraison
+      </div>
+      <div class="cart-page-summary-item-value">
+        <?php
+        echo apply_filters('woocommerce_get_shipping_flat_rate', null);
+        ?>
+      </div>
+      <div class="cart-page-summary-item-coupon ui accordion">
+        <?php foreach (WC()->cart->get_applied_coupons() as $code => $coupon) :
+        ?>
+          <div class="cart-page-summary-item">
+            <div class="cart-page-summary-item-label">
+              <?php wc_cart_totals_coupon_label($coupon); ?>
             </div>
-          </form>
-        </td>
-      </tr>
-    <?php } ?>
+            <div class="cart-page-summary-item-value mod-flex">
+              <?php echo wc_price(WC()->cart->get_coupon_discount_amount($coupon)); ?>
+              <form action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
+                <input class="hidden" name="remove_coupon" value="<?php echo $coupon ?>" />
+                <button class="remove-coupon-btn" type="submit"> <span class="fa fa-times"></span></button>
+              </form>
 
-    <?php foreach (WC()->cart->get_coupons('cart') as $code => $coupon) : ?>
-      <tr class="cart-discount coupon-<?php echo esc_attr($code); ?>">
-        <th><?php wc_cart_totals_coupon_label($coupon); ?></th>
-        <td><?php wc_cart_totals_coupon_html($coupon); ?></td>
-      </tr>
-    <?php endforeach; ?>
-    <?php if (WC()->cart->needs_shipping() && WC()->cart->show_shipping()) : ?>
-      <?php do_action('woocommerce_cart_totals_before_shipping'); ?>
-      <?php wc_cart_totals_shipping_html(); ?>
-      <?php do_action('woocommerce_cart_totals_after_shipping'); ?>
-    <?php endif; ?>
-    <?php foreach (WC()->cart->get_fees() as $fee) : ?>
-      <tr class="fee">
-        <th><?php echo esc_html($fee->name); ?></th>
-        <td><?php wc_cart_totals_fee_html($fee); ?></td>
-      </tr>
-    <?php endforeach; ?>
-    <?php if (WC()->cart->tax_display_cart == 'excl') : ?>
-      <?php if (get_option('woocommerce_tax_total_display') == 'itemized') : ?>
-        <?php foreach (WC()->cart->get_tax_totals() as $code => $tax) : ?>
-          <tr class="tax-rate tax-rate-<?php echo sanitize_title($code); ?>">
-            <th><?php echo esc_html($tax->label); ?></th>
-            <td><?php echo wp_kses_post($tax->formatted_amount); ?></td>
-          </tr>
+            </div>
+          </div>
         <?php endforeach; ?>
-      <?php else : ?>
-        <tr class="tax-total">
-          <th><?php echo esc_html(WC()->countries->tax_or_vat()); ?></th>
-          <td><?php echo wc_cart_totals_taxes_total_html(); ?></td>
-        </tr>
-      <?php endif; ?>
-    <?php endif; ?>
+        <?php
+        echo apply_filters('woocommerce_display_coupon_applied_result', null);
+        ?>
+        <a class="cart-page-summary-coupon-button title">
+          Vous avez un code promo ?
+        </a>
+        <div class="content">
 
-    <?php foreach (WC()->cart->get_coupons('order') as $code => $coupon) : ?>
-      <tr class="order-discount coupon-<?php echo esc_attr($code); ?>">
-        <th><?php wc_cart_totals_coupon_label($coupon); ?></th>
-        <td><?php wc_cart_totals_coupon_html($coupon); ?></td>
-      </tr>
-    <?php endforeach; ?>
-    <?php do_action('woocommerce_cart_totals_before_order_total'); ?>
-    <tr class="order-total">
-      <th><?php _e('Order Total', 'dealexport'); ?></th>
-      <td><?php wc_cart_totals_order_total_html(); ?></td>
-    </tr>
-    <?php do_action('woocommerce_cart_totals_after_order_total'); ?>
-  </table>
-  <?php if (WC()->cart->get_cart_tax()) : ?>
-    <p class="calculated_shipping_note">
-      <?php
-      $estimated_text = WC()->customer->is_customer_outside_base() && !WC()->customer->has_calculated_shipping()
-        ? sprintf(' ' . __('(taxes estimated for %s)', 'dealexport'), WC()->countries->estimated_for_prefix() . __(WC()->countries->countries[WC()->countries->get_base_country()], 'dealexport'))
-        : '';
-
-      printf(__('Note: Shipping and taxes are estimated%s and will be updated during checkout based on your billing and shipping information.', 'dealexport'), $estimated_text);
-      ?>
-    </p>
-  <?php endif; ?>
+          <form class="cart-coupon" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
+            <input class="cart-coupon-input" name="coupon" id="coupon" placeholder="<?php echo _e('Promo Code', 'dealexport') ?>" />
+            <button class="cart-coupon-submit cart-page-summary-footer-button" type="submit">Ajouter</button>
+            <?php do_action('add_coupon_code_to_cart'); ?>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="cart-page-summary-item mod-border-0">
+      <div class="cart-page-summary-item-label mod-big ">
+        <?php _e('TOTAL', 'dealexport') ?>
+      </div>
+      <div class="cart-page-summary-item-value">
+        <span class="cart-page-table-item-total-price">
+          <?php echo WC()->cart->get_total(); ?>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="cart-page-summary-footer">
+    <a href="<?php echo esc_url(wc_get_checkout_url()); ?>" class="cart-page-summary-footer-button button element-button">
+      <?php _e('Order', 'dealexport') ?>
+    </a>
+  </div>
   <?php do_action('woocommerce_after_cart_totals'); ?>
 </div>
-<?php woocommerce_shipping_calculator(); ?>
+
+<script>
+  jQuery(document).ready(function() {
+    jQuery('.ui.accordion').accordion();
+  });
+</script>
