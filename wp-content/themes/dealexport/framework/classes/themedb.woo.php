@@ -51,8 +51,9 @@ class ThemedbWoo {
             
             //update cart actions
             add_filter('add_to_cart_fragments', array(__CLASS__, 'filterCart'));
-            add_action('woocommerce_add_to_cart', array(__CLASS__, 'addCart'), 10, 1);
-            add_action('woocommerce_cart_item_restored', array(__CLASS__, 'addCart'), 10, 1);
+            // Huy comment to fix bug
+            // add_action('woocommerce_add_to_cart', array(__CLASS__, 'addCart'), 10, 1);
+            // add_action('woocommerce_cart_item_restored', array(__CLASS__, 'addCart'), 10, 1);
             add_action('woocommerce_thankyou', array(__CLASS__, 'removeCart'), 10);
             add_action('woocommerce_cart_item_removed', array(__CLASS__, 'removeCart'), 10);
             add_action('woocommerce_before_cart_item_quantity_zero', array(__CLASS__, 'removeCart'), 10);

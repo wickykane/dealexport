@@ -1819,7 +1819,7 @@ function woocommerce_recalculate_item_sub_total()
                 $.ajax({
                     type: 'POST',
                     dataType: 'json',
-                    url: '<?php echo SITE_URL; ?>/wp-admin/admin-ajax.php',
+                    url: '<?php echo admin_url('admin-ajax.php'); ?>',
                     data: {
                         action: 'update_item_from_cart',
                         'cart_item_key': cart_item_key,
@@ -1907,6 +1907,8 @@ function cart_item_price_filter($price)
 }
 
 add_filter('woocommerce_cart_item_price_filter', 'cart_item_price_filter');
+
+
 function get_shipping_flat_rate()
 {
     $delivery_zones = WC_Shipping_Zones::get_zones();
@@ -1935,15 +1937,18 @@ function get_shipping_flat_rate()
     }
 
     if ($is_free_shipping || $total >  250) {
+        WC()->session->set('chosen_shipping_methods', array('free_shipping:2'));
         return 'gratuit';
     } else {
         WC()->cart->add_fee(__('Shipping Fee', 'dealexport'), $fee, false);
+        WC()->session->set('chosen_shipping_methods', array('flat_rate:1'));
         return wc_price($fee);
     };
 }
 
 add_filter('woocommerce_get_shipping_flat_rate', 'get_shipping_flat_rate');
 add_action('woocommerce_cart_calculate_fees', 'get_shipping_flat_rate');
+add_action('woocommerce_checkout_before_customer_details', 'get_shipping_flat_rate');
 
 /** DISCOUNT **/
 
@@ -1988,3 +1993,7 @@ function display_coupon_applied_result()
     $output = $message ? '<p class="applied-error-result">' . $message . '</p>' : '';
     return $output;
 }
+
+// Huy remove action to change position of payment
+remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
+add_action( 'woocommerce_checkout_order_review_payment', 'woocommerce_checkout_payment', 20 );
