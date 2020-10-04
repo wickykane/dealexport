@@ -37,7 +37,7 @@ if (!defined('ABSPATH')) {
 		</div>
 		<div class="cart-page-summary-item">
 			<div class="ui accordion" style="width: 100%;">
-				<span class="title"> <?php _e('Show the details', 'dealexport'); ?></span>
+				<span class="title"> <?php _e('afficher les détails', 'dealexport'); ?></span>
 				<div class="content">
 					<?php
 					do_action('woocommerce_review_order_before_cart_contents');

@@ -25,7 +25,7 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', WC()->cart->ge
                 <?php do_action('woocommerce_checkout_shipping'); ?>
                 <?php do_action('woocommerce_review_order_before_shipping'); ?>
                 <section class="checkout-delivery-section checkout-section">
-                    <h5 class="section-title title"><span class="section-order">3</span><?php _e('DELIVERY METHOD', 'dealexport'); ?></h5>
+                    <h5 class="section-title title"><span class="section-order">3</span><?php _e('MODE DE LIVRAISON', 'dealexport'); ?></h5>
                     <div class="woocommerce-shipping-methods section-content content">
                         <?php wc_cart_totals_shipping_html(); ?>
                         <div class="checkout-order-notes">

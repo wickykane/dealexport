@@ -21,7 +21,7 @@ if (!defined('ABSPATH')) {
                     <div><?php echo WC()->customer->get_billing_first_name() . ' ' . WC()->customer->get_billing_last_name(); ?></div>
                     <div><?php echo WC()->customer->get_billing_address(); ?></div>
                     <div><?php echo WC()->customer->get_billing_postcode(); ?> <?php echo WC()->customer->get_billing_city(); ?></div>
-                    <div><?php echo WC()->customer->get_billing_country(); ?></div>
+                    <div><?php echo  WC()->countries->countries[WC()->customer->get_billing_country()]; ?></div>
                     <div><?php echo WC()->customer->get_billing_phone(); ?></div>
                 </div>
             </div>

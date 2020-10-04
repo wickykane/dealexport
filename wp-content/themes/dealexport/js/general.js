@@ -936,9 +936,7 @@ jQuery(document).ready(function($) {
                 jQuery('#place_order').attr('disabled', true);
             }
         });
-
-
-
+       
 })(jQuery);
 
 

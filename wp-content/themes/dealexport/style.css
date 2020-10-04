@@ -6435,3 +6435,8 @@ div.additional-message, div.additional-message-2 {color: red}
     margin-top: -2px !important;
     margin-left: 5px !important;
 }
+.half-post {
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 1rem !important;
+}
