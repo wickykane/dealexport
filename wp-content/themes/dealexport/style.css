@@ -6440,3 +6440,8 @@ div.additional-message, div.additional-message-2 {color: red}
     margin-right: 15px;
     margin-bottom: 1rem !important;
 }
+
+.section-advance-box {
+    text-align: center;
+    margin-top: 3rem;
+}
