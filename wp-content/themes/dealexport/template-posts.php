@@ -26,12 +26,37 @@ if ($layout == 'left') {
             'paged' => themedb_paged(),
           ));
         }
-
-        if (have_posts()) {
-          while (have_posts()) {
-            the_post();
-            get_template_part('content', 'post');
-          }
+        ?>
+        <div class="container">
+          <div class="half-post sixcol">
+            <?php
+            $i = 0;
+            if (have_posts()) {
+              while (have_posts()) {
+                the_post();
+                if ($i % 2 == 0) {
+                  get_template_part('content', 'post');
+                }
+                $i++;
+              }
+            } ?>
+          </div>
+          <div class="sixcol half-post">
+            <?php
+            $i = 0;
+            if (have_posts()) {
+              while (have_posts()) {
+                the_post();
+                if ($i % 2 == 1) {
+                  get_template_part('content', 'post');
+                }
+                $i++;
+              }
+            }
+            ?>
+          </div>
+        </div>
+        <?php if (have_posts()) {
         } else {
         ?>
           <h3><?php _e('No posts found. Try a different search?', 'dealexport'); ?></h3>

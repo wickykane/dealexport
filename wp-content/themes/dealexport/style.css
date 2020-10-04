@@ -6044,8 +6044,8 @@ div.additional-message, div.additional-message-2 {color: red}
     font-family: Open Sans, Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
-.woocommerce-billing-fields input, .woocommerce-billing-fields .select2, 
-.woocommerce-shipping-fields input, .woocommerce-shipping-fields .select2 {
+.woocommerce-billing-fields input, .woocommerce-billing-fields select, .woocommerce-billing-fields .select2, 
+.woocommerce-shipping-fields input, .woocommerce-shipping-fields .select2, .woocommerce-shipping-fields select {
     height: 32px !important;
     float: right !important;
     font-size: 14px !important;
@@ -6303,4 +6303,145 @@ div.additional-message, div.additional-message-2 {color: red}
 .mod-flex {
     display: flex;
     align-items: center;
+}
+
+.profile-fields .element-select {
+    width: calc(100% - 20px) !important;
+}
+
+/** CHECKOUT PAGE **/
+
+.checkout-section {
+    border-bottom: 1px solid #ebebeb;
+}
+
+.checkout-section h5.title  {
+    padding: 10px 0 !important;
+    text-transform: uppercase;
+    cursor: pointer;
+    margin-bottom: 0;
+    color: var(--color-main) !important;
+    font-size: 22px !important;
+}
+
+.checkout-section .title.mod-edit {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.checkout-section .section-edit {
+    font-size: 14px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.checkout-section .section-edit:hover {
+    background-color: #b6c5df;
+}
+
+.checkout-section .section-order {
+    margin-right: 1rem;
+}
+
+.show-detail .billing-user-form  {
+    height: inherit !important;
+}
+
+.show-detail .billing-user {
+    display: none !important;
+}
+
+.billing-user-form {
+    height: 0 !important;
+    overflow: hidden;
+}
+
+.billing-user {
+    margin-bottom: 1rem;
+}
+.billing-user > div {
+    margin-bottom: 1rem;
+}
+.billing-user a {
+    color : #232323;
+    font-weight: bold;
+}
+.billing-user .logout-instruction {
+    font-size: 10px;
+}
+.checkout-delivery-option-icon {
+    background: #f8f9fc;
+    padding: .9375rem 0;
+    margin-bottom: .9375rem;
+    margin-top: .9375rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.checkout-delivery-option-icon  .custom-radio input {
+    margin: 0;
+}
+
+.checkout-order-notes {
+    margin-top: 1rem;
+    font-size: 14px;
+}
+.checkout-order-notes textarea, .checkout-order-notes label {
+    font-size: 14px;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
+.checkout-cart-items {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+.checkout-cart-items + .checkout-cart-items {
+    margin-top: .5rem;
+}
+.checkout-cart-items .product-quantity {
+    margin: 0;
+}
+#customer_details input, #customer_details textarea, #customer_details  select ,#customer_details .select2-container--default .select2-selection--single {
+    background: #f8f9fc !important;
+    color: #000 !important;
+    border: 0 !important;
+}
+.checkout-address-box {
+    display: flex;
+    padding: 1rem;
+    border: 1px solid var(--color-main);
+    margin: 1rem 0;
+    width: 50%;
+}
+.checkout-address-box-info-name {
+    font-weight: bold;
+    color: var(--color-main);
+}
+.checkout-address-box .checkbox {
+    width: 25px;
+}
+.checkout-address-box input {
+    width: 100%;
+    float: initial !important;
+}
+.checkout-condition-to-approve {
+    display: flex !important;
+    margin-top: 1.5rem;
+}
+.checkout-condition-to-approve label {
+    width: 100% !important;
+    margin-top: -2px !important;
+    margin-left: 5px !important;
+}
+.half-post {
+    float: left;
+    margin-right: 15px;
+    margin-bottom: 1rem !important;
+}
+
+.section-advance-box {
+    text-align: center;
+    margin-top: 3rem;
 }

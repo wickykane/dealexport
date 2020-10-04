@@ -910,9 +910,33 @@ jQuery(document).ready(function($) {
         return el;
     }
 
+/** Huy add new js */
+    jQuery('.ui.accordion').accordion();
 
+        jQuery('#customer_details').accordion({
+            selector: {
+                trigger: '.title',
+                title: '.title',
+                content: '.content',
+            }
+        });
 
+        jQuery('.section-edit').on('click', function(e) {
+            if (jQuery(this).parent().hasClass('active')) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            jQuery(this).parent().parent().toggleClass('show-detail');
+        });
 
+        jQuery('.checkout-condition-to-approve #conditions_to_approve').on('change', function(e) {
+            if(e.target.checked) {
+                jQuery('#place_order').removeAttr('disabled');
+            } else {
+                jQuery('#place_order').attr('disabled', true);
+            }
+        });
+       
 })(jQuery);
 
 

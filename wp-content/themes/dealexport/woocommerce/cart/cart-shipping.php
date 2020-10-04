@@ -3,71 +3,40 @@
 @version 3.0.0
 */
 
-if(!defined('ABSPATH')) {
-    exit;
+if (!defined('ABSPATH')) {
+  exit;
+}
+$delivery_zones = WC_Shipping_Zones::get_zones();
+?>
+
+<?php
+foreach ((array) $delivery_zones as $key => $the_zone) {
+  foreach ($the_zone['shipping_methods'] as $value) {
+    if ($value->id == 'flat_rate') {
+?>
+      <div class="checkout-delivery-option">
+        <div class="checkout-delivery-option-icon">
+          <span class="custom-radio float-xs-left">
+            <input type="radio" name="delivery_option[175]" id="delivery_option_9" value="9," checked="">
+            <span></span>
+          </span>
+          <span class="checkout-delivery-image">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAAAXNSR0IArs4c6QAABSpJREFUaAXtWFkodV8UX2TKPBMhmQmJeFHGeBJCeKKEF0NkiFAeUEK+JMMDD6ZERBEeJEnmsUjKTCgSIcL5ztpf53Rc5957ruF//+mu2vfsvfbaa+/fXmvtvddVenh4oOAXkPIvwEAgKID83yypsIjCIj+0AwrX+qGN/bRahUU+vXU/NPDXWERFyAbFxcXByMiIEFHBMioqKtDR0QGRkZGCx0gSFARkbW0NzM3NITw8XJIuwX13d3cwMDAA29vb/y0QXKGjoyM0NTUJXqwkwf39fQJEkoysfYIsIqtSofK7u7swNjbGK25sbAw+Pj68fXxMuQLp6ekBLOIoLS0NampqAONJGkmXkKbhC/0xMTGAhY96e3uhtbWVxFF3dzcYGRnxibE8QUBwR1RVVdlB31VxcXGBqKgoXnV4mlVUVEBlZSX4+/tDf38/uLm58coiUxCQP3/+gKGhoVglX+0YGhqC2dnZd2o8PDygpKQEXF1dAV0sMDAQ2traICIi4p0c05AKpL29HRAIRUlP7WNjY6G0tJTRLfibn58PJycnH+QXFxehrq4O7O3tAe+y+Ph4qKqqguzs7A+yUm92XV1d4p/oo9KKvr7+hwmEMN7e3oj7XF5eApbT01Nyv2CMJCYmgrOzM8zMzBDrlJWV8aqUahFJAcmr8ZNMjENtbW12dFdXF2RmZgJ6BL4qoqOjwdPTkwQ/K8SpSASyt7cH9N9FoKSkBMrKyuTLrTM8tISBgQFH7derqBtdFYHgGpDQvXF+PhILZG5uDoKDg/nGfODhiXZwcPDtYEQnQheUGYiXlxd5kuC7CHeCW1AhtpmviYnJj4NAUDgnWoqPxFpEXV0dkpKS+MZ8Ow93eXp6GszMzN7pfnl5IW3GCgiEqb8TpBu8QEZHR8UGFVcBulRCQgKYmppy2TLXCwoKYGpqinecpqYmBAUFkT6ZXSsnJweOj495FYsy9fT0vmy51NRUwCKEZHKtpaUluLi4YPVeX18DupqWlhbLwwpaxMbG5h3vJxsyu5aOjg5gYcjPz4/crni2y5MkAeE/AkRWixa5uroS4f5rPj8/w/r6umBX5FXCYT4+PsLKygqcn59zuP+qGCMyudYHDTTj5uYGJicnARMefNAhdXZ2Ql5eHtze3pK2r68vucBsbW3JJbawsECOaNLJ+WEWiRcu6nRwcAArKyuor6+H8vJyeHp6ItKYWre0tJA58V7DceJOLZyQklboNBdfjGyhLz9qeHiYtOmnOFVbW0vl5uZSampqFP3UpmjQFP0QZOW5Y/nqqL+5uZnI05tB0YCo9PR0it59ij6xqPHxcVaXpaUl73p5j1+yHZwfTHI2NjYIBy2Cx21jYyPgg3JiYoJNevAeKCwsJA+8rKwsYjl0B2mEj8KUlBSwtrYmqa+GhgYZQm8MNDQ0QHV1NQwODsL9/T1gDsNHgoA4OTkBFi4dHR2BnZ0dCwL7vL29iQj24fNGXPbH1cPUDw8PISAgABgQyGf0nZ2dSf0HR1CwM5Nxvxgnm5ubsLq6yrKZ/Nvd3Z3lCa2gPrzdERASWrKvr4/UJWWGRID+UcL4YBqyfDFQ8Vh+fX2FsLAwkkMsLy+T1BVzbFlpfn4eQkNDyV0VEhICOzs7sLW1BRkZGcS1pOn7NBBUjJMVFRUBnij4jMcsrri4GNC3P0OYEWKGiVa2sLCA5ORkkpOIO3K5c3wJCFeRvOufjhF5L1x0fgUQ0R2Rd1thEXlbQHR+hUVEd0TebYVF5G0B0fl/jUX+AnYUH/sbj7YBAAAAAElFTkSuQmCC" />
+          </span>
+          <span class="checkout-delivery-name">
+            LIVRAISON À DOMICILE
+          </span>
+          <span class="checkout-delivery-des">
+            2-5 jours ouvrés
+          </span>
+          <span class="checkout-delivery-fee">
+            <?php
+            echo apply_filters('woocommerce_get_shipping_flat_rate', null);
+            ?>
+          </span>
+        </div>
+      </div>
+<?php }
+  }
 }
 ?>
-<tr class="shipping">
-    <th>
-    <?php
-    if($show_package_details) {
-        printf(__('Shipping #%d', 'dealexport'), $index+1);
-    } else {
-        _e('Shipping and Handling', 'dealexport');
-    }
-    ?>
-    </th>
-    <td>
-        <?php if(!empty($available_methods)): ?>
-            <?php if(1===count($available_methods)):
-                $method=current($available_methods);
-                echo wp_kses_post(wc_cart_totals_shipping_method_label($method)); ?>
-                <input type="hidden" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>" value="<?php echo esc_attr($method->id); ?>" class="shipping_method" />
-            <?php elseif(get_option('woocommerce_shipping_method_format')=== 'select'): ?>
-                <select name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>" class="shipping_method">
-                    <?php foreach($available_methods as $method): ?>
-                        <option value="<?php echo esc_attr($method->id); ?>" <?php selected($method->id, $chosen_method); ?>><?php echo wp_kses_post(wc_cart_totals_shipping_method_label($method)); ?></option>
-                    <?php endforeach; ?>
-                </select>
-            <?php else: ?>
-                <ul id="shipping_method">
-                    <?php foreach($available_methods as $method): ?>
-                        <li>
-                            <input type="radio" name="shipping_method[<?php echo $index; ?>]" data-index="<?php echo $index; ?>" id="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title($method->id); ?>" value="<?php echo esc_attr($method->id); ?>" <?php checked($method->id, $chosen_method); ?> class="shipping_method" />
-                            <label for="shipping_method_<?php echo $index; ?>_<?php echo sanitize_title($method->id); ?>"><?php echo wp_kses_post(wc_cart_totals_shipping_method_label($method)); ?></label>
-                        </li>
-                    <?php endforeach; ?>
-                </ul>
-            <?php endif; ?>
-        <?php elseif(( WC()->countries->get_states( WC()->customer->get_shipping_country())&& ! WC()->customer->get_shipping_state())|| ! WC()->customer->get_shipping_postcode()): ?>
-            <?php if(is_cart() && get_option( 'woocommerce_enable_shipping_calc')=== 'yes'): ?>
-                <p><?php _e( 'Please use the shipping calculator to see available shipping methods.', 'dealexport' ); ?></p>
-            <?php elseif(is_cart()): ?>
-                <p><?php _e( 'Please continue to the checkout and enter your full address to see if there are any available shipping methods.', 'dealexport' ); ?></p>
-            <?php else : ?>
-                <p><?php _e( 'Please fill in your details to see available shipping methods.', 'dealexport' ); ?></p>
-            <?php endif; ?>
-        <?php else : ?>
-            <?php if(is_cart()): ?>
-                <?php echo apply_filters( 'woocommerce_cart_no_shipping_available_html',
-                    '<p>'.__( 'There are no shipping methods available. Please double check your address, or contact us if you need any help.', 'dealexport' ).'</p>'
-                ); ?>
-            <?php else : ?>
-                <?php echo apply_filters( 'woocommerce_no_shipping_available_html',
-                    '<p>'.__( 'There are no shipping methods available. Please double check your address, or contact us if you need any help.', 'dealexport' ).'</p>'
-                ); ?>
-            <?php endif; ?>
-        <?php endif; ?>
-        <?php if($show_package_details): ?>
-            <?php
-            foreach($package['contents'] as $item_id => $values){
-                if($values['data']->needs_shipping()){
-                    $product_names[]=$values['data']->get_title().' &times;'.$values['quantity'];
-                }
-            }
-
-            echo '<p class="woocommerce-shipping-contents"><small>'.__('Shipping', 'dealexport').': '.implode(', ', $product_names).'</small></p>';
-            ?>
-        <?php endif; ?>
-    </td>
-</tr>
