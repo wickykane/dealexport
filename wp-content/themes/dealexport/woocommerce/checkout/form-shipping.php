@@ -10,6 +10,22 @@ if (!defined('ABSPATH')) {
 <section class="checkout-billing-section checkout-section">
     <h5 class="section-title title"><span class="section-order">2</span><?php _e('ADRESSES', 'dealexport'); ?></h5>
     <div class="woocommerce-shipping-fields section-content content">
+        <div><?php _e("L'adresse sélectionnée sera utilisée à la fois comme adresse personnelle (pour la facturation) et comme adresse de livraison.", 'dealexport'); ?></div>
+        <div class="checkout-addresses">
+            <div class="checkout-address-box">
+                <span class="checkbox">
+                    <input type="radio" checked>
+                </span>
+                <div class="checkout-address-box-info">
+                    <h5 class="checkout-address-box-info-name">MON ADRESSE</h5>
+                    <div><?php echo WC()->customer->get_billing_first_name() . ' ' . WC()->customer->get_billing_last_name(); ?></div>
+                    <div><?php echo WC()->customer->get_billing_address(); ?></div>
+                    <div><?php echo WC()->customer->get_billing_postcode(); ?> <?php echo WC()->customer->get_billing_city(); ?></div>
+                    <div><?php echo WC()->customer->get_billing_country(); ?></div>
+                    <div><?php echo WC()->customer->get_billing_phone(); ?></div>
+                </div>
+            </div>
+        </div>
         <?php if (WC()->cart->needs_shipping_address() === true) : ?>
             <?php
             if (empty($_POST)) {
@@ -21,7 +37,7 @@ if (!defined('ABSPATH')) {
             ?>
             <div id="ship-to-different-address" class="form-row last">
                 <input id="ship-to-different-address-checkbox" class="input-checkbox" type="checkbox" name="ship_to_different_address" value="1" />
-                <label for="ship-to-different-address-checkbox" class="checkbox"><?php _e('Ship to a different address?', 'dealexport'); ?></label>
+                <label for="ship-to-different-address-checkbox" class="checkbox"><?php _e("L'adresse de facturation est différente de l'adresse de livraison", 'dealexport'); ?></label>
             </div>
             <div>
                 <div class="shipping_address">

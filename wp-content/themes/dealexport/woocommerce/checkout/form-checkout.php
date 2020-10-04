@@ -24,20 +24,37 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', WC()->cart->ge
                 <?php do_action('woocommerce_checkout_billing'); ?>
                 <?php do_action('woocommerce_checkout_shipping'); ?>
                 <?php do_action('woocommerce_review_order_before_shipping'); ?>
-                <?php
-               
-                wc_cart_totals_shipping_html();
-                ?>
+                <section class="checkout-delivery-section checkout-section">
+                    <h5 class="section-title title"><span class="section-order">3</span><?php _e('DELIVERY METHOD', 'dealexport'); ?></h5>
+                    <div class="woocommerce-shipping-methods section-content content">
+                        <?php wc_cart_totals_shipping_html(); ?>
+                        <div class="checkout-order-notes">
+                            <?php do_action('woocommerce_before_order_notes', $checkout); ?>
+                            <p class="form-row notes" id="order_comments_field" data-priority="">
+                                <div for="order_comments" class="">
+                                    <?php _e("Si vous voulez nous laisser un message à propos de votre commande, merci de bien vouloir le renseigner dans le champ ci-contre");  ?>
+                                </div>
+                                <div>
+                                    <textarea style="width: 100%" name="order_comments" class="input-text mt-3" id="order_comments" placeholder="Commentaires concernant votre commande" rows="3" cols="5" spellcheck="false"></textarea>
+                                </div>
+                            </p>
+                            <?php do_action('woocommerce_after_order_notes', $checkout); ?>
+                        </div>
+                    </div>
+                </section>
                 <?php do_action('woocommerce_review_order_after_shipping'); ?>
                 <?php do_action('woocommerce_checkout_order_review_payment'); ?>
 
-                <!-- <div class="checkout-order-notes">
-                    <?php do_action('woocommerce_before_order_notes', $checkout); ?>
-                    <?php foreach ($checkout->checkout_fields['order'] as $key => $field) : ?>
-                        <?php woocommerce_form_field($key, $field, $checkout->get_value($key)); ?>
-                    <?php endforeach; ?>
-                    <?php do_action('woocommerce_after_order_notes', $checkout); ?>
-                </div> -->
+                <div class="checkout-condition-to-approve">
+                    <input id="conditions_to_approve" class="input-checkbox" type="checkbox" value="1" />
+                    <label for="conditions_to_approve">
+                        J'ai lu les <a href="#">conditions générales de vente</a> et j'y adhère sans réserve.
+                    </label>
+                </div>
+                <?php
+                $order_button_text = __('Order', 'dealexport');
+                echo apply_filters('woocommerce_order_button_html', '<button disabled type="submit" style="width: 150px; float: right;" class="button  cart-page-summary-footer-button alt" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr($order_button_text) . '" data-value="' . esc_attr($order_button_text) . '">' . esc_html($order_button_text) . '</button>'); // @codingStandardsIgnoreLine 
+                ?>
 
             </div>
             <?php do_action('woocommerce_checkout_after_customer_details'); ?>
@@ -49,23 +66,3 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', WC()->cart->ge
 </div>
 
 <?php do_action('woocommerce_after_checkout_form', $checkout); ?>
-
-<script>
-    jQuery(document).ready(function() {
-        jQuery('.ui.accordion').accordion();
-
-        jQuery('#customer_details').accordion({
-            selector: {
-                trigger: '.title',
-                title: '.title',
-                content: '.content',
-            }
-        });
-
-        jQuery('.section-edit').on('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            jQuery(this).parent().parent().toggleClass('show-detail');
-        })
-    });
-</script>

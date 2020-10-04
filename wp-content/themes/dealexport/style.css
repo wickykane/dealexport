@@ -6044,8 +6044,8 @@ div.additional-message, div.additional-message-2 {color: red}
     font-family: Open Sans, Arial, Helvetica, sans-serif;
     font-size: 14px;
 }
-.woocommerce-billing-fields input, .woocommerce-billing-fields .select2, 
-.woocommerce-shipping-fields input, .woocommerce-shipping-fields .select2 {
+.woocommerce-billing-fields input, .woocommerce-billing-fields select, .woocommerce-billing-fields .select2, 
+.woocommerce-shipping-fields input, .woocommerce-shipping-fields .select2, .woocommerce-shipping-fields select {
     height: 32px !important;
     float: right !important;
     font-size: 14px !important;
@@ -6345,16 +6345,17 @@ div.additional-message, div.additional-message-2 {color: red}
     margin-right: 1rem;
 }
 
-.show-detail .billing-user-form {
-    display: block;
+.show-detail .billing-user-form  {
+    height: inherit !important;
 }
 
 .show-detail .billing-user {
-    display: none;
+    display: none !important;
 }
 
 .billing-user-form {
-    display: none;
+    height: 0 !important;
+    overflow: hidden;
 }
 
 .billing-user {
@@ -6387,7 +6388,10 @@ div.additional-message, div.additional-message-2 {color: red}
     margin-top: 1rem;
     font-size: 14px;
 }
-
+.checkout-order-notes textarea, .checkout-order-notes label {
+    font-size: 14px;
+    font-family: "Open Sans", Arial, Helvetica, sans-serif;
+}
 .checkout-cart-items {
     display: flex;
     width: 100%;
@@ -6398,4 +6402,36 @@ div.additional-message, div.additional-message-2 {color: red}
 }
 .checkout-cart-items .product-quantity {
     margin: 0;
+}
+#customer_details input, #customer_details textarea, #customer_details  select ,#customer_details .select2-container--default .select2-selection--single {
+    background: #f8f9fc !important;
+    color: #000 !important;
+    border: 0 !important;
+}
+.checkout-address-box {
+    display: flex;
+    padding: 1rem;
+    border: 1px solid var(--color-main);
+    margin: 1rem 0;
+    width: 50%;
+}
+.checkout-address-box-info-name {
+    font-weight: bold;
+    color: var(--color-main);
+}
+.checkout-address-box .checkbox {
+    width: 25px;
+}
+.checkout-address-box input {
+    width: 100%;
+    float: initial !important;
+}
+.checkout-condition-to-approve {
+    display: flex !important;
+    margin-top: 1.5rem;
+}
+.checkout-condition-to-approve label {
+    width: 100% !important;
+    margin-top: -2px !important;
+    margin-left: 5px !important;
 }

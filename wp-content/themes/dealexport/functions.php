@@ -1928,7 +1928,7 @@ function get_shipping_flat_rate()
     }
 
     foreach ((array) $delivery_zones as $key => $the_zone) {
-        foreach ($the_zone['shipping_methods'] as $value) {
+        foreach ($the_zone['shipping_methods'] as $method_id => $value) {
             if ($value->id == 'flat_rate') {
                 $fee = $value->cost;
                 break;
