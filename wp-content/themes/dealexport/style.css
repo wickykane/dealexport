@@ -6445,3 +6445,7 @@ div.additional-message, div.additional-message-2 {color: red}
     text-align: center;
     margin-top: 3rem;
 }
+
+.woocommerce-info {
+    margin-top: 1.5rem !important;
+}
