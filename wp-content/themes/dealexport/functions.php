@@ -1946,7 +1946,7 @@ function get_shipping_flat_rate()
     }
 
     if ($is_free_shipping || $total >  250) {
-        WC()->session->set('chosen_shipping_methods', array('free_shipping:2'));
+        WC()->session->set('chosen_shipping_methods', array('free_shipping:3'));
         return 'gratuit';
     } else {
         WC()->cart->add_fee(__('Shipping Fee', 'dealexport'), $fee, false);
