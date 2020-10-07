@@ -6456,6 +6456,7 @@ div.additional-message, div.additional-message-2 {color: red}
 .section-advance-box .vc_icon_element {
     width: 100% !important;
     margin-bottom: 0 !important;
+    display: block;
 }
 .text-green {
     color: var(--green);
