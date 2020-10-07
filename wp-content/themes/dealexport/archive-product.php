@@ -24,8 +24,8 @@ get_header('shop');
 if ($layout == 'left') {
     ?>
     <aside class="column threecol">
-        <?php ThemedbSidebar::renderSidebar('products', true); ?>
-        <?php include_once 'product-filter.php'; ?>
+        <?php ThemedbSidebar::renderSidebar('products', false); // Huy disable default sidebar ?> 
+        <?php include_once 'woocommerce/product-filter.php'; ?>
     </aside>
     <div class="column ninecol last">
     <?php } else if ($layout == 'right') { ?>

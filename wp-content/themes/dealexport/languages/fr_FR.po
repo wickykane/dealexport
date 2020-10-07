@@ -8673,10 +8673,10 @@ msgid "Order"
 msgstr "Commander"
 
 msgid "Departing"
-msgstr "Prix Hors TVA"
+msgstr "Prix HT"
 
 msgid "DepartingAvec"
-msgstr "Prix avec TVA"
+msgstr "Prix TTC"
 
 msgid "Related Items"
 msgstr "Produits Similaires"
@@ -8754,7 +8754,31 @@ msgid "Payment"
 msgstr "Paiement"
 
 msgid "Basket"
-msgstr "PANIER"
+msgstr "Panier"
 
 msgid "Continue to Shopping"
-msgstr "CONTINUE L'ACHAT"
+msgstr "Continuer l'achat"
+
+msgid "View Order"
+msgstr "Voir votre commande"
+
+msgid "Thank you. Your order has been received."
+msgstr "Nous avons reçu votre commande. Merci!"
+
+msgid "Number"
+msgstr "Numéro de commande"
+
+msgid "Status"
+msgstr "Statut"
+
+msgid "Product"
+msgstr "Produit"
+
+msgid "Customer Details"
+msgstr "Information du client"
+
+msgid "Customer Address"
+msgstr "Adresse du client"
+
+msgid "Password Fogot"
+msgstr "Mot de passe oublié"

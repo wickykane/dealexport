@@ -1949,7 +1949,7 @@ function get_shipping_flat_rate()
         WC()->session->set('chosen_shipping_methods', array('free_shipping:3'));
         return 'gratuit';
     } else {
-        WC()->cart->add_fee(__('Shipping Fee', 'dealexport'), $fee, false);
+        // WC()->cart->add_fee(__('Shipping Fee', 'dealexport'), $fee, false);
         WC()->session->set('chosen_shipping_methods', array('flat_rate:1'));
         return wc_price($fee);
     };
@@ -2006,3 +2006,12 @@ function display_coupon_applied_result()
 // Huy remove action to change position of payment
 remove_action( 'woocommerce_checkout_order_review', 'woocommerce_checkout_payment', 20 );
 add_action( 'woocommerce_checkout_order_review_payment', 'woocommerce_checkout_payment', 20 );
+
+// Use arv_price to calculate
+add_action( 'woocommerce_before_calculate_totals', 'add_custom_price' );
+function add_custom_price() {
+    foreach ( WC()->cart->get_cart() as $cart_item_key => $cart_item ) {
+        $arv_price = get_post_meta($cart_item['product_id'], 'arv_price', true) ?:  $cart_item['data']->price;
+        $cart_item['data']->set_price($arv_price);   
+    }
+}
