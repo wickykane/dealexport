@@ -125,7 +125,7 @@ Template Name: Registration
         </form>
     </div>
 <?php } else { ?>
-    <div class="column eightcol mt-3">
+    <div class="aligncenter mt-3">
         <strong> <?php _e('[:en]Please sign in if you want to see the products in our website[:fr]Veuillez vous connecter si vous souhaitez voir les produits sur notre site Web[:vi]
 Vui lòng đăng nhập nếu bạn muốn xem các sản phẩm trong trang web của chúng tôi[:]', 'dealexport'); ?></strong>
     </div>
