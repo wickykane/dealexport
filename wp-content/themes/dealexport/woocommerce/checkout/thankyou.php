@@ -5,13 +5,14 @@
 
 if (!defined('ABSPATH')) {
   exit;
+  
 }
 ?>
 <div class="mt-3">
   <?php get_sidebar('profile-left'); ?>
   <div class="column fivecol">
     <div class="element-title">
-      <h1><?php _e('View Order', 'dealepxort'); ?></h1>
+      <h1><?php _e('View Order', 'dealexport') ?></h1>
     </div>
     <?php if ($order) { ?>
       <?php if ($order->has_status('failed')) : ?>
@@ -29,14 +30,14 @@ if (!defined('ABSPATH')) {
           <?php endif; ?>
         </p>
       <?php else : ?>
-        <p><?php echo apply_filters('woocommerce_thankyou_order_received_text', __('Thank you. Your order has been received.', 'dealepxort'), $order); ?></p>
+        <p><?php  echo apply_filters('woocommerce_thankyou_order_received_text', __('Thank you. Your order has been received.', 'dealexport'), $order); ?></p>
       <?php endif; ?>
       <div class="method_details">
         <?php do_action('woocommerce_thankyou_' . $order->payment_method, $order->id); ?>
         <?php do_action('woocommerce_thankyou', $order->id); ?>
       </div>
     <?php } else { ?>
-      <p><?php echo apply_filters('woocommerce_thankyou_order_received_text', __('Thank you. Your order has been received.', 'dealepxort'), null); ?></p>
+      <p><?php echo apply_filters('woocommerce_thankyou_order_received_text', __('Thank you. Your order has been received.', 'dealexport'), null); ?></p>
     <?php } ?>
   </div>
   <?php remove_filter('the_title', 'wc_page_endpoint_title'); ?>
