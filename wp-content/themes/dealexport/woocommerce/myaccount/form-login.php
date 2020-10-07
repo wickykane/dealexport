@@ -55,7 +55,9 @@ if(!defined('ABSPATH')) {
         <?php if(ThemedbFacebook::isActive()) { ?>
         <a href="<?php echo home_url('?facebook_login=1'); ?>" class="element-button element-facebook square facebook" title="<?php _e('Sign in with Facebook', 'dealexport'); ?>"><span class="fa fa-facebook"></span></a>
         <?php } ?>
-        <a href="#password_form" class="element-button element-colorbox square" title="<?php _e('Password Recovery', 'dealexport'); ?>"><span class="fa fa-life-ring"></span></a>
+        <a href="#password_form" class="element-button element-colorbox square" title="<?php _e('Password Recovery', 'dealexport'); ?>"><span class="fa fa-life-ring"></span>
+        <?php _e('Password Fogot', 'dealexport'); ?>
+    </a>
         <input type="hidden" name="user_action" value="login_user" />
         <input type="hidden" name="action" class="action" value="<?php echo THEMEDB_PREFIX; ?>update_user" />
     </form>

@@ -219,6 +219,22 @@ jQuery(document).ready(function($) {
         });
     });
     
+      //Colorbox
+      $('.element-colorbox-sign-in').each(function() {
+        var inline=false;
+        
+        if($(this).attr('href').charAt(0)=='#') {
+            inline=true;
+        }
+    
+        $(this).colorbox({
+            rel: $(this).data('rel'),
+            inline: true,
+            current: '',
+            width:'350px',
+        });
+    });
+    
   //Video colorbox
     $(themeElements.videoColorbox).each(function() {
         var inline = false,

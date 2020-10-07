@@ -3409,7 +3409,7 @@ msgstr ""
 #: ../woocommerce/checkout/thankyou.php:31
 #: ../woocommerce/checkout/thankyou.php:38
 msgid "Thank you. Your order has been received."
-msgstr ""
+msgstr "Thank you. Your order has been received."
 
 #: ../woocommerce/global/form-login.php:31
 msgid "Lost your password?"
