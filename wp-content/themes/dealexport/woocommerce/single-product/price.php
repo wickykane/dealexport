@@ -37,7 +37,7 @@ global $product;
 </div>
 <div class="stock-status" style="clear: both;">
     <?php
-    $stock_status = str_replace(array('instock', 'outofstock'), array('En Stock', 'Out of Stock'), $product->get_stock_status());
+    $stock_status = str_replace(array('instock', 'outofstock'), array('En Stock', 'En rupture de stock'), $product->get_stock_status());
     if ($product->is_in_stock()) { ?>
         <div class="text-green"><?php echo  $stock_status; ?></div>
     <?php } else { ?>

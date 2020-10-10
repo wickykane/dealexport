@@ -6378,7 +6378,10 @@ div.additional-message, div.additional-message-2 {color: red}
     margin-top: .9375rem;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+}
+.checkout-delivery-option-icon > * {
+    flex: 1;
+    padding: 15px 30px;
 }
 .checkout-delivery-option-icon  .custom-radio input {
     margin: 0;
@@ -6506,4 +6509,24 @@ div.additional-message, div.additional-message-2 {color: red}
 }
 #login_form .site-popup {
     width: 280px;
+}
+.checkout-delivery-name {
+    text-transform: uppercase;
+    flex: 3;
+}
+.checkout-delivery-des {
+    flex: 3;
+}
+.checkout-delivery-image span{
+ font-size: 40px;
+    color: var( --color-logo);
+}
+.my_account_orders .order-actions{
+text-align: center !important;
+}
+.my_account_orders .order-actions .element-button {
+    background: var(--color-main);
+    padding: 2px 8px !important;
+    border-radius: 5px !important;
+    color: #ffffff !important;
 }

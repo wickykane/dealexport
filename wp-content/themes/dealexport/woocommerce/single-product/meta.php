@@ -35,38 +35,40 @@ $tag_count = sizeof(get_the_terms($post->ID, 'product_tag'));
 </footer>
 
 <div class="clearfix add-to-cart-form mt-3">
-  <form class="cart" action="<?php echo themedb_url(); ?>" method="POST" enctype="multipart/form-data">
-    <?php do_action('woocommerce_before_add_to_cart_button'); ?>
-    <?php
-    if (!$product->is_sold_individually()) { ?>
-      <div class="product-quantity ">
-        <label><?php _e('Quantity', 'dealexport')?></label>
-        <?php
-        woocommerce_quantity_input(array(
-          'min_value' => apply_filters('woocommerce_quantity_input_min', 1, $product),
-          'max_value' => apply_filters('woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product),
-        ));
-        ?>
-      </div>
+  <?php if ($product->is_in_stock()) : ?>
+    <form class="cart" action="<?php echo themedb_url(); ?>" method="POST" enctype="multipart/form-data">
+      <?php do_action('woocommerce_before_add_to_cart_button'); ?>
+      <?php
+      if (!$product->is_sold_individually()) { ?>
+        <div class="product-quantity ">
+          <label><?php _e('Quantity', 'dealexport') ?></label>
+          <?php
+          woocommerce_quantity_input(array(
+            'min_value' => apply_filters('woocommerce_quantity_input_min', 1, $product),
+            'max_value' => apply_filters('woocommerce_quantity_input_max', $product->backorders_allowed() ? '' : $product->get_stock_quantity(), $product),
+          ));
+          ?>
+        </div>
 
-    <?php } ?>
+      <?php } ?>
 
-    <!-- <a href="#" class="element-button element-submit item-cart primary"><?php echo $product->single_add_to_cart_text(); ?></a>
+      <!-- <a href="#" class="element-button element-submit item-cart primary"><?php echo $product->single_add_to_cart_text(); ?></a>
         <a href="#" class="element-button element-submit cart-button square primary" title="<?php echo $product->single_add_to_cart_text(); ?>"><span class="fa fa-shopping-cart large"></span></a>
         <input type="hidden" name="add-to-cart" value="<?php echo esc_attr($product->id); ?>" /> -->
 
-    <div class="btn-group">
-      <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" class="element-button cart-button aligncenter" title="<?php _e('Cart', 'dealexport'); ?>">
-        <span class="fa fa-shopping-cart large"></span>
-        <span><?php _e('Add to basket', 'dealexport'); ?></span>
-      </button>
-      <!-- <button class="element-button like-button aligncenter" title="<?php _e('Like', 'dealexport'); ?>">
+      <div class="btn-group">
+        <button type="submit" name="add-to-cart" value="<?php echo esc_attr($product->get_id()); ?>" class="element-button cart-button aligncenter" title="<?php _e('Cart', 'dealexport'); ?>">
+          <span class="fa fa-shopping-cart large"></span>
+          <span><?php _e('Add to basket', 'dealexport'); ?></span>
+        </button>
+        <!-- <button class="element-button like-button aligncenter" title="<?php _e('Like', 'dealexport'); ?>">
         <span class="fa fa-heart large"></span>
         <span class="like-text"><?php _e('Like', 'dealexport'); ?></span>
       </button> -->
-    </div>
-    <?php do_action('woocommerce_after_add_to_cart_button'); ?>
-  </form>
+      </div>
+      <?php do_action('woocommerce_after_add_to_cart_button'); ?>
+    </form>
+  <?php endif; ?>
   <!-- TNH disbale  comment and favorite button -->
   <?php if (false) { ?>
     <?php if (is_user_logged_in()) { ?>

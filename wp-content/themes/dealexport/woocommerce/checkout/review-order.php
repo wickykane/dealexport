@@ -19,6 +19,9 @@
 if (!defined('ABSPATH')) {
 	exit;
 }
+$fee  = apply_filters('woocommerce_get_shipping_flat_rate', true);
+$feeText = $fee > 0.00? wc_price($fee): 'gratuit';
+
 ?>
 <div class="cart_totals">
 	<?php do_action('woocommerce_before_cart_totals'); ?>
@@ -76,7 +79,7 @@ if (!defined('ABSPATH')) {
 			</div>
 			<div class="cart-page-summary-item-value">
 				<?php
-				echo apply_filters('woocommerce_get_shipping_flat_rate', null);
+				echo $feeText;
 				?>
 			</div>
 			<div class="cart-page-summary-item-coupon ui accordion">
@@ -106,7 +109,9 @@ if (!defined('ABSPATH')) {
 
 					<form class="cart-coupon" action="<?php echo esc_url(wc_get_checkout_url()); ?>" method="post">
 						<input class="cart-coupon-input" name="coupon" id="coupon" placeholder="<?php echo _e('Promo Code', 'dealexport') ?>" />
-						<button class="cart-coupon-submit cart-page-summary-footer-button" type="submit">Ajouter</button>
+						<button <?php
+										echo $fee == 0.00 ? 'disabled' : '';
+										?> class="button cart-coupon-submit cart-page-summary-footer-button" type="submit">Ajouter</button>
 						<?php do_action('add_coupon_code_to_cart'); ?>
 					</form>
 				</div>
@@ -126,3 +131,8 @@ if (!defined('ABSPATH')) {
 	<?php do_action('woocommerce_review_order_after_order_total'); ?>
 	<?php do_action('woocommerce_after_cart_totals'); ?>
 </div>
+<script>
+	jQuery(document).ready(function() {
+		jQuery('.ui.accordion').accordion();
+	});
+</script>
