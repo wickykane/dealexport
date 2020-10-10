@@ -4,6 +4,7 @@ Template Name: Profile Address
 */
 ?>
 <?php get_header(); ?>
+<div class="mt-3">
 <?php get_sidebar('profile-left'); ?>
 <div class="column fivecol">
     <div class="element-title indented">
@@ -52,4 +53,5 @@ Template Name: Profile Address
     <?php } ?>
 </div>
 <?php get_sidebar('profile-right'); ?>
+</div>
 <?php get_footer(); ?>

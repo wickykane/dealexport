@@ -800,9 +800,14 @@ class ThemedbUser {
                         'url' => ThemedbCore::getURL('profile-address'),
                         'visible' => $data['woocommerce'] && $data['address'],
                     ),
-                    'links' => array(
-                        'name' => __('Links', 'dealexport'),
-                        'url' => '#', //ThemedbCore::getURL('profile-links'),
+                    // 'links' => array(
+                    //     'name' => __('Links', 'dealexport'),
+                    //     'url' => '#', //ThemedbCore::getURL('profile-links'),
+                    //     'visible' => $data['links'],
+                    // ),
+                        'links' => array(
+                        'name' => __('My Orders', 'dealexport'),
+                        'url' => get_permalink(get_option('woocommerce_myaccount_page_id')),
                         'visible' => $data['links'],
                     ),
                 ),
