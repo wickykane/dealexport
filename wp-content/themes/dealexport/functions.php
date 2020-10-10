@@ -1935,7 +1935,7 @@ function get_shipping_flat_rate($isNumber)
   do_action('woocommerce_remove_applied_discount_if_free_shipping');
 
   if ($total >  250) {
-    WC()->session->set('chosen_shipping_methods', array('free_shipping:2'));
+    WC()->session->set('chosen_shipping_methods', array('free_shipping:3'));
     WC()->cart->remove_coupons();
     return $isNumber ? 0 : 'gratuit';
   } else {
@@ -1953,7 +1953,7 @@ add_action('woocommerce_remove_applied_discount_if_free_shipping', 'remove_appli
 function remove_applied_discount_if_free_shipping()
 {
   $method = WC()->session->get('chosen_shipping_methods')[0];
-  if ($method !== 'flat_rate:1' && $method !== 'free_shipping:2') {
+  if ($method !== 'flat_rate:1' && $method !== 'free_shipping:3') {
     WC()->cart->remove_coupons();
     echo WC()->session->get('chosen_shipping_methods')[0];
   }
