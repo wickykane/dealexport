@@ -8622,7 +8622,7 @@ msgid "Files"
 msgstr "Fichiers"
 
 msgid "Arrival Price"
-msgstr "Prix arrivé"
+msgstr "Tarif TTC"
 
 msgid "Arrival"
 msgstr "Arrivé"
@@ -8782,3 +8782,6 @@ msgstr "Adresse du client"
 
 msgid "Password Fogot"
 msgstr "Mot de passe oublié"
+
+msgid "My Orders"
+msgstr "Mes commandes"

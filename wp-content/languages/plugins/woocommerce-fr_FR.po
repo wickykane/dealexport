@@ -13932,7 +13932,7 @@ msgstr "Tarif promo (%s)"
 #. translators: %s: currency symbol
 #: includes/admin/meta-boxes/views/html-variation-admin.php:115
 msgid "Regular price (%s)"
-msgstr "Tarif régulier (%s)"
+msgstr "Tarif HT (%s)"
 
 #. translators: %s: attribute label
 #: includes/admin/meta-boxes/views/html-variation-admin.php:34

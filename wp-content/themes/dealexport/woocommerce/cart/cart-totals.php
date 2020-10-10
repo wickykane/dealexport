@@ -6,6 +6,9 @@
 if (!defined('ABSPATH')) {
   exit;
 }
+$fee  = apply_filters('woocommerce_get_shipping_flat_rate', true);
+$feeText = $fee > 0.00? wc_price($fee): 'gratuit';
+
 ?>
 <div class="mt-3 cart_totals cart-totals-summary <?php if (WC()->customer->has_calculated_shipping()) echo 'calculated_shipping'; ?>">
   <?php do_action('woocommerce_before_cart_totals'); ?>
@@ -28,7 +31,7 @@ if (!defined('ABSPATH')) {
       </div>
       <div class="cart-page-summary-item-value">
         <?php
-        echo apply_filters('woocommerce_get_shipping_flat_rate', null);
+        echo $feeText
         ?>
       </div>
       <div class="cart-page-summary-item-coupon ui accordion">
@@ -55,10 +58,11 @@ if (!defined('ABSPATH')) {
           Vous avez un code promo ?
         </a>
         <div class="content">
-
           <form class="cart-coupon" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
             <input class="cart-coupon-input" name="coupon" id="coupon" placeholder="<?php echo _e('Promo Code', 'dealexport') ?>" />
-            <button class="cart-coupon-submit cart-page-summary-footer-button" type="submit">Ajouter</button>
+            <button <?php
+                    echo $fee == 0.00 ? 'disabled' : '';
+                    ?> class="button cart-coupon-submit cart-page-summary-footer-button" type="submit">Ajouter</button>
             <?php do_action('add_coupon_code_to_cart'); ?>
           </form>
         </div>
