@@ -7,7 +7,6 @@ Template Name: Registration
 
 <?php if (get_option('users_can_register')) { ?>
     <?php
-
     if ($_GET['require']) {
         ThemedbInterface::$messages[] = __('Please registration to view our site', 'dealexport');
         ThemedbInterface::renderMessages();
@@ -25,30 +24,31 @@ Template Name: Registration
             </div>
             <div class="column sixcol last">
                 <div class="field-wrap">
-                    <input type="password" name="user_password" placeholder="<?php _e('Password', 'dealexport'); ?>">
-                </div>
-            </div>
-            <div class="clear"></div>
-            <div class="column sixcol">
-                <div class="field-wrap">
-                    <input type="password" name="user_password_repeat" placeholder="<?php _e('Repeat Password', 'dealexport'); ?>">
-                </div>
-            </div>
-            <div class="column sixcol last">
-                <div class="field-wrap">
                     <input type="text" name="user_email" placeholder="<?php _e('Email', 'dealexport'); ?>">
                 </div>
             </div>
             <div class="column sixcol">
                 <div class="field-wrap">
-                    <input type="text" name="first_name" placeholder="<?php _e('First name', 'dealexport'); ?>">
+                    <input type="text" name="first_name" placeholder="<?php _e('First Name', 'dealexport'); ?>">
                 </div>
             </div>
             <div class="column sixcol last">
                 <div class="field-wrap">
-                    <input type="text" name="last_name" placeholder="<?php _e('Last name', 'dealexport'); ?>">
+                    <input type="password" name="user_password" placeholder="<?php _e('Password', 'dealexport'); ?>">
                 </div>
             </div>
+            <div class="clear"></div>
+            <div class="column sixcol ">
+                <div class="field-wrap">
+                    <input type="text" name="last_name" placeholder="<?php _e('Last Name', 'dealexport'); ?>">
+                </div>
+            </div>
+            <div class="column sixcol last">
+                <div class="field-wrap">
+                    <input type="password" name="user_password_repeat" placeholder="<?php _e('Repeat Password', 'dealexport'); ?>">
+                </div>
+            </div>
+
             <div class="column sixcol last" style="display: none;">
                 <div class="field-wrap" style="padding-right: 0px !important">
                     <div class="element-select">
@@ -114,7 +114,7 @@ Template Name: Registration
             <?php if (ThemedbCore::checkOption('user_captcha')) { ?>
                 <div class="element-captcha">
                     <img src="<?php echo THEMEDB_URI; ?>assets/images/captcha/captcha.php" alt="" />
-                    <input type="text" name="captcha" id="captcha" size="6" value="" />
+                    <input style="width: 100px;" type="text" name="captcha" id="captcha" size="6" value="" />
                 </div>
                 <div class="clear"></div>
             <?php } ?>

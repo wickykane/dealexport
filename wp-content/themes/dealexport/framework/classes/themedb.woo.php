@@ -1889,12 +1889,33 @@ class ThemedbWoo {
                 $field['label'] = __('City' ,'dealexport');
             }
         }
-        $reorder_fields = array('billing_company'=>$fields['billing_company'],'billing_email'=>$fields['billing_email'],
-                            'billing_phone'=>$fields['billing_phone'],'billing_address_1'=>$fields['billing_address_1'],
-                            'billing_city'=>$fields['billing_city'],'billing_state'=>$fields['billing_state'],
-                            'billing_country'=>$fields['billing_country'],'billing_postcode'=>$fields['billing_postcode']); 
+        $reorder_fields = array(
+            'billing_company'=>$fields['billing_company'],
+            'billing_address_1'=>$fields['billing_address_1'],
+            'billing_postcode'=>$fields['billing_postcode'],
+            'billing_city'=>$fields['billing_city'],
+            'billing_state'=>$fields['billing_state'],
+            'billing_country'=>$fields['billing_country'],
+            'billing_phone'=>$fields['billing_phone'],
+            'billing_email'=>$fields['billing_email'],
+           ); 
         
-        ThemedbCore::$components['forms']['address'] = $reorder_fields;
+         $billing_name = array(  array(
+            'label' => __('First Name', 'dealexport'),
+            'name' => 'billing_first_name',
+            'alias' => 'billing_first_name',
+            'type' => 'text',
+            'prefix' => false,
+        ),
+        array(
+            'label' => __('Last Name', 'dealexport'),
+            'name' => 'billing_last_name',
+            'alias' => 'billing_last_name',
+            'type' => 'text',
+            'prefix' => false,
+        ));
+
+        ThemedbCore::$components['forms']['address'] = array_merge(  $billing_name, $reorder_fields) ;
     }
     
     /**

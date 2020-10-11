@@ -8787,7 +8787,7 @@ msgid "My Orders"
 msgstr "Mes commandes"
 
 msgid "Free Ship"
-msgstr "Bateau gratuit"
+msgstr "Gratuit"
 
 msgid "gratuit"
 msgstr "Gratuit"
@@ -8804,5 +8804,23 @@ msgstr "Adresse"
 msgid "Street address"
 msgstr "Adresse"
 
-msgid "Street address"
-msgstr "Adresse"
+msgid "Local pickup"
+msgstr "Point de vente"
+
+msgid "Profile has been successfully saved"
+msgstr "Sauvergarde effectué"
+
+msgid "Please registration to view our site"
+msgstr "Merci de vous inscrire pour consulter nos produits"
+
+msgid "Repeat Password"
+msgstr "Répéter mot de passe"
+
+msgid "Registration complete! Please wait for administrator validate your account"
+msgstr "Merci pour votre inscription. Votre compte sera activé par l'administrateur dans les plus brefs délais."
+
+msgid "This account is not activated"
+msgstr "Ce compte n'est pas activé"
+
+msgid "Please fill in your details to see available shipping methods."
+msgstr "Veuillez remplir vos coordonnées pour voir les méthodes d'expédition disponibles."

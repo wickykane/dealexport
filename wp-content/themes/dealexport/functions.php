@@ -1923,16 +1923,15 @@ function get_shipping_fee($isNumber)
 {
 
   $fee = 0;
-  $total =  WC()->cart->subtotal;
   $shipingMethod = WC()->session->get('chosen_shipping_methods')[0];
 
-  if ($total >  250) {
-    $isPickup = strpos($shipingMethod, 'local_pickup') !== false;
-    if (!$isPickup) {
-      do_action('woocommerce_remove_applied_discount_if_free_shipping');
-      WC()->session->set('chosen_shipping_methods', array('free_shipping:6'));
-    }
-  }
+  // if ($total >  250) {
+  //   $isPickup = strpos($shipingMethod, 'local_pickup') !== false;
+  //   if (!$isPickup) {
+  //     do_action('woocommerce_remove_applied_discount_if_free_shipping');
+  //     WC()->session->set('chosen_shipping_methods', array('free_shipping:6'));
+  //   }
+  // }
 
   WC()->cart->calculate_fees();
   WC()->cart->calculate_totals();
@@ -1946,32 +1945,38 @@ function get_shipping_fee($isNumber)
   //  Click and collect
   $isPickup = strpos($shipingMethod, 'local_pickup') !== false;
 
-  return  $isNumber ? $fee : ($fee != 0 ? wc_price($fee) : ($isPickup ? 'Click and collect' : 'gratuit'));
+  return  $isNumber ? $fee : ($fee != 0 ? wc_price($fee) : ($isPickup ? 'Click & Collect' : 'Gratuit'));
 }
 
 // Reset Shipping method to flat rate
 add_action('woocommerce_reset_discount', 'reset_shipping_method');
-// add_action('xoo_wsc_before_footer_btns', 'reset_shipping_method');
+add_action('xoo_wsc_before_footer_btns', 'reset_shipping_method');
 add_action('woocommerce_before_cart_table', 'reset_shipping_method');
 
 function reset_shipping_method()
 {
-  $total =  WC()->cart->subtotal;
-  if (count(WC()->cart->get_applied_coupons()) == 0 && $total < 250) {
-    WC()->session->set('chosen_shipping_methods', array('local_pickup:2'));
+  $shipingMethod = WC()->session->get('chosen_shipping_methods')[0];
+  if (count(WC()->cart->get_applied_coupons()) == 0 ) {
+    $packages = WC()->shipping()->get_packages();
+    foreach ($packages[0]['rates'] as $key => $package) {
+      if ($package->method_id === 'local_pickup' && strpos($shipingMethod, 'free_shipping') === false) {
+        WC()->session->set('chosen_shipping_methods', array($key));
+        break;
+      }
+    }
   }
   WC()->cart->calculate_fees();
   WC()->cart->calculate_totals();
 }
 
-add_action('woocommerce_remove_applied_discount_if_free_shipping', 'remove_applied_discount_if_free_shipping');
-function remove_applied_discount_if_free_shipping()
-{
-  $method = WC()->session->get('chosen_shipping_methods')[0];
-  if ($method !== 'free_shipping:6') {
-    WC()->cart->remove_coupons();
-  }
-}
+// add_action('woocommerce_remove_applied_discount_if_free_shipping', 'remove_applied_discount_if_free_shipping');
+// function remove_applied_discount_if_free_shipping()
+// {
+//   $method = WC()->session->get('chosen_shipping_methods')[0];
+//   if ($method !== 'free_shipping:6') {
+//     WC()->cart->remove_coupons();
+//   }
+// }
 
 /** DISCOUNT **/
 
@@ -2042,10 +2047,10 @@ function update_cart_checkout_total($fragments)
   return $fragments;
 }
 
-add_action('admin_init', 'redirect_non_admin_users');
 /**
  * Redirect non-admin users to home page
  */
+add_action('admin_init', 'redirect_non_admin_users');
 function redirect_non_admin_users()
 {
   if (!current_user_can('manage_options') && ('/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'])) {
@@ -2061,4 +2066,37 @@ function move_country_position($checkout_fields)
 {
   $checkout_fields['billing']['billing_country']['priority'] = 71;
   return $checkout_fields;
+}
+
+add_filter('woocommerce_checkout_shipping_method_config', 'checkout_shipping_method_config');
+function checkout_shipping_method_config()
+{
+  $method_config = array(
+    'free_shipping' => array(
+      'icon' => 'fa-truck',
+      'name' => ' LIVRAISON À DOMICILE',
+      'des' => '2-5 jours ouvrés',
+      'is_free' => 'Gratuit',
+    ),
+    'flat_rate' => array(
+      'icon' => 'fa-truck',
+      'name' => ' LIVRAISON À DOMICILE',
+      'des' => '2-5 jours ouvrés',
+      'is_free' =>  'Gratuit',
+    ),
+    'local_pickup' => array(
+      'icon' => 'fa-shopping-cart',
+      'name' => 'Point de vente',
+      'des' => 'Lundi au vendredi au 104 Rue Nationale, 59800 Lille, France',
+      'is_free' => 'Click and collect',
+    )
+  );
+  return $method_config;
+}
+
+/** "New user" email  instead of admin. */
+add_filter( 'wp_new_user_notification_email_admin', 'my_wp_new_user_notification_email_admin', 10, 3 );
+function my_wp_new_user_notification_email_admin( $notification, $user, $blogname ) {
+  $notification['to'] = 'contact@dealexport.com';
+  return $notification;
 }
