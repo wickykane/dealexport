@@ -8785,3 +8785,24 @@ msgstr "Mot de passe oublié"
 
 msgid "My Orders"
 msgstr "Mes commandes"
+
+msgid "Free Ship"
+msgstr "Bateau gratuit"
+
+msgid "gratuit"
+msgstr "Gratuit"
+
+msgid "Pay with cash upon delivery."
+msgstr "Payer en argent comptant à la livraison."
+
+msgid "Customer Note"
+msgstr "Commentaire Client"
+
+msgid "Address 1"
+msgstr "Adresse"
+
+msgid "Street address"
+msgstr "Adresse"
+
+msgid "Street address"
+msgstr "Adresse"

@@ -31,6 +31,7 @@ if ( wc_tax_enabled() ) {
 				<th class="item_cost sortable" data-sort="float"><?php esc_html_e( 'Cost', 'woocommerce' ); ?></th>
 				<th class="quantity sortable" data-sort="int"><?php esc_html_e( 'Qty', 'woocommerce' ); ?></th>
 				<th class="line_cost sortable" data-sort="float"><?php esc_html_e( 'Total', 'woocommerce' ); ?></th>
+				<th class="line_cost" data-sort="float"><?php esc_html_e( '% TVA', 'woocommerce' ); ?></th>
 				<?php
 				if ( ! empty( $order_taxes ) ) :
 					foreach ( $order_taxes as $tax_id => $tax_item ) :

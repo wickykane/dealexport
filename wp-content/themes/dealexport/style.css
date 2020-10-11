@@ -4540,7 +4540,7 @@ display: none;
 }
 .product .item-full .item-price span.amount{
     font-size:2em;
-    color : #4e8ed6;
+    color : var(--color-main);
 }
 #myfooter #followus a {
     display: inline-block;
@@ -5997,6 +5997,7 @@ div.additional-message, div.additional-message-2 {color: red}
     font-size: 16px;
     margin-bottom: 1rem !important;
     margin-top: 1.5rem;
+    color: #000;
 }
 .icon-text-group .fa {
     margin-right: 1rem;
@@ -6379,6 +6380,9 @@ div.additional-message, div.additional-message-2 {color: red}
     display: flex;
     align-items: center;
 }
+.checkout-delivery-fee {
+    flex: 2 !important;
+}
 .checkout-delivery-option-icon > * {
     flex: 1;
     padding: 15px 30px;
@@ -6460,6 +6464,7 @@ div.additional-message, div.additional-message-2 {color: red}
     width: 100% !important;
     margin-bottom: 0 !important;
     display: block;
+    margin-top: -5px;
 }
 .text-green {
     color: var(--green);
@@ -6484,6 +6489,10 @@ div.additional-message, div.additional-message-2 {color: red}
 }
 .cart-page-table-continue-shopping, .cart-page-title, .cart-page-summary-footer-button, .return-to-shop a, .contact-us-section .wpcf7-submit, .newsletter-email-field .wpcf7-submit{
     text-transform: inherit !important;
+}
+.contact-us-section .wpcf7-submit, .newsletter-email-field .wpcf7-submit {
+    font-weight: normal !important;
+    font-size: 14px;
 }
 .cart-item-count {
     background-color: #000000;
@@ -6529,4 +6538,7 @@ text-align: center !important;
     padding: 2px 8px !important;
     border-radius: 5px !important;
     color: #ffffff !important;
+}
+.profile-menu {
+    background-color: #ffffff;
 }

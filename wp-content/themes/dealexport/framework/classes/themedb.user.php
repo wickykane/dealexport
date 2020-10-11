@@ -794,23 +794,33 @@ class ThemedbUser {
             'profile' => array(
                 'name' => __('My Profile', 'dealexport'),
                 'url' => get_author_posts_url($ID),
-                'child' => array(
-                    'address' => array(
-                        'name' => __('Address', 'dealexport'),
-                        'url' => ThemedbCore::getURL('profile-address'),
-                        'visible' => $data['woocommerce'] && $data['address'],
-                    ),
-                    // 'links' => array(
-                    //     'name' => __('Links', 'dealexport'),
-                    //     'url' => '#', //ThemedbCore::getURL('profile-links'),
-                    //     'visible' => $data['links'],
-                    // ),
-                        'links' => array(
-                        'name' => __('My Orders', 'dealexport'),
-                        'url' => get_permalink(get_option('woocommerce_myaccount_page_id')),
-                        'visible' => $data['links'],
-                    ),
-                ),
+                // 'child' => array(
+                //     'address' => array(
+                //         'name' => __('Address', 'dealexport'),
+                //         'url' => ThemedbCore::getURL('profile-address'),
+                //         'visible' => $data['woocommerce'] && $data['address'],
+                //     ),
+                //     // 'links' => array(
+                //     //     'name' => __('Links', 'dealexport'),
+                //     //     'url' => '#', //ThemedbCore::getURL('profile-links'),
+                //     //     'visible' => $data['links'],
+                //     // ),
+                //         'links' => array(
+                //         'name' => __('My Orders', 'dealexport'),
+                //         'url' => get_permalink(get_option('woocommerce_myaccount_page_id')),
+                //         'visible' => $data['links'],
+                //     ),
+                // ),
+            ),
+            'address' => array(
+                'name' => __('Mon entreprise', 'dealexport'),
+                'url' => ThemedbCore::getURL('profile-address'),
+                'visible' => $data['woocommerce'] && $data['address'],
+            ),
+            'links' => array(
+                'name' => __('My Orders', 'dealexport'),
+                'url' => get_permalink(get_option('woocommerce_myaccount_page_id')),
+                'visible' => $data['links']
             ),
             'orders' => array(
                 'name' => __('My Orders', 'dealexport'),
