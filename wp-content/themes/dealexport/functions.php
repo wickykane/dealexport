@@ -1930,7 +1930,7 @@ function get_shipping_fee($isNumber)
     $isPickup = strpos($shipingMethod, 'local_pickup') !== false;
     if (!$isPickup) {
       do_action('woocommerce_remove_applied_discount_if_free_shipping');
-      WC()->session->set('chosen_shipping_methods', array('free_shipping:2'));
+      WC()->session->set('chosen_shipping_methods', array('free_shipping:6'));
     }
   }
 
@@ -1958,7 +1958,7 @@ function reset_shipping_method()
 {
   $total =  WC()->cart->subtotal;
   if (count(WC()->cart->get_applied_coupons()) == 0 && $total < 250) {
-    WC()->session->set('chosen_shipping_methods', array('local_pickup:3'));
+    WC()->session->set('chosen_shipping_methods', array('local_pickup:2'));
   }
   WC()->cart->calculate_fees();
   WC()->cart->calculate_totals();
@@ -1968,7 +1968,7 @@ add_action('woocommerce_remove_applied_discount_if_free_shipping', 'remove_appli
 function remove_applied_discount_if_free_shipping()
 {
   $method = WC()->session->get('chosen_shipping_methods')[0];
-  if ($method !== 'free_shipping:2') {
+  if ($method !== 'free_shipping:6') {
     WC()->cart->remove_coupons();
   }
 }
