@@ -117,7 +117,7 @@
 	</tbody>
 	<tfoot>
 		<tr class="no-borders">
-			<td class="no-borders">
+			<td class="no-borders" colspan="2">
 				<div class="customer-notes">
 					<?php do_action( 'wpo_wcpdf_before_customer_notes', $this->type, $this->order ); ?>
 					<?php if ( $this->get_shipping_notes() ) : ?>
