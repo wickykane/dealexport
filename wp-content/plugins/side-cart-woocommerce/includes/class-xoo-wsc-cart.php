@@ -217,7 +217,7 @@ class Xoo_Wsc_Cart
 
 			$totals['shipping_fee'] = array(
 				'label' 	=> __('Livraison', 'dealexport'),
-				'value' 	=> apply_filters('woocommerce_get_shipping_flat_rate', null),
+				'value' 	=> apply_filters('woocommerce_get_shipping_fee', null),
 			);
 
 			$totals['total'] = array(

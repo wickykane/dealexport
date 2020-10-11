@@ -735,6 +735,13 @@ $config = array (
                     'prefix' => false,
                 ),
                 array(
+                    'label' => __('Address 1', 'dealexport'),
+                    'name' => 'billing_address_1',
+                    'alias' => 'billing_address_1',
+                    'type' => 'text',
+                    'prefix' => false,
+                ),
+                array(
                 		'label' => __('Postcode/ Zip', 'dealexport'),
                 		'name' => 'billing_postcode',
                 		'alias' => 'billing_postcode',

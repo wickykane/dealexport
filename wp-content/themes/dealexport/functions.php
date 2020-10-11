@@ -1918,10 +1918,24 @@ function cart_item_price_filter($price)
 add_filter('woocommerce_cart_item_price_filter', 'cart_item_price_filter');
 
 
-function get_shipping_flat_rate($isNumber)
+add_filter('woocommerce_get_shipping_fee', 'get_shipping_fee');
+function get_shipping_fee($isNumber)
 {
 
   $fee = 0;
+  $total =  WC()->cart->subtotal;
+  $shipingMethod = WC()->session->get('chosen_shipping_methods')[0];
+
+  if ($total >  250) {
+    $isPickup = strpos($shipingMethod, 'local_pickup') !== false;
+    if (!$isPickup) {
+      do_action('woocommerce_remove_applied_discount_if_free_shipping');
+      WC()->session->set('chosen_shipping_methods', array('free_shipping:2'));
+    }
+  }
+
+  WC()->cart->calculate_fees();
+  WC()->cart->calculate_totals();
 
   foreach (WC()->session->get('shipping_for_package_0')['rates'] as $method_id => $rate) {
     if ($method_id == WC()->session->get('chosen_shipping_methods')[0]) {
@@ -1929,33 +1943,33 @@ function get_shipping_flat_rate($isNumber)
       break;
     }
   }
+  //  Click and collect
+  $isPickup = strpos($shipingMethod, 'local_pickup') !== false;
 
-  $total =  WC()->cart->subtotal;
-
-  do_action('woocommerce_remove_applied_discount_if_free_shipping');
-
-  if ($total >  250) {
-    WC()->session->set('chosen_shipping_methods', array('free_shipping:6'));
-    WC()->cart->remove_coupons();
-    return $isNumber ? 0 : 'gratuit';
-  } else {
-    return  $isNumber ? $fee : ($fee != 0 ? wc_price($fee) : 'gratuit');
-  };
+  return  $isNumber ? $fee : ($fee != 0 ? wc_price($fee) : ($isPickup ? 'Click and collect' : 'gratuit'));
 }
-add_filter('woocommerce_get_shipping_flat_rate', 'get_shipping_flat_rate');
 
+// Reset Shipping method to flat rate
+add_action('woocommerce_reset_discount', 'reset_shipping_method');
+// add_action('xoo_wsc_before_footer_btns', 'reset_shipping_method');
 add_action('woocommerce_before_cart_table', 'reset_shipping_method');
-function reset_shipping_method() {
-  return WC()->session->set('chosen_shipping_methods', array('flat_rate:1'));
+
+function reset_shipping_method()
+{
+  $total =  WC()->cart->subtotal;
+  if (count(WC()->cart->get_applied_coupons()) == 0 && $total < 250) {
+    WC()->session->set('chosen_shipping_methods', array('local_pickup:3'));
+  }
+  WC()->cart->calculate_fees();
+  WC()->cart->calculate_totals();
 }
 
 add_action('woocommerce_remove_applied_discount_if_free_shipping', 'remove_applied_discount_if_free_shipping');
 function remove_applied_discount_if_free_shipping()
 {
   $method = WC()->session->get('chosen_shipping_methods')[0];
-  if ($method !== 'flat_rate:1' && $method !== 'free_shipping:6') {
+  if ($method !== 'free_shipping:2') {
     WC()->cart->remove_coupons();
-//    echo WC()->session->get('chosen_shipping_methods')[0];
   }
 }
 
@@ -1966,17 +1980,17 @@ function display_coupon_field()
 {
   if (isset($_POST['remove_coupon'])) {
     if ($coupon = esc_attr($_POST['remove_coupon'])) {
+      $c = new WC_Coupon($coupon);
       WC()->cart->remove_coupon($coupon);
-      WC()->cart->calculate_totals();
-      WC()->cart->calculate_fees();
+      if ($c->enable_free_shipping()) {
+        do_action('woocommerce_reset_discount');
+      }
     }
     return;
   }
   if (isset($_POST['coupon'])) {
     if ($coupon = esc_attr($_POST['coupon'])) {
       WC()->cart->apply_coupon($coupon);
-      WC()->cart->calculate_totals();
-      WC()->cart->calculate_fees();
     }
   }
 }
@@ -1990,7 +2004,6 @@ function display_coupon_applied_result()
   if (isset($_POST['coupon'])) {
     if ($coupon = esc_attr($_POST['coupon'])) {
       $applied = WC()->cart->has_discount($coupon);
-      // var_dump(WC()->cart );
     } else {
       $coupon = false;
     }
@@ -2027,4 +2040,25 @@ function update_cart_checkout_total($fragments)
   $container = ob_get_clean();
   $fragments['div.cart_totals'] = $container;
   return $fragments;
+}
+
+add_action('admin_init', 'redirect_non_admin_users');
+/**
+ * Redirect non-admin users to home page
+ */
+function redirect_non_admin_users()
+{
+  if (!current_user_can('manage_options') && ('/wp-admin/admin-ajax.php' != $_SERVER['PHP_SELF'])) {
+    wp_redirect(home_url());
+    exit;
+  }
+}
+
+// Change order form 
+
+add_filter('woocommerce_checkout_fields', 'move_country_position');
+function move_country_position($checkout_fields)
+{
+  $checkout_fields['billing']['billing_country']['priority'] = 71;
+  return $checkout_fields;
 }

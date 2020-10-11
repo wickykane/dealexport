@@ -850,7 +850,6 @@ abstract class Order_Document_Methods extends Order_Document {
 	public function get_woocommerce_totals() {
 		// get totals and remove the semicolon
 		$totals = apply_filters( 'wpo_wcpdf_raw_order_totals', $this->order->get_order_item_totals(), $this->order );
-		
 		// remove the colon for every label
 		foreach ( $totals as $key => $total ) {
 			$label = $total['label'];
@@ -898,6 +897,26 @@ abstract class Order_Document_Methods extends Order_Document {
 				}
 
 				$totals['order_total']['value'] .= $tax_string;
+			}
+
+			$tax_display = get_option( 'woocommerce_tax_display_cart' );
+			if ( wc_tax_enabled() && 'incl' == $tax_display ) {
+				$totals['order_total']['value'] = wc_price( $this->order->get_total(), array( 'currency' => WCX_Order::get_prop( $this->order, 'currency' ) ) );
+				$tax_string_array = array();
+				if ( 'itemized' == get_option( 'woocommerce_tax_total_display' ) ) {
+					foreach ( $this->order->get_tax_totals() as $code => $tax ) {
+						$tax_amount         = $tax->formatted_amount;
+						$tax_string_array[] = sprintf( '%s', $tax_amount );
+					}
+				} else {
+					$tax_string_array[] = sprintf( '%s %s', wc_price( $this->order->get_total_tax(), array( 'currency' => WCX_Order::get_prop( $this->order, 'currency' ) ) ), WC()->countries->tax_or_vat() );
+				}
+
+				if ( ! empty( $tax_string_array ) ) {
+					$tax_incl = implode( ', ', $tax_string_array );
+					$tax_percentage = \WC_Tax::get_rate_percent($tax->rate_id);
+					array_splice(	$totals, 3, 0, array('order-tax'=> array('label' => 'dont TVA', 'value' => '<div>'.$tax_percentage.'</div><div>'.$tax_incl.'</div>')) );
+				}
 			}
 
 			// remove refund lines (shouldn't be in invoice)

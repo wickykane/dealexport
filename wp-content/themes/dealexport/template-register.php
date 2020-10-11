@@ -13,7 +13,7 @@ Template Name: Registration
         ThemedbInterface::renderMessages();
     }
     ?>
-    <div class="column eightcol">
+    <div class="column eightcol mt-3">
         <div class="element-title">
             <h1><?php _e('Register', 'dealexport'); ?></h1>
         </div>
@@ -49,7 +49,7 @@ Template Name: Registration
                     <input type="text" name="last_name" placeholder="<?php _e('Last name', 'dealexport'); ?>">
                 </div>
             </div>
-            <div class="column sixcol last">
+            <div class="column sixcol last" style="display: none;">
                 <div class="field-wrap" style="padding-right: 0px !important">
                     <div class="element-select">
                         <span></span>
@@ -58,7 +58,7 @@ Template Name: Registration
                             'id' => 'role',
                             'type' => 'select_user_role',
                             'options' => themedb_array('options', $user_roles),
-                            'value' => '',
+                            'value' => 'customer',
                             'attributes' => array(
                                 'class' => 'element-trigger',
                             ),

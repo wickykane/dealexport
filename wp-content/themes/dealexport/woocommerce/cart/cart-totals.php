@@ -6,13 +6,13 @@
 if (!defined('ABSPATH')) {
   exit;
 }
-$fee  = apply_filters('woocommerce_get_shipping_flat_rate', true);
-$feeText = $fee > 0.00? wc_price($fee): 'gratuit';
-
 ?>
 <div class="mt-3 cart_totals cart-totals-summary <?php if (WC()->customer->has_calculated_shipping()) echo 'calculated_shipping'; ?>">
   <?php do_action('woocommerce_before_cart_totals'); ?>
-
+  <?php
+  $fee  = __(apply_filters('woocommerce_get_shipping_fee', null), 'dealexport');
+  $isDisableBtn = (strpos(WC()->session->get('chosen_shipping_methods')[0], 'free_shipping') !== false);
+  ?>
   <div class="cart-page-summary">
     <div class="cart-page-summary-item">
       <div class="cart-page-summary-item-label a-cart-total-items">
@@ -31,7 +31,7 @@ $feeText = $fee > 0.00? wc_price($fee): 'gratuit';
       </div>
       <div class="cart-page-summary-item-value">
         <?php
-        echo $feeText
+        echo $fee
         ?>
       </div>
       <div class="cart-page-summary-item-coupon ui accordion">
@@ -42,7 +42,9 @@ $feeText = $fee > 0.00? wc_price($fee): 'gratuit';
               <?php wc_cart_totals_coupon_label($coupon); ?>
             </div>
             <div class="cart-page-summary-item-value mod-flex">
-              <?php echo wc_price(WC()->cart->get_coupon_discount_amount($coupon)); ?>
+              <?php
+              $coupon_amount = WC()->cart->get_coupon_discount_amount($coupon);
+              echo $coupon_amount  == 0 ? __('Free Ship', 'dealexport') : wc_price($coupon_amount); ?>
               <form action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
                 <input class="hidden" name="remove_coupon" value="<?php echo $coupon ?>" />
                 <button class="remove-coupon-btn" type="submit"> <span class="fa fa-times"></span></button>
@@ -61,7 +63,7 @@ $feeText = $fee > 0.00? wc_price($fee): 'gratuit';
           <form class="cart-coupon" action="<?php echo esc_url(wc_get_cart_url()); ?>" method="post">
             <input class="cart-coupon-input" name="coupon" id="coupon" placeholder="<?php echo _e('Promo Code', 'dealexport') ?>" />
             <button <?php
-                    echo $fee == 0.00 ? 'disabled' : '';
+                    echo ($isDisableBtn ? 'disabled' : '');
                     ?> class="button cart-coupon-submit cart-page-summary-footer-button" type="submit">Ajouter</button>
             <?php do_action('add_coupon_code_to_cart'); ?>
           </form>

@@ -116,6 +116,9 @@ $row_class    = apply_filters( 'woocommerce_admin_html_order_item_class', ! empt
 			$tax_item_total    = isset( $tax_data['total'][ $tax_item_id ] ) ? $tax_data['total'][ $tax_item_id ] : '';
 			$tax_item_subtotal = isset( $tax_data['subtotal'][ $tax_item_id ] ) ? $tax_data['subtotal'][ $tax_item_id ] : '';
 			?>
+			<td style="min-width: 50px; text-align: center;">
+				<?php echo $tax_item->get_rate_percent(); ?>
+			</td>
 			<td class="line_tax" width="1%">
 				<div class="view">
 					<?php

@@ -12723,7 +12723,7 @@ msgstr "Eircode"
 
 #: includes/class-wc-countries.php:689
 msgid "Street address"
-msgstr "Numéro et nom de rue"
+msgstr "Adresse"
 
 #: includes/class-wc-form-handler.php:915
 #: includes/class-wc-form-handler.php:919
@@ -19980,7 +19980,7 @@ msgstr "Tri par notes moyennes"
 #: packages/woocommerce-blocks/build/checkout-frontend.js:14
 #: packages/woocommerce-blocks/build/checkout.js:1
 msgid "Email address"
-msgstr "Adresse de messagerie"
+msgstr "Email"
 
 #. translators: %s: order status
 #: includes/shortcodes/class-wc-shortcode-checkout.php:122
@@ -25206,7 +25206,7 @@ msgstr "Contrôle si le produit est listé comme &laquo;&nbsp;en stock&nbsp;&raq
 #: includes/admin/meta-boxes/views/html-product-data-general.php:43
 #: includes/admin/views/html-quick-edit-product.php:34
 msgid "Regular price"
-msgstr "Tarif régulier"
+msgstr "Tarif HT"
 
 #: includes/export/class-wc-product-csv-exporter.php:133
 #: includes/admin/importers/class-wc-product-csv-importer-controller.php:533
@@ -32827,3 +32827,6 @@ msgstr "Curaçao"
 #: i18n/states.php:68
 msgid "Northern Territory"
 msgstr "Territoire du Nord"
+
+msgid "Country"
+msgstr "Pays"
