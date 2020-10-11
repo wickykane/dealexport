@@ -83,7 +83,7 @@ $customer_orders = get_posts(apply_filters('woocommerce_my_account_my_orders_que
 
             if ($actions) {
               foreach ($actions as $key => $action) {
-                echo '<a href="' . esc_url($action['url']) . '" title="' . esc_html($action['name']) . '" class="element-button ' . sanitize_html_class($key) . '"><span class="fa fa-' . $action['class'] . '"></span></a>';
+                echo '<a href="' . esc_url($action['url']) . '" title="' . esc_html($action['name']) . '" class="element-button ' . sanitize_html_class($key) . '"><span class="fa fa-' . $action['class'] . ($action['name'] == 'Facture'? ' fa-file' : '' ). '"></span></a>';
               }
             }
             ?>

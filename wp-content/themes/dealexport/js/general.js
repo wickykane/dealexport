@@ -952,6 +952,20 @@ jQuery(document).ready(function($) {
                 jQuery('#place_order').attr('disabled', true);
             }
         });
+
+        jQuery('.update-billing-profile-btn').on('click', function(e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var formData = jQuery('.woocommerce-checkout').serialize()   + "&" + $.param({ user_action: 'update_profile' });
+            $.ajax({
+                type: "post",
+                url: '/profile-address',
+                data: formData,
+            }).success(function () {
+                window.location.reload();
+            });
+        
+        });
        
 })(jQuery);
 

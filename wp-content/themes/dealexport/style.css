@@ -6074,6 +6074,7 @@ div.additional-message, div.additional-message-2 {color: red}
 .wpcf7-response-output {
     font-size: 14px;
     margin-top: 1rem;
+    font-family: Open Sans, Arial, Helvetica, sans-serif;
 }
 .woocommerce-message, .woocommerce-error {
     margin-top: 1.5rem;
@@ -6538,7 +6539,11 @@ text-align: center !important;
     padding: 2px 8px !important;
     border-radius: 5px !important;
     color: #ffffff !important;
+    margin: 0 5px;
 }
 .profile-menu {
     background-color: #ffffff;
+}
+.site-content .error {
+    margin-top: 1.5rem;
 }

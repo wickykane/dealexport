@@ -85,12 +85,14 @@
 	<thead>
 		<tr>
 			<th class="product"><?php _e('Product', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
+			<th class="product"><?php _e('Shop', 'dealexport' ); ?></th>
 			<th class="quantity"><?php _e('Quantity', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
 			<th class="price"><?php _e('Price', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>
 		<?php $items = $this->get_order_items(); if( sizeof( $items ) > 0 ) : foreach( $items as $item_id => $item ) : ?>
+			<?php $shop = get_field('de_shop', $item->id)->post_title; ?>
 		<tr class="<?php echo apply_filters( 'wpo_wcpdf_item_row_class', $item_id, $this->type, $this->order, $item_id ); ?>">
 			<td class="product">
 				<?php $description_label = __( 'Description', 'woocommerce-pdf-invoices-packing-slips' ); // registering alternate label translation ?>
@@ -103,6 +105,10 @@
 					<?php if( !empty( $item['weight'] ) ) : ?><dt class="weight"><?php _e( 'Weight:', 'woocommerce-pdf-invoices-packing-slips' ); ?></dt><dd class="weight"><?php echo $item['weight']; ?><?php echo get_option('woocommerce_weight_unit'); ?></dd><?php endif; ?>
 				</dl>
 				<?php do_action( 'wpo_wcpdf_after_item_meta', $this->type, $item, $this->order  ); ?>
+			</td>
+			<td class="shop-name">	<?php 
+			$shop = get_field('de_shop', $item['product_id'])->post_title;
+			echo qtranxf_gettext($shop); ?>
 			</td>
 			<td class="quantity"><?php echo $item['quantity']; ?></td>
 			<td class="price"><?php echo $item['order_price']; ?></td>
