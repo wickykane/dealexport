@@ -8830,3 +8830,6 @@ msgstr "Le code de vérification est incorrect"
 
 msgid "Please fill in all fields"
 msgstr "Merci de remplir tous les champs"
+
+msgid "Message has been successfully sent"
+msgstr "Votre message a été envoyé avec succès!"
