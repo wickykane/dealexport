@@ -20,9 +20,11 @@ if ($layout == 'left') {
       <?php echo category_description(); ?>
       <div class="posts-wrap et_pb_blog_grid ">
         <?php
-        if (is_page()) {
+        if (true || is_page()) {
           query_posts(array(
             'post_type' => 'post',
+            'orderby' => 'publish_date',
+            'order' => 'ASC',
             'paged' => themedb_paged(),
           ));
         }
