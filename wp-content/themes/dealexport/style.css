@@ -4780,8 +4780,8 @@ li.ui-beacon-drop-hover .ui-beacon-item-link {margin: 0px; padding: 0px;}
 #menu-main-menu {display: inline-block; margin-left: 15px; }
 #nav-menu-item-user > a {font-family: 'FuturaPTLight', sans-serif; font-size: 1.3em;}
 #nav-menu-item-user ul a {font-family: 'FuturaPTLight', sans-serif; font-size: 1.1em;}
-#nav-menu-member li {margin-bottom: 0px; padding: 0px;}
-#nav-menu-member li.ui-beacon-drop-hover {padding: 0px;}
+#nav-menu-member li {margin-bottom: 0px; padding: 5px 0;}
+#nav-menu-member li.ui-beacon-drop-hover {padding: 5px 0;}
 #nav-menu-member li.ui-beacon-drop-hover .ui-beacon-item-link {
     margin: 0px;
     color: var(--color-link-hover) !important;
@@ -5858,7 +5858,11 @@ div.additional-message, div.additional-message-2 {color: red}
     font-size: .8rem;
     color: white;
 }
-
+.footer-copyright .version {
+    position: absolute !important;
+    left: 100px !important;
+    bottom: 8px !important;
+}
 
 /* =========================== DEVELOPMENT =========================== */
 .version-release {
@@ -6546,4 +6550,13 @@ text-align: center !important;
 }
 .site-content .error {
     margin-top: 1.5rem;
+}
+.cart-page-table-shop {
+    font-size: 10px !important;
+}
+.cart-page-table-name {
+    color: black;
+}
+.pagination a.prev:after, .pagination a.next:after {
+    top: 25% !important;
 }

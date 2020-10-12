@@ -92,6 +92,8 @@ extract( Xoo_Wsc_Template_Args::cart_body() );
 		$thumbnail 			= apply_filters( 'woocommerce_cart_item_thumbnail', $_product->get_image(array(300)), $cart_item, $cart_item_key );
 		$thumbnail 			= $product_permalink && $showPLink ? sprintf( '<a href="%s">%s</a>', esc_url( $product_permalink ), $thumbnail ) : $thumbnail;
 
+		$shop = get_field('de_shop', $product_id);
+
 		$cart_item_args = array(
 			'cart_item_key' 	=> $cart_item_key,
 			'cart_item' 		=> $cart_item,
@@ -103,7 +105,8 @@ extract( Xoo_Wsc_Template_Args::cart_body() );
 			'product_price' 	=> $product_price,
 			'product_subtotal' 	=> $product_subtotal,
 			'thumbnail' 		=> $thumbnail,
-			'bundleData' 		=> $bundleData
+			'bundleData' 		=> $bundleData,
+			'shop' 					=>	$shop,
 		);
 
 		$args = Xoo_Wsc_Template_Args::product( $_product, $cart_item, $cart_item_key, $cart_item_args );

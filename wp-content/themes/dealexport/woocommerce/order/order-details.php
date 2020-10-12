@@ -44,6 +44,7 @@ $order = wc_get_order($order_id);
       foreach ($order->get_items() as $item) {
         $_product = apply_filters('woocommerce_order_item_product', $order->get_product_from_item($item), $item);
         $item_meta = new WC_Order_Item_Meta($item['item_meta'], $_product);
+        $shop = get_field('de_shop', $_product->id);
     ?>
         <tr class="<?php echo esc_attr(apply_filters('woocommerce_order_item_class', 'order_item', $item, $order)); ?>">
           <td class="product-name">
@@ -51,10 +52,16 @@ $order = wc_get_order($order_id);
             if ($_product && !$_product->is_visible())
               echo apply_filters('woocommerce_order_item_name', $item['name'], $item);
             else
-              echo apply_filters('woocommerce_order_item_name', sprintf('<a href="%s">%s</a>', get_permalink($item['product_id']), $item['name']), $item);
-
-            echo apply_filters('woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf('&times; %s', $item['qty']) . '</strong>', $item);
-
+              echo apply_filters('woocommerce_order_item_name', sprintf('<a class="cart-page-table-name" href="%s">%s</a>', get_permalink($item['product_id']), $item['name']), $item);
+            // Add shop name
+            ?>
+            <div>
+             <?php printf('<a class="clearfix cart-page-table-shop cart-page-table-name" href="%s">%s</a>', get_post_permalink($shop->ID), __($shop->post_title)); 
+            ?>
+            <div>
+            <?php  echo apply_filters('woocommerce_order_item_quantity_html', ' <strong class="product-quantity">' . sprintf('&times; %s', $item['qty']) . '</strong>', $item); ?>
+            </div>
+            <?php
             $item_meta->display();
 
             if ($_product && $_product->exists() && $_product->is_downloadable() && $order->is_download_permitted()) {

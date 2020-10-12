@@ -49,10 +49,16 @@ foreach ( $items as $item_id => $item ) :
 		// Product name.
 		echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', __($item->get_name()), $item, false ) );
 
+		// SHOP
+		$shop = get_field('de_shop', $product->get_id());
+		printf('<a class="cart-page-table-shop cart-page-table-name" href="%s">%s</a>', get_post_permalink($shop->ID), __($shop->post_title));
+
 		// SKU.
 		if ( $show_sku && $sku ) {
 			echo wp_kses_post( ' (#' . $sku . ')' );
 		}
+
+	
 
 		// allow other plugins to add additional product information here.
 		do_action( 'woocommerce_order_item_meta_start', $item_id, $item, $order, $plain_text );
