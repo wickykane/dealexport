@@ -51,7 +51,7 @@ foreach ( $items as $item_id => $item ) :
 
 		// SHOP
 		$shop = get_field('de_shop', $product->get_id());
-		printf('<div style="font-size: 10px;"></div><a style="color: inherit !important; text-decoration: none !important;" class="cart-page-table-shop cart-page-table-name" href="%s">%s</a></div>', get_post_permalink($shop->ID), __($shop->post_title));
+		printf('<div style="font-size: 10px;"><a style="color: inherit !important; text-decoration: none !important;" class="cart-page-table-shop cart-page-table-name" href="%s">%s</a></div>', get_post_permalink($shop->ID), __($shop->post_title));
 
 		// SKU.
 		if ( $show_sku && $sku ) {
