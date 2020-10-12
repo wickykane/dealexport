@@ -24,7 +24,7 @@ if ($layout == 'left') {
           query_posts(array(
             'post_type' => 'post',
             'orderby' => 'publish_date',
-            'order' => 'ASC',
+            'order' => 'DESC',
             'paged' => themedb_paged(),
           ));
         }
