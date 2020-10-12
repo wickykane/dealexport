@@ -46,7 +46,7 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', WC()->cart->ge
                 <?php do_action('woocommerce_checkout_order_review_payment'); ?>
 
                 <div class="checkout-condition-to-approve">
-                    <input id="conditions_to_approve" class="input-checkbox" type="checkbox" value="1" />
+                    <input name="terms" id="conditions_to_approve" class="input-checkbox" type="checkbox" value="1" />
                     <label for="conditions_to_approve">
                         J'ai lu les <a target="_blank" href="<?php echo esc_url( wc_get_page_permalink( 'terms' ));?>">conditions générales de vente</a> et j'y adhère sans réserve.
                     </label>
