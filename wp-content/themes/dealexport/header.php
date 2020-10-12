@@ -181,7 +181,7 @@
                         </span>
                     <?php } ?>
                     <div class="nav-aboutus-wrapper">
-                        <a class="nav-aboutus-link" href="#"><?php echo _e('[:en]About us[:fr]À propos de nous[:vi]Về chúng tôi[:]') ?></a>
+                        <a class="nav-aboutus-link" target="_blank" href="http://www.dealexport.com/"><?php echo _e('[:en]About us[:fr]À propos de nous[:vi]Về chúng tôi[:]') ?></a>
                     </div>
 
                 </div>
