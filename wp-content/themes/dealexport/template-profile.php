@@ -38,7 +38,7 @@ Template Name: Profile
                                 'id' => $field['name'],
                                 'type' => $field['type'],
                                 'options' => themedb_array('options', $field),
-                                'value' => esc_attr(ThemedbUser::$data['current']['profile']['billing_country']),
+                                'value' => esc_attr(ThemedbUser::$data['current']['profile']['country']),
                                 'wrap' => false,
                             ));
                             ?>

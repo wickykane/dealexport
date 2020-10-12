@@ -22,7 +22,7 @@
         <span><?php the_time(get_option('date_format')); ?></span>
       </time>
     <?php } ?>
-    <?php if (!ThemedbCore::checkOption('post_author')) { ?>
+    <?php if (false && !ThemedbCore::checkOption('post_author')) { ?>
       <div class="post-author left">
         <span class="fa fa-pencil"></span>
         <span><?php the_author_posts_link(); ?></span>

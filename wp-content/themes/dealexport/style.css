@@ -6560,3 +6560,20 @@ text-align: center !important;
 .pagination a.prev:after, .pagination a.next:after {
     top: 25% !important;
 }
+
+.age-gate-challenge {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+.age-gate-form button{
+min-width: 120px;
+}
+.age-gate-error-message {
+    margin-top: 1rem;
+}
+.age-restriction .xoo-wsc-modal{
+    display: none;
+}
+.post .et_pb_image_container {
+    border: 1px solid #ccc !important;
+}
