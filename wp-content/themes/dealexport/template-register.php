@@ -21,32 +21,29 @@ Template Name: Registration
                 <div class="field-wrap">
                     <input type="text" name="user_login" placeholder="<?php _e('Username', 'dealexport'); ?>">
                 </div>
+
+                <div class="field-wrap">
+                    <input type="text" name="first_name" placeholder="<?php _e('First Name', 'dealexport'); ?>">
+                </div>
+
+                <div class="field-wrap">
+                    <input type="text" name="last_name" placeholder="<?php _e('Last Name', 'dealexport'); ?>">
+                </div>
+
             </div>
             <div class="column sixcol last">
                 <div class="field-wrap">
                     <input type="text" name="user_email" placeholder="<?php _e('Email', 'dealexport'); ?>">
                 </div>
-            </div>
-            <div class="column sixcol">
-                <div class="field-wrap">
-                    <input type="text" name="first_name" placeholder="<?php _e('First Name', 'dealexport'); ?>">
-                </div>
-            </div>
-            <div class="column sixcol last">
+
                 <div class="field-wrap">
                     <input type="password" name="user_password" placeholder="<?php _e('Password', 'dealexport'); ?>">
                 </div>
-            </div>
-            <div class="clear"></div>
-            <div class="column sixcol ">
-                <div class="field-wrap">
-                    <input type="text" name="last_name" placeholder="<?php _e('Last Name', 'dealexport'); ?>">
-                </div>
-            </div>
-            <div class="column sixcol last">
+
                 <div class="field-wrap">
                     <input type="password" name="user_password_repeat" placeholder="<?php _e('Repeat Password', 'dealexport'); ?>">
                 </div>
+
             </div>
 
             <div class="column sixcol last" style="display: none;">

@@ -2088,7 +2088,7 @@ function checkout_shipping_method_config()
       'icon' => 'fa-shopping-cart',
       'name' => 'Point de vente',
       'des' => 'Lundi au vendredi au 104 Rue Nationale, 59800 Lille, France',
-      'is_free' => 'Click and collect',
+      'is_free' => 'Click & Collect',
     )
   );
   return $method_config;

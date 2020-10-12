@@ -18,7 +18,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 $productClasses = apply_filters( 'xoo_wsc_product_class', $productClasses );
-
 ?>
 
 <div data-key="<?php echo $cart_item_key ?>" class="<?php echo implode( ' ', $productClasses ) ?>">
@@ -45,6 +44,7 @@ $productClasses = apply_filters( 'xoo_wsc_product_class', $productClasses );
 			<div class="xoo-wsc-sm-left">
 				<?php if( $showPname ): ?>
 					<span class="xoo-wsc-pname"><?php _e($product_name); ?></span>
+					<?php printf('<a class="cart-page-table-shop cart-page-table-name" href="%s">%s</a>', get_post_permalink($shop->ID), __($shop->post_title)); ?>
 				<?php endif; ?>
 				
 				<?php if( $showPmeta ) echo $product_meta ?>

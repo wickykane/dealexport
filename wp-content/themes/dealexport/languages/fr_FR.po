@@ -8694,7 +8694,7 @@ msgid "Envoyer"
 msgstr "Lancer"
 
 msgid "My Profile"
-msgstr "Mon Profil"
+msgstr "Mon profil"
 
 msgid "First Name"
 msgstr "Prénom"
@@ -8808,7 +8808,7 @@ msgid "Local pickup"
 msgstr "Point de vente"
 
 msgid "Profile has been successfully saved"
-msgstr "Sauvergarde effectué"
+msgstr "Sauvergarde effectuée"
 
 msgid "Please registration to view our site"
 msgstr "Merci de vous inscrire pour consulter nos produits"
@@ -8824,3 +8824,9 @@ msgstr "Ce compte n'est pas activé"
 
 msgid "Please fill in your details to see available shipping methods."
 msgstr "Veuillez remplir vos coordonnées pour voir les méthodes d'expédition disponibles."
+
+msgid "Verification code is incorrect"
+msgstr "Le code de vérification est incorrect"
+
+msgid "Please fill in all fields"
+msgstr "Merci de remplir tous les champs"
