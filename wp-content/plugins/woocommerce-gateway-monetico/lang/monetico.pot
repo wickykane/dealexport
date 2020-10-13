@@ -1,0 +1,1017 @@
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: WooCommerce Gateway Monetico\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-09-23 17:03+0200\n"
+"PO-Revision-Date: 2014-12-17 23:30+0100\n"
+"Last-Translator: Nicolas Maillard <nicolas@absoluteweb.net>\n"
+"Language-Team: ABSOLUTE Web <nicolas@absoluteweb.net>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop;__;_e\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Generator: Poedit 2.4.1\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: am/admin/class-wc-api-manager-menu.php:58
+#: am/admin/class-wc-api-manager-menu.php:62
+msgid "Save Changes"
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:77
+msgid "API License Activation"
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:78
+msgid "API License Key Status"
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:79
+msgid "API License Key"
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:80
+msgid "API License email"
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:84
+msgid "API License Deactivation"
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:85
+msgid "Deactivate API License Key"
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:165
+msgid "Plugin activated. "
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:171
+msgid "Connection failed to the License Key API server. Try again later."
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:258
+msgid ""
+"The license could not be deactivated. Use the License Deactivation tab to "
+"manually deactivate the license before activating a new license."
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:297
+msgid "Plugin license deactivated. "
+msgstr ""
+
+#: am/admin/class-wc-api-manager-menu.php:366
+msgid "Deactivates an API License Key so it can be used on another blog."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:372
+#, php-format
+msgid ""
+"The license key for %s has expired. You can reactivate or purchase a license "
+"key from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:387
+#, php-format
+msgid ""
+"The subscription for %s is on-hold. You can reactivate the subscription from "
+"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:402
+#, php-format
+msgid ""
+"The subscription for %s has been cancelled. You can renew the subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>. A new "
+"license key will be emailed to you after your order has been completed."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:417
+#, php-format
+msgid ""
+"The subscription for %s has expired. You can reactivate the subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:432
+#, php-format
+msgid ""
+"The subscription for %s has been suspended. You can reactivate the "
+"subscription from your account <a href=\"%s\" target=\"_blank\">dashboard</"
+"a>."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:447
+#, php-format
+msgid ""
+"The subscription for %s is still pending. You can check on the status of the "
+"subscription from your account <a href=\"%s\" target=\"_blank\">dashboard</"
+"a>."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:462
+#, php-format
+msgid ""
+"The subscription for %s has been placed in the trash and will be deleted "
+"soon. You can purchase a new subscription from your account <a href=\"%s\" "
+"target=\"_blank\">dashboard</a>."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:477
+#, php-format
+msgid ""
+"A subscription for %s could not be found. You can purchase a subscription "
+"from your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:492
+#, php-format
+msgid ""
+"A license key for %s could not be found. Maybe you forgot to enter a license "
+"key when setting up %s, or the key was deactivated in your account. You can "
+"reactivate or purchase a license key from your account <a href=\"%s\" target="
+"\"_blank\">dashboard</a>."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:507
+#, php-format
+msgid ""
+"Download permission for %s has been revoked possibly due to a license key or "
+"subscription expiring. You can reactivate or purchase a license key from "
+"your account <a href=\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:522
+#, php-format
+msgid ""
+"%s has not been activated. Go to the settings page and enter the license key "
+"and license email to activate %s."
+msgstr ""
+
+#: am/classes/class-wc-plugin-update.php:537
+#, php-format
+msgid ""
+"You changed the subscription for %s, so you will need to enter your new API "
+"License Key in the settings page. The License Key should have arrived in "
+"your email inbox, if not you can get it by logging into your account <a href="
+"\"%s\" target=\"_blank\">dashboard</a>."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:5
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:5
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:5
+#: woocommerce-gateway-monetico-commentaires.php:466
+#: woocommerce-gateway-monetico.php:467
+msgid "Proceed to Credit Card"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:7
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:7
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:7
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:7
+#: partenaires/class-wc-gateway-monetico-paypal.php:7
+#, php-format
+msgid "Accept payments %s, Monetico partner."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:32
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:33
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:32
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:32
+#: partenaires/class-wc-gateway-monetico-paypal.php:32
+#: woocommerce-gateway-monetico-commentaires.php:499
+#: woocommerce-gateway-monetico.php:503
+msgid "Enable/Disable"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:34
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:35
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:34
+msgid "Check to enable the payment Cofidis."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:38
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:39
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:38
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:38
+#: partenaires/class-wc-gateway-monetico-paypal.php:38
+#: woocommerce-gateway-monetico-commentaires.php:505
+#: woocommerce-gateway-monetico.php:509
+msgid "Title"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:40
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:41
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:40
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:40
+#: partenaires/class-wc-gateway-monetico-paypal.php:40
+#: woocommerce-gateway-monetico-commentaires.php:507
+#: woocommerce-gateway-monetico.php:511
+msgid "Title displayed when selecting the method of payment."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:41
+#: partenaires/class-wc-gateway-monetico-1euro.php:85
+msgid "1euro Cofidis"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:46
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:47
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:46
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:46
+#: partenaires/class-wc-gateway-monetico-paypal.php:46
+#: woocommerce-gateway-monetico-commentaires.php:513
+#: woocommerce-gateway-monetico.php:517
+msgid "Message client"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:48
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:49
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:48
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:48
+#: partenaires/class-wc-gateway-monetico-paypal.php:48
+#: woocommerce-gateway-monetico-commentaires.php:515
+#: woocommerce-gateway-monetico.php:519
+msgid "Inform the customer of payment by credit card."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:49
+msgid ""
+"By choosing this method of payment, you can make your secure payment with "
+"1euro Cofidis."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:53
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:54
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:53
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:53
+#: partenaires/class-wc-gateway-monetico-paypal.php:53
+#: woocommerce-gateway-monetico-commentaires.php:520
+#: woocommerce-gateway-monetico.php:524
+msgid "Icon payment"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:55
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:56
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:55
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:55
+#: partenaires/class-wc-gateway-monetico-paypal.php:55
+#: woocommerce-gateway-monetico-commentaires.php:522
+#: woocommerce-gateway-monetico.php:526
+msgid "Url of the image displayed when selecting the method of payment."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:61
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:62
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:61
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:61
+#: partenaires/class-wc-gateway-monetico-paypal.php:61
+msgid "Ceiling amounts:"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:65
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:66
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:65
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:65
+#: partenaires/class-wc-gateway-monetico-paypal.php:65
+msgid "Minimum amount"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:67
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:68
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:67
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:67
+#: partenaires/class-wc-gateway-monetico-paypal.php:67
+msgid "Minimum amount needed to offer this payment method."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:73
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:74
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:73
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:73
+#: partenaires/class-wc-gateway-monetico-paypal.php:73
+msgid "Maximum amount"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:75
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:76
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:75
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:75
+#: partenaires/class-wc-gateway-monetico-paypal.php:75
+msgid "Maximum amount needed to offer this payment method."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:85
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:87
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:86
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:86
+#: partenaires/class-wc-gateway-monetico-paypal.php:86
+#: woocommerce-gateway-monetico-commentaires.php:625
+#: woocommerce-gateway-monetico.php:655
+msgid "Monetico payment"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:85
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:87
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:86
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:86
+#: partenaires/class-wc-gateway-monetico-paypal.php:86
+#: woocommerce-gateway-monetico.php:655
+msgid "Back to payments"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:86
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:88
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:87
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:87
+#: partenaires/class-wc-gateway-monetico-paypal.php:87
+#, php-format
+msgid ""
+"The %s payment method requires a specific contract. Make sure you activate "
+"it only if you have the appropriate contracts. If necessary, contact "
+"Monetico and the financial partner."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-1euro.php:87
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:89
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:88
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:88
+#: partenaires/class-wc-gateway-monetico-paypal.php:88
+#, php-format
+msgid ""
+"The main Monetico settings, necessary to use the %s payment method, can be "
+"accessed on the Monetico Gateway %ssettings page%s."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:42
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:87
+msgid "3xCB Cofidis"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-3xcofidis.php:50
+msgid ""
+"By choosing this method of payment, you can make your secure payment in 3 "
+"times with Cofidis."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:41
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:86
+msgid "4xCB Cofidis"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-4xcofidis.php:49
+msgid ""
+"By choosing this method of payment, you can make your secure payment in 4 "
+"times with Cofidis."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:5
+msgid "Proceed to lyf pay"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:34
+msgid "Check to enable the payment lyf pay."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:41
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:86
+msgid "lyf pay"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-lyfpay.php:49
+msgid ""
+"By choosing this method of payment, you can make your secure payment with "
+"lyf pay."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-paypal.php:5
+msgid "Proceed to Paypal"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-paypal.php:34
+msgid "Check to enable the payment Paypal."
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-paypal.php:41
+#: partenaires/class-wc-gateway-monetico-paypal.php:86
+msgid "Paypal"
+msgstr ""
+
+#: partenaires/class-wc-gateway-monetico-paypal.php:49
+msgid ""
+"By choosing this method of payment, you can make your secure payment with "
+"Paypal."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:175
+#: woocommerce-gateway-monetico.php:180
+msgid "License Activation"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:176
+#: woocommerce-gateway-monetico.php:181
+msgid "License Deactivation"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:386
+#: woocommerce-gateway-monetico.php:391
+#, php-format
+msgid ""
+"The Monetico Gateway API License Key has not been activated, so the plugin "
+"is inactive! %sClick here%s to activate the license key and the plugin."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:405
+#: woocommerce-gateway-monetico.php:410
+#, php-format
+msgid ""
+"<b>Warning!</b> You're blocking external requests which means you won't be "
+"able to get %s updates. Please add %s to %s."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:432
+#: woocommerce-gateway-monetico.php:437
+#, php-format
+msgid ""
+"Sorry! To use WooCommerce extension Gateway %s, you must install and "
+"activate the WooCommerce extension."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:433
+#: woocommerce-gateway-monetico.php:438
+msgid "Extension Payment Gateway Monetico"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:501
+#: woocommerce-gateway-monetico.php:505
+msgid "Check to enable the payment Monetico."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:508
+#: woocommerce-gateway-monetico.php:512
+msgid "Credit Card"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:516
+#: woocommerce-gateway-monetico.php:520
+msgid ""
+"By choosing this method of payment you can make your payment on the secure "
+"server of our bank."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:528
+#: woocommerce-gateway-monetico.php:532
+msgid "Mode"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:530
+#: woocommerce-gateway-monetico.php:534
+msgid ""
+"Select the mode to use Monetico. You must perform three tests before "
+"requesting passage into production to Monetico."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:532
+#: woocommerce-gateway-monetico.php:536
+msgid "Test"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:533
+#: woocommerce-gateway-monetico.php:537
+msgid "Production"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:540
+#: woocommerce-gateway-monetico.php:544
+msgid "Key"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:542
+#: woocommerce-gateway-monetico.php:546
+msgid "Secure key."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:547
+#: woocommerce-gateway-monetico.php:551
+msgid "TPE"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:549
+#: woocommerce-gateway-monetico.php:553
+msgid "Number Electronic Payment Terminal."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:555
+#: woocommerce-gateway-monetico.php:559
+msgid "Company code"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:562
+#: woocommerce-gateway-monetico.php:566
+msgid "Currency"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:564
+#: woocommerce-gateway-monetico.php:568
+msgid "ISO 4217 compliant."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:570
+#: woocommerce-gateway-monetico.php:574
+msgid "Language"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:572
+#: woocommerce-gateway-monetico.php:576
+msgid "Language of the company: FR -> France."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:578
+#: woocommerce-gateway-monetico.php:599
+msgid "Button"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:580
+#: woocommerce-gateway-monetico.php:601
+msgid "Button text to access the server from the bank."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:581
+#: woocommerce-gateway-monetico.php:602
+msgid "Secure connection to the server of the bank"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:585
+#: woocommerce-gateway-monetico.php:606
+msgid "Redirection"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:588
+#: woocommerce-gateway-monetico.php:609
+msgid "Check to enable the automatic redirection to the bank server."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:590
+#: woocommerce-gateway-monetico.php:611
+msgid "Automatically disabled when debug mode is enabled."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:594
+#: woocommerce-gateway-monetico.php:615
+msgid "Redirection message"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:597
+#: woocommerce-gateway-monetico.php:618
+msgid "Thank you for your order. We redirect you to the server of our bank."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:598
+#: woocommerce-gateway-monetico.php:619
+msgid "Leave blank to not show message in lightbox."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:603
+#: woocommerce-gateway-monetico.php:634
+msgid "Logfile"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:605
+#: woocommerce-gateway-monetico.php:636
+msgid ""
+"Leave blank to not register log. The destination folder must be writable. If "
+"the file does not exist it will be created."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:611
+#: woocommerce-gateway-monetico.php:642
+msgid "Debug"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:613
+#: woocommerce-gateway-monetico.php:644
+msgid "Show debugging information."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:614
+#: woocommerce-gateway-monetico.php:645
+msgid "Do not activate production."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:626
+#: woocommerce-gateway-monetico.php:656
+#, php-format
+msgid ""
+"Authorizes payments Monetico. This requires the signing of a sales contract "
+"with a bank distance compatible with the payment solution %sMonetico%s."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:627
+#: woocommerce-gateway-monetico.php:657
+#, php-format
+msgid ""
+"See our %sinstructions%s carefully to set up your payment solution Monetico."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:646
+#: woocommerce-gateway-monetico.php:676
+msgid "Information about your installation:"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:647
+#: woocommerce-gateway-monetico.php:677
+msgid "Wordpress root"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:648
+#: woocommerce-gateway-monetico.php:678
+msgid "Hosting root"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:649
+msgid "CGI2 URL"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:800
+#: woocommerce-gateway-monetico.php:930
+msgid "Debug mode active"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:832
+#: woocommerce-gateway-monetico.php:968
+msgid ""
+"Thank you for your order, please click on the button below to make payment "
+"to our bank."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:900
+#: woocommerce-gateway-monetico.php:1008
+msgid "The customer's bank requests additional information."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:902
+#: woocommerce-gateway-monetico.php:1010
+msgid "The customer's bank refuses to grant permission."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:903
+#: woocommerce-gateway-monetico.php:1011
+msgid ""
+"The payment request was blocked by the filter settings that the merchant has "
+"implemented in its Fraud Prevention Module."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "IP address"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Card number"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Card BIN"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Country card"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Country IP"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Consistency country / card countries IP"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Disposable email"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Limitation amount for a CB over time"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Limitation of number of transactions for a CB over time"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Limitation of number of transactions over a period alias"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Limitation on amount per alias over time"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Limitation amount by IP over time"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Limitation of number of transactions by IP over time"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Testers cards"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:904
+#: woocommerce-gateway-monetico.php:1012
+msgid "Limitation on number of aliases by CB"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:913
+#: woocommerce-gateway-monetico.php:1022
+msgid "Cause of filtering:"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:916
+#: woocommerce-gateway-monetico.php:1025
+msgid "3D Secure authentication negatively received from the holder's bank."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:917
+#: woocommerce-gateway-monetico.php:1026
+msgid "Unknown error"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:921
+#: woocommerce-gateway-monetico.php:1030
+msgid "Credit Card Payment: FAIL<br/>Error:"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:927
+#: woocommerce-gateway-monetico-commentaires.php:1162
+#: woocommerce-gateway-monetico.php:1036 woocommerce-gateway-monetico.php:1243
+#: woocommerce-gateway-monetico.php:1296
+#, php-format
+msgid ""
+"Failure of payment by credit card for your order, <a href=\"%s\">click here</"
+"a> to retry payment."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:936
+msgid "The transaction was not made according to the protocol 3DSecure."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:937
+#: woocommerce-gateway-monetico-commentaires.php:939
+#: woocommerce-gateway-monetico-commentaires.php:940
+#: woocommerce-gateway-monetico.php:1068 woocommerce-gateway-monetico.php:1069
+msgid ""
+"The transaction was made according to 3DS protocol and the risk level is"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:937
+#: woocommerce-gateway-monetico.php:1068
+msgid "low."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:938
+msgid ""
+"The transaction may not be done according to the protocol 3DSecure, the "
+"holder has however been authenticated through 3DSecure."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:939
+#: woocommerce-gateway-monetico.php:1069
+msgid "high."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:940
+msgid "very high."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:944
+#: woocommerce-gateway-monetico-commentaires.php:1116
+#: woocommerce-gateway-monetico.php:1073 woocommerce-gateway-monetico.php:1201
+msgid "Credit card payment confirmed."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:973
+#: woocommerce-gateway-monetico.php:1101
+msgid "Payment problem, HMAC does not match"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:1100
+#: woocommerce-gateway-monetico.php:1184
+msgid "Error:"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:1103
+#: woocommerce-gateway-monetico.php:1187
+#, php-format
+msgid "Refunded %s - Autorisation ID: %s"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:1126
+#: woocommerce-gateway-monetico.php:1248
+msgid "Payment error! Your order is not confirmed."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:1150
+#: woocommerce-gateway-monetico.php:1277
+#, php-format
+msgid "Your credit card payment of %s has been finalized with our bank"
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:1152
+#: woocommerce-gateway-monetico.php:1279
+#, php-format
+msgid ", <a href=\"%s\">click here</a> to view your order."
+msgstr ""
+
+#: woocommerce-gateway-monetico-commentaires.php:1181
+#: woocommerce-gateway-monetico.php:1386
+msgid "Settings"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:469
+msgid ""
+"Accept credit card payments for merchants who have a Monetico contract (CIC, "
+"Crédit Mutuel)"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:584
+msgid "Wish merchant regarding the challenge 3DSecure v2.X"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:586
+msgid "no preference"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:587
+msgid "desired challenge"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:588
+msgid "challenge required"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:589
+msgid "no challenge requested"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:590
+msgid ""
+"no challenge required - strong customer authentication has already been "
+"carried out by the merchant."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:591
+msgid ""
+"no challenge requested - exemption request because the merchant is a "
+"beneficiary of the customer's confidence."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:592
+msgid ""
+"no challenge requested - request for exemption for another reason than "
+"mentioned above (for example: small amount)"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:624
+msgid "Partners Payments"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:626
+msgid ""
+"This field lists the Monetico partners payment methods you have subscribed "
+"to. Once you have saved the settings, you will find the payment methods in "
+"the Payments tab of WooCommerce."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:679
+msgid "Return URL CGI2"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1048
+#, php-format
+msgid "%s authentication is successful."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1049
+#, php-format
+msgid ""
+"The %s authentication could not be completed (technical problem or other)."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1050
+#, php-format
+msgid "%s authentication failed."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1051
+#, php-format
+msgid "%s authentication has been denied by the issuer."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1052
+#, php-format
+msgid ""
+"An %s authentication attempt has been made. The authentication could not be "
+"done but a proof was generated (CAVV)."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1053
+#, php-format
+msgid "The card is not enrolled in %s."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1054
+msgid "3DSecure has been disengaged."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1057
+msgid "Explicit disengaging."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1058
+msgid ""
+"Disengagement because the amount of the transaction does not reach the "
+"configured amount."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1059
+msgid "Disengagement on scoring pattern."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1067
+msgid ""
+"The transaction was not done according to the 3DSecure protocol and the risk "
+"of unpaid is high."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1218
+msgid "Payment not received"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1220
+msgid "Payment pending confirmation"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1223
+msgid "Payment error!"
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1245
+msgid "Your order is pending confirmation of payment."
+msgstr ""
+
+#: woocommerce-gateway-monetico.php:1288
+msgid ""
+"The bank has not yet confirmed the payment of your order. You can try to "
+"refresh the page, if the payment is not confirmed, please contact us."
+msgstr ""
+
+#, fuzzy
+#~ msgid "Voir le dictionnaire des donn&eacute;es."
+#~ msgstr "voir le dictionnaire des données Atos."
+
+#, fuzzy
+#~ msgid "Paiement Atos"
+#~ msgstr "Icône de paiement"
+
+#, fuzzy
+#~ msgid "Paiement confirm&eacute;"
+#~ msgstr "Icône de paiement"
+
+#~ msgid "Enable Atos Payment"
+#~ msgstr "Activer le paiement Atos"
+
+#~ msgid "This controls the title which the user sees during checkout."
+#~ msgstr "Texte que le client voit lors du choix du mode de paiement."
+
+#~ msgid "Customer Message"
+#~ msgstr "Message Client"
+
+#, fuzzy
+#~ msgid ""
+#~ "Leave empty to stop saving log see dictionnaire des donn&eacute;es Atos."
+#~ msgstr "Laisser vide pour arrêter la sauvegarde des logs."
+
+#~ msgid "Site root"
+#~ msgstr "Racine du site"
+
+#~ msgid "Awaiting Atos payment"
+#~ msgstr "Attente du paiement CB"
