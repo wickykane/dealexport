@@ -979,7 +979,7 @@ class ThemedbUser {
             // Send mail to user
             $subject_user_mail = $subject=__('User registration complete', 'dealexport');
             $content_user_mail = self::get_email_template('register-email-template', $userId);
-            themedb_mail($data['user_email'], $subject_user_mail, $content_user_mailtent);
+            themedb_mail($data['user_email'], $subject_user_mail, $content_user_mail);
             
             // Generate mail send to administrator
             $keywords=array(
@@ -1011,7 +1011,7 @@ class ThemedbUser {
                 $content = self::get_email_template('admin-account-cofirmation-template', $userId);
                 
                 $shopInfo = '';
-                if($data[role] == 'shop_manager'){
+                if($data['role'] == 'shop_manager'){
                     $shopInfo = '<li>Shop name: '.$data['name_of_supplier'].'</li>';
                     $shopInfo .= '<li>Shop category:  '.$data['shop_categories'].'</li>';
                     $shopInfo .= '<li>Shop country: '.$data['shop_country'].'</li>';
@@ -1020,13 +1020,13 @@ class ThemedbUser {
                 $keywords['shopinfo'] = $shopInfo;
                 
             } else {
-                $object=new WP_User($user);
+                $object=new WP_User($userId);
                 $object->remove_role(get_option('default_role'));
                 $object->add_role('customer');
                 
                 wp_signon($data, false);
                 $subject=__('Registration Complete', 'dealexport');
-                ThemedbInterface::$messages[]='<a href="'.get_author_posts_url($user).'" class="redirect"></a>';
+                ThemedbInterface::$messages[]='<a href="'.get_author_posts_url($userId).'" class="redirect"></a>';
             }
             
             $content=themedb_keywords($content, $keywords);
@@ -1335,28 +1335,28 @@ class ThemedbUser {
         // set content type to html
         add_filter( 'wp_mail_content_type', 'wpmail_content_type' );
         
+        $content = "";
         // get the preview email content
-        switch ($email_type){
-            case 'register-email-template':
-                // user
-                $user = new WP_User( $user_id );
-                $userEmail = stripslashes( $user->user_email );
-                $siteUrl = get_site_url();
+        // switch ($email_type){
+        //     case 'register-email-template':
+        //         // user
+        //         $user = new WP_User( $user_id );
+        //         $userEmail = stripslashes( $user->user_email );
+        //         $siteUrl = get_site_url();
                 
-                // admin email
-                $content  = "A new user has been created"."\r\n\r\n";
-                $content .= 'Email: '.$userEmail."\r\n";
-            break;
-        };
+        //         // admin email
+        //         $content  = "A new user has been created"."\r\n\r\n";
+        //         $content .= 'Email: '.$userEmail."\r\n";
+        //     break;
+        // };
         
         ob_start();
-        include '/email_templates/' . $email_type .'.php';
-        
+        include('email_templates/' . $email_type .'.php');
         $content .= ob_get_contents();
         ob_end_clean();
         
         //replace all <br>
-        $content = strip_tags($content, '<br />');
+        // $content = strip_tags($content, '<br />');
         
         // remove html content type
         remove_filter ( 'wp_mail_content_type', 'wpmail_content_type' );
