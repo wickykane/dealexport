@@ -21,9 +21,9 @@ $row_class    = apply_filters('woocommerce_admin_html_order_item_class', !empty(
 	<td class="thumb">
 		<?php echo '<div class="wc-order-item-thumbnail">' . wp_kses_post($thumbnail) . '</div>'; ?>
 	</td>
-	<td class="name" data-sort-value="<?php echo esc_attr($item->get_name()); ?>">
+	<td class="name" data-sort-value="<?php echo esc_attr(qtranxf_gettext($item->get_name())); ?>">
 		<?php
-		echo $product_link ? '<a href="' . esc_url($product_link) . '" class="wc-order-item-name">' . wp_kses_post($item->get_name()) . '</a>' : '<div class="wc-order-item-name">' . wp_kses_post($item->get_name()) . '</div>';
+		echo $product_link ? '<a href="' . esc_url($product_link) . '" class="wc-order-item-name">' . wp_kses_post(qtranxf_gettext($item->get_name())) . '</a>' : '<div class="wc-order-item-name">' . wp_kses_post(qtranxf_gettext($item->get_name())) . '</div>';
 
 		if ($product && $product->get_sku()) {
 			echo '<div class="wc-order-item-sku"><strong>' . esc_html__('SKU:', 'woocommerce') . '</strong> ' . esc_html($product->get_sku()) . '</div>';

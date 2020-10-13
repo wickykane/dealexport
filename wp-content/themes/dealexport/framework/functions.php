@@ -229,16 +229,16 @@ function themedb_keywords($string, $keywords) {
  */
 function themedb_mail($recipient, $subject, $message, $reply='') {
     // TNH : wp better email will do this 
-    /*$headers='MIME-Version: 1.0'.PHP_EOL;
+    $headers='MIME-Version: 1.0'.PHP_EOL;
     $headers.='Content-Type: text/html; charset=UTF-8'.PHP_EOL;
     $headers.='From: '.get_option('admin_email').PHP_EOL;
     
     if(!empty($reply)) {
         $headers.='Reply-To: '.$reply.PHP_EOL;
-    }*/
+    }
     
     $subject='=?UTF-8?B?'.base64_encode($subject).'?=';	
-    if(wp_mail($recipient, $subject, $message)) {
+    if(wp_mail($recipient, $subject, $message, $headers)) {
         return true;
     }
     
