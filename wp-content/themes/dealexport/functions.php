@@ -2095,8 +2095,8 @@ function checkout_shipping_method_config()
 }
 
 /** "New user" email  instead of admin. */
-add_filter( 'wp_new_user_notification_email_admin', 'my_wp_new_user_notification_email_admin', 10, 3 );
-function my_wp_new_user_notification_email_admin( $notification, $user, $blogname ) {
-  $notification['to'] = 'contact@dealexport.com';
-  return $notification;
-}
+// add_filter( 'wp_new_user_notification_email_admin', 'my_wp_new_user_notification_email_admin', 10, 3 );
+// function my_wp_new_user_notification_email_admin( $notification, $user, $blogname ) {
+//   $notification['to'] = 'contact@dealexport.com';
+//   return $notification;
+// }
