@@ -55,7 +55,7 @@ Template Name: Registration
                             'id' => 'role',
                             'type' => 'select_user_role',
                             'options' => themedb_array('options', $user_roles),
-                            'value' => 'customer',
+                            'value' => 'author',
                             'attributes' => array(
                                 'class' => 'element-trigger',
                             ),

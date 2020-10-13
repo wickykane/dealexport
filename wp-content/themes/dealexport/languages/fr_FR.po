@@ -8753,6 +8753,9 @@ msgstr "Informations personnelles"
 msgid "Payment"
 msgstr "Paiement"
 
+msgid "Payment Method"
+msgstr "MODE DE PAIEMENT"
+
 msgid "Basket"
 msgstr "Panier"
 
