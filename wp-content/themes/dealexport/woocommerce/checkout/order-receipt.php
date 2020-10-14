@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Checkout Order Receipt Template
  *
@@ -15,36 +16,38 @@
  * @version 3.2.0
  */
 
-if ( ! defined( 'ABSPATH' ) ) {
-	exit;
+if (!defined('ABSPATH')) {
+  exit;
 }
 ?>
 
 <ul class="order_details order-receipt-details mt-3">
-	<li class="order">
-		<?php esc_html_e( 'Order number:', 'woocommerce' ); ?>
-		<strong><?php echo esc_html( $order->get_order_number() ); ?></strong>
-	</li>
-	<li class="date">
-		<?php esc_html_e( 'Date:', 'woocommerce' ); ?>
-    <div class="content"><strong><?php echo esc_html( wc_format_datetime( $order->get_date_created() ) ); ?></strong></div>
-	</li>
-	<li class="total">
-    <?php esc_html_e( 'Total:', 'woocommerce' ); ?>
+  <li class="order">
+    <?php esc_html_e('Order number:', 'woocommerce'); ?>
     <div class="content">
-    <strong><?php echo wp_kses_post( $order->get_formatted_order_total() ); ?></strong>
+      <strong><?php echo esc_html($order->get_order_number()); ?></strong>
     </div>
-	</li>
-	<?php if ( $order->get_payment_method_title() ) : ?>
-	<li class="method">
-    <?php esc_html_e( 'Payment method:', 'woocommerce' ); ?>
+  </li>
+  <li class="date">
+    <?php esc_html_e('Date:', 'woocommerce'); ?>
+    <div class="content"><strong><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></strong></div>
+  </li>
+  <li class="total">
+    <?php esc_html_e('Total:', 'woocommerce'); ?>
     <div class="content">
-		<strong><?php echo wp_kses_post( $order->get_payment_method_title() ); ?></strong>
+      <strong><?php echo wp_kses_post($order->get_formatted_order_total()); ?></strong>
     </div>
-	</li>
-	<?php endif; ?>
+  </li>
+  <?php if ($order->get_payment_method_title()) : ?>
+    <li class="method">
+      <?php esc_html_e('Payment method:', 'woocommerce'); ?>
+      <div class="content">
+        <strong><?php echo wp_kses_post($order->get_payment_method_title()); ?></strong>
+      </div>
+    </li>
+  <?php endif; ?>
 </ul>
 
-<?php do_action( 'woocommerce_receipt_' . $order->get_payment_method(), $order->get_id() ); ?>
+<?php do_action('woocommerce_receipt_' . $order->get_payment_method(), $order->get_id()); ?>
 
 <div class="clear"></div>
