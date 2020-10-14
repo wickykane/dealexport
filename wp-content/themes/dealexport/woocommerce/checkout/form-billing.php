@@ -33,7 +33,7 @@ if (!defined('ABSPATH')) {
           <?php foreach ($checkout->checkout_fields['billing'] as $key => $field) : ?>
             <?php woocommerce_form_field($key, $field, $checkout->get_value($key)); ?>
           <?php endforeach; ?>
-          <button style="width: 150px; float: right; margin-bottom: 1rem;" class="update-billing-profile-btn button cart-page-summary-footer-button alt">Enregistrer</button>
+          <button style="max-width: fit-content; float: right; margin-bottom: 1rem;" class="update-billing-profile-btn button cart-page-summary-footer-button alt">Enregistrer</button>
           <?php do_action('woocommerce_after_checkout_billing_form', $checkout); ?>
         </div>
       </div>
