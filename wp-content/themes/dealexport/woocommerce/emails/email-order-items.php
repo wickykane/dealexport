@@ -47,11 +47,11 @@ foreach ( $items as $item_id => $item ) :
 		}
 
 		// Product name.
-		echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', __($item->get_name()), $item, false ) );
+		echo wp_kses_post( apply_filters( 'woocommerce_order_item_name', qtranxf_gettext($item->get_name()), $item, false ) );
 
 		// SHOP
 		$shop = get_field('de_shop', $product->get_id());
-		printf('<div style="font-size: 10px;"><a style="color: inherit !important; text-decoration: none !important;" class="cart-page-table-shop cart-page-table-name" href="%s">%s</a></div>', get_post_permalink($shop->ID), __($shop->post_title));
+		printf('<div style="font-size: 10px;"><a style="color: inherit !important; text-decoration: none !important;" class="cart-page-table-shop cart-page-table-name" href="%s">%s</a></div>', get_post_permalink($shop->ID), qtranxf_gettext($shop->post_title));
 
 		// SKU.
 		if ( $show_sku && $sku ) {

@@ -2087,7 +2087,7 @@ function checkout_shipping_method_config()
     'local_pickup' => array(
       'icon' => 'fa-shopping-cart',
       'name' => 'Point de vente',
-      'des' => 'Lundi au vendredi au 104 Rue Nationale, 59800 Lille, France',
+      'des' => '<div>Weréso Lille</div><div>104 rue Nationale, 59800 Lille</div><div>Lundi au vendredi de 9h à 19h</div>',
       'is_free' => 'Click & Collect',
     )
   );

@@ -312,7 +312,7 @@ class Admin {
 					}
 					?>
 				</select>
-				<input type="submit" class="button save_order button-primary" name="save" value="<?php esc_attr_e( 'Save order & send email', 'woocommerce-pdf-invoices-packing-slips' ); ?>" />
+				<input style="margin-top: 8px;" type="submit" class="button save_order button-primary" name="save" value="<?php esc_attr_e( 'Save order & send email', 'woocommerce-pdf-invoices-packing-slips' ); ?>" />
 				<?php
 				$title = __( 'Send email', 'woocommerce-pdf-invoices-packing-slips' );
 				$url = wp_nonce_url( add_query_arg('wpo_wcpdf_action','resend_email'), 'generate_wpo_wcpdf' );

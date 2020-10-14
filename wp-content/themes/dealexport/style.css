@@ -6083,6 +6083,7 @@ div.additional-message, div.additional-message-2 {color: red}
 #payment .button.alt {
     background-color: var(--color-main) !important;
     padding: 8px !important;
+    border: none !important;
 }
 #payment .payment_box p, #payment label, .woocommerce-form__label-for-checkbox  {
     font-size: 13px !important;
@@ -6501,7 +6502,6 @@ div.additional-message, div.additional-message-2 {color: red}
 .stock-status {
     font-size: 16px;
     padding-top: 1rem;
-    text-transform: uppercase;
 }
 .newsletter-email-field {
     align-items: stretch;
@@ -6600,4 +6600,28 @@ min-width: 120px;
 }
 .woocommerce div.product .product_title {
     font-size: 2.5rem !important;
+}
+#PaymentRequest input[type="submit"]{
+    padding: 8px !important;
+    font-size: 14px !important;
+}
+.order-receipt-details {
+    margin-top: 3rem !important;
+    margin-bottom: 1rem !important;
+    display: flex;
+}
+.order-receipt-details > li {
+    margin-right: 0 !important;
+    padding: 8px !important;
+    display: flex !important;
+    flex-direction: column !important;
+    border-bottom: 1px dotted #d6d6d6 !important;
+    border-right: 1px dashed #d3ced2 !important;
+}
+.order-receipt-details  .content {
+    margin-top: .5rem !important;
+}
+.order-receipt-details  .content  .amount {
+    font-size: 1.4em !important;
+    margin: 0 !important;
 }
