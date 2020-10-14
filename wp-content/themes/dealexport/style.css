@@ -6075,6 +6075,20 @@ div.additional-message, div.additional-message-2 {color: red}
     font-size: 14px !important;
     font-family: Open Sans, Arial, Helvetica, sans-serif !important;
 }
+
+#payment .payment_box::before {
+    top: -1em !important;
+}
+
+#payment .button.alt {
+    background-color: var(--color-main) !important;
+    padding: 8px !important;
+}
+#payment .payment_box p, #payment label, .woocommerce-form__label-for-checkbox  {
+    font-size: 13px !important;
+    font-family: Open Sans, Arial, Helvetica, sans-serif !important;
+}
+
 .wpcf7-response-output {
     font-size: 14px;
     margin-top: 1rem;
@@ -6098,6 +6112,13 @@ div.additional-message, div.additional-message-2 {color: red}
     display: flex;
     align-items: center;
     margin: 1rem 0; 
+}
+#order_review .product-quantity{
+    margin: 0 !important; 
+    display: table-cell !important;
+}
+#order_review > .shop_table {
+    margin-top: 1.5rem !important;
 }
 .product-quantity label {
     font-size: 15px;
