@@ -990,7 +990,7 @@ class ThemedbUser {
             );
             
             if(ThemedbCore::checkOption('user_activation')) {
-                ThemedbInterface::$messages[]=__('Registration complete! Please wait for administrator validate your account', 'dealexport');
+                ThemedbInterface::$messages[]=__('Registration complete! Please wait for administrator validate your account', 'dealexport')."<a class='redirect' href='". ThemedbCore::getURL('register')."?success=true"."'></a>";
                 $subject=__('Account Confirmation : new user registration complete with role '.$data['role'], 'dealexport');
                 $activation_key=md5(uniqid(rand(), 1));
                 

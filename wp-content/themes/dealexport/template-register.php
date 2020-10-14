@@ -16,6 +16,7 @@ Template Name: Registration
         <div class="element-title">
             <h1><?php _e('Register', 'dealexport'); ?></h1>
         </div>
+        <?php if(!$_GET['success']) :?>
         <form class="site-form element-form" method="POST" action="<?php echo AJAX_URL; ?>">
             <div class="column sixcol">
                 <div class="field-wrap">
@@ -120,6 +121,10 @@ Template Name: Registration
             <input type="hidden" name="action" class="action" value="<?php echo THEMEDB_PREFIX; ?>update_user" />
             <input type="submit" class="hidden" value="" />
         </form>
+        <?php else : 
+        _e('Registration complete! Please wait for administrator validate your account', 'dealexport');
+        endif;
+        ?>
     </div>
 <?php } else { ?>
     <div class="aligncenter mt-3">
