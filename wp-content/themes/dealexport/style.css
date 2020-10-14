@@ -6611,7 +6611,7 @@ min-width: 120px;
     display: flex;
 }
 .order-receipt-details > li {
-    margin-right: 0 !important;
+    margin: 0 !important;
     padding: 8px !important;
     display: flex !important;
     flex-direction: column !important;
@@ -6622,6 +6622,5 @@ min-width: 120px;
     margin-top: .5rem !important;
 }
 .order-receipt-details  .content  .amount {
-    font-size: 1.4em !important;
     margin: 0 !important;
 }
