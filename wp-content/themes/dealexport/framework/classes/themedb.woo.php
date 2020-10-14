@@ -45,7 +45,7 @@ class ThemedbWoo {
             
             //add custom columns
             add_filter('manage_edit-shop_order_columns', array(__CLASS__, 'addColumns'), 15);
-
+            add_action( 'manage_shop_order_posts_custom_column', array( __CLASS__, 'addAuthorColumnContent' ), 100 );
             //enqueue scripts
             add_action('wp_enqueue_scripts', array(__CLASS__, 'addScripts'));
             
@@ -1926,11 +1926,27 @@ class ThemedbWoo {
      * @return array
      */
     public static function addColumns($columns) {
-        $columns['author']=__('Author', 'dealexport'); 
+        $columns['order_author']=__('Author', 'dealexport'); 
         
         return $columns;
     }
     
+    public static function addAuthorColumnContent($column) {
+        global $post;
+        if($column == 'order_author') {
+            $order    = wc_get_order( $post->ID );
+
+            if ( $order->get_user_id() ) {
+                $user_id = absint( $order->get_user_id() );
+                $user    = get_user_by( 'id', $user_id );
+                 printf(
+                    '<a href="%s">%s</a>',
+                    esc_url( add_query_arg( 'user_id', $order->get_user_id( 'edit' ), admin_url( 'user-edit.php' ) ) ),
+                    $user->display_name
+                );
+            }
+        }
+    }
     /**
     * Gets sorting options
      *

@@ -1087,9 +1087,9 @@ class ThemedbUser {
                 $user=reset($users);
                 $user=new WP_User($user->ID);
                 $user->remove_role('inactive');
-                $user->add_role('subscriber');
+                $user->add_role('buyer');
                 // TNH : Disable clear cookie 
-                // wp_set_auth_cookie($user->ID, true);
+                wp_set_auth_cookie($user->ID, true);
                 ThemedbCore::updateUserMeta($user->ID, 'activation_key', '');				
                 
                 wp_redirect(get_author_posts_url($user->ID));
