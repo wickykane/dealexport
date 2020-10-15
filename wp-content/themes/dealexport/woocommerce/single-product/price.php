@@ -37,10 +37,11 @@ global $product;
 </div>
 <div class="stock-status" style="clear: both;">
     <?php
+    $out_of_stock_message = get_post_meta($product->id, '_out_of_stock_message', true);
     $stock_status = str_replace(array('instock', 'outofstock'), array('En Stock', 'En rupture de stock'), $product->get_stock_status());
     if ($product->is_in_stock()) { ?>
         <div class="text-green"><?php echo  $stock_status; ?><?php echo $product->get_stock_quantity()? ' : '.$product->get_stock_quantity().' '.__('bouteilles', 'dealexport') : null; ?></div>
     <?php } else { ?>
-        <div class="text-red"><?php echo  $stock_status;  ?></div>
+        <div class="text-orange"><?php echo   $out_of_stock_message?  $out_of_stock_message: $stock_status;  ?></div>
     <?php } ?>
 </div>
