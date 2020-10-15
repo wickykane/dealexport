@@ -716,7 +716,9 @@ class WC_Checkout {
 						break;
 					case 'billing':
 						/* translators: %s: field name */
-						$field_label = sprintf( __( 'Billing %s', 'woocommerce' ), $field_label );
+						// $field_label = sprintf( __( 'Billing %s', 'woocommerce' ), $field_label );
+						// Hide 
+						$field_label = sprintf( __( '%s', 'woocommerce' ), $field_label );
 						break;
 				}
 
