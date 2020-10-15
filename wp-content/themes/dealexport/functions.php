@@ -679,6 +679,19 @@ function de_product_arrival_price_save($product_id)
 
 add_action('save_post', 'de_product_arrival_price_save');
 
+function save_out_of_stock_message($product_id)
+{
+  // If this is a auto save do nothing, we only save when update button is clicked
+  if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE)
+    return;
+  if (isset($_POST['_out_of_stock_message'])) {
+    update_post_meta($product_id, '_out_of_stock_message', $_POST['_out_of_stock_message']);
+  } else
+    delete_post_meta($product_id, '_out_of_stock_message');
+}
+
+add_action('save_post', 'save_out_of_stock_message');
+
 function de_update_shop_author_to_product($product_id)
 {
 

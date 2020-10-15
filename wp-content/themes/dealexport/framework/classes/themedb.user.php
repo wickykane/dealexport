@@ -1091,8 +1091,11 @@ class ThemedbUser {
                 // TNH : Disable clear cookie 
                 wp_set_auth_cookie($user->ID, true);
                 ThemedbCore::updateUserMeta($user->ID, 'activation_key', '');				
-                
-                wp_redirect(get_author_posts_url($user->ID));
+                // Send mail to user
+                $subject=__('Account activated', 'dealexport');
+                $content_user_mail = self::get_email_template('register-email-template-complete', $user->ID);
+                themedb_mail($user->user_email, $subject, $content_user_mail);
+                // wp_redirect(get_author_posts_url($user->ID));
                 exit();
             }
         }

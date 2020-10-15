@@ -6499,6 +6499,9 @@ div.additional-message, div.additional-message-2 {color: red}
 .text-red {
     color: var(--red);
 }
+.text-orange {
+    color: var(--orange);
+}
 .stock-status {
     font-size: 16px;
     padding-top: 1rem;
