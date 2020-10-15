@@ -53,6 +53,7 @@ if ( wc_tax_enabled() ) {
 					endforeach;
 				endif;
 				?>
+				<th data-sort="float"><?php esc_html_e( 'Total TTC', 'woocommerce' ); ?></th>
 				<th class="wc-order-edit-line-item" width="1%">&nbsp;</th>
 			</tr>
 		</thead>

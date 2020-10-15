@@ -156,6 +156,13 @@ $row_class    = apply_filters('woocommerce_admin_html_order_item_class', !empty(
 					<input type="text" name="refund_line_tax[<?php echo absint($item_id); ?>][<?php echo esc_attr($tax_item_id); ?>]" placeholder="<?php echo esc_attr(wc_format_localized_price(0)); ?>" class="refund_line_tax wc_input_price" data-tax_id="<?php echo esc_attr($tax_item_id); ?>" />
 				</div>
 			</td>
+			<td class="item-cost">
+				<div class="view">
+					<?php
+					echo wc_price($item-> get_total_tax() + $item->get_total(), array('currency' => $order->get_currency()));
+					?>
+				</div>
+			</td>
 	<?php
 		}
 	}
