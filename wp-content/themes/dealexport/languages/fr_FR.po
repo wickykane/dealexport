@@ -8836,3 +8836,9 @@ msgstr "Merci de remplir tous les champs"
 
 msgid "Message has been successfully sent"
 msgstr "Votre message a été envoyé avec succès!"
+
+msgid "Account activated"
+msgstr "Compte activé"
+
+msgid "User registration complete"
+msgstr "Activation Compte Utilisateur"

@@ -124,7 +124,8 @@ class WC_Admin_List_Table_Products extends WC_Admin_List_Table {
 			$show_columns['is_in_stock'] = __( 'Stock', 'woocommerce' );
 		}
 
-		$show_columns['price']        = __( 'Price', 'woocommerce' );
+		$show_columns['price']        = __( 'Departing', 'dealexport' );
+		$show_columns['arv_price']        = __( 'DepartingAvec', 'dealexport' );
 		$show_columns['product_cat']  = __( 'Categories', 'woocommerce' );
 		$show_columns['product_tag']  = __( 'Tags', 'woocommerce' );
 		$show_columns['featured']     = '<span class="wc-featured parent-tips" data-tip="' . esc_attr__( 'Featured', 'woocommerce' ) . '">' . __( 'Featured', 'woocommerce' ) . '</span>';
@@ -215,6 +216,16 @@ class WC_Admin_List_Table_Products extends WC_Admin_List_Table {
 	protected function render_price_column() {
 		echo $this->object->get_price_html() ? wp_kses_post( $this->object->get_price_html() ) : '<span class="na">&ndash;</span>';
 	}
+
+
+	/**
+	 * Render columm: Arv Price
+	 */
+	protected function render_arv_price_column() {
+		$arv_price = get_post_meta($this->object->id, 'arv_price', true); 
+		echo $arv_price ? wp_kses_post( wc_price($arv_price) ) : '<span class="na">&ndash;</span>';
+	}
+
 
 	/**
 	 * Render columm: product_cat.
