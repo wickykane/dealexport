@@ -1,18 +1,18 @@
-<p>Hi admin</p>
+<p>Bonjour,</p>
 
-<p>New user registration please check and validate for this user.</p>
-<p><b>User information:</b></p>
+<p>Un nouvel utilisateur s'est inscrit sur le site internet.</p>
+<p><b>Voici les informations: </b></p>
 <ul>
-    <li>User name : %username%</li>
-    <li>User mail : %usermail%</li>
-    <li>User expected role : %userrole%
+    <li>Nom d'utilisateur : %username%</li>
+    <li>Email : %usermail%</li>
+    <li>Role : %userrole%
         <ul>
             %shopinfo%
         </ul>
     </li>
-    <li>Click this link to activate your account %link%</li>
+    <li>Cliquer sur le lien pour activer la compte %link%</li>
 </ul>
 <p>
-    Thank you,<br>
-    Deal export
+Merci.<br>
+L'équipe DealExport
 </p>

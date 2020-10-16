@@ -1,12 +1,8 @@
-<?php if ( $user->first_name != '' ) : ?>
-    <h3><?php echo $user->first_name; ?>, Welcome to Deal Export</h3>
-<?php else : ?>
-    <h3>Welcome to Deal Export</h3>
-<?php endif; ?>
+<h3>Compte activé</h3>
 <p>
-    Your account has been activated.
+    Votre compte est activé.
 </p>
 <p>
-    Thank you,<br>
-    Deal export
+    Merci.<br>
+    L’équipe DealExport
 </p>
