@@ -87,7 +87,7 @@
 			<th class="product"><?php _e('Product', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
 			<th class="product"><?php _e('Shop', 'dealexport' ); ?></th>
 			<th class="quantity"><?php _e('Quantity', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
-			<th class="price"><?php _e('Price', 'woocommerce-pdf-invoices-packing-slips' ); ?></th>
+			<th class="price"><?php _e('DepartingAvec', 'dealexport' ); ?></th>
 		</tr>
 	</thead>
 	<tbody>

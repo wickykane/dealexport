@@ -991,7 +991,7 @@ class ThemedbUser {
             
             if(ThemedbCore::checkOption('user_activation')) {
                 ThemedbInterface::$messages[]=__('Registration complete! Please wait for administrator validate your account', 'dealexport')."<a class='redirect' href='". ThemedbCore::getURL('register')."?success=true"."'></a>";
-                $subject=__('Account Confirmation : new user registration complete with role '.$data['role'], 'dealexport');
+                $subject=__("Confirmation: création d'un nouveau compte utilisateur", 'dealexport');
                 $activation_key=md5(uniqid(rand(), 1));
                 
                 $user=new WP_User($userId);
@@ -1095,7 +1095,7 @@ class ThemedbUser {
                 $subject=__('Account activated', 'dealexport');
                 $content_user_mail = self::get_email_template('register-email-template-complete', $user->ID);
                 themedb_mail($user->user_email, $subject, $content_user_mail);
-                // wp_redirect(get_author_posts_url($user->ID));
+                wp_redirect(get_author_posts_url($user->ID));
                 exit();
             }
         }
@@ -1337,7 +1337,7 @@ class ThemedbUser {
     public static function get_email_template($email_type, $user_id) {
         // set content type to html
         add_filter( 'wp_mail_content_type', 'wpmail_content_type' );
-        
+        $user = new WP_User($user_id);
         $content = "";
         // get the preview email content
         // switch ($email_type){
