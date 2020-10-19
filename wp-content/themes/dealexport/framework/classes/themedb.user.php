@@ -985,7 +985,8 @@ class ThemedbUser {
             $keywords=array(
                 'username' => $data['user_login'],
                 'password' => $data['user_password'],
-                'userrole' => $data['role'],
+                // 'userrole' => $data['role'],
+                'userrole' => __('Buyer', 'dealexport'),
                 'usermail' => $data['user_email']
             );
             
@@ -1087,7 +1088,7 @@ class ThemedbUser {
                 $user=reset($users);
                 $user=new WP_User($user->ID);
                 $user->remove_role('inactive');
-                $user->add_role('buyer');
+                $user->add_role('author');
                 // TNH : Disable clear cookie 
                 wp_set_auth_cookie($user->ID, true);
                 ThemedbCore::updateUserMeta($user->ID, 'activation_key', '');				

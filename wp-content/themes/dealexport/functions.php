@@ -1006,7 +1006,9 @@ if (!function_exists('add_woocommerce_template_loop_price')) {
   {
     global $product;
 ?>
-    <?php if ($price_html = $product->get_price_html()) : ?>
+    <?php 
+     $arv_price = get_post_meta($product->id, 'arv_price', true);
+    if ( $arv_price) : ?>
       <div class="item-category">
         <?php
         $recentCategory = get_category_by_level(get_the_id(), 0);
@@ -1018,7 +1020,7 @@ if (!function_exists('add_woocommerce_template_loop_price')) {
           <!-- TODO: need to translate Price -->
           <!-- <span class="price"> <?php //_e('Departing', 'dealexport'); 
                                     ?>: </span> -->
-          <span class="amount"><?php echo $price_html; ?></span>
+          <span class="amount"><?php echo wc_price($arv_price); ?></span>
         </div>
 
 
