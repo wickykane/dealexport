@@ -53,7 +53,7 @@ $get_checkout_url = apply_filters('woocommerce_get_checkout_url', WC()->cart->ge
                 </div>
                 <?php
                 $order_button_text = __('Order', 'dealexport');
-                echo apply_filters('woocommerce_order_button_html', '<button disabled type="submit" style="float: right; max-width: fit-content; margin-top: 1.5rem !important;" class="button  cart-page-summary-footer-button alt mt-3" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr($order_button_text) . '" data-value="' . esc_attr($order_button_text) . '">' . esc_html($order_button_text) . '</button>'); // @codingStandardsIgnoreLine 
+                echo apply_filters('woocommerce_order_button_html', '<button disabled type="submit" style="float: right; width: inherit; margin-top: 1.5rem !important;" class="button  cart-page-summary-footer-button alt mt-3" name="woocommerce_checkout_place_order" id="place_order" value="' . esc_attr($order_button_text) . '" data-value="' . esc_attr($order_button_text) . '">' . esc_html($order_button_text) . '</button>'); // @codingStandardsIgnoreLine 
                 ?>
 
             </div>
