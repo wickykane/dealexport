@@ -33,7 +33,7 @@ if (!defined('ABSPATH')) {
     <div class="content"><strong><?php echo esc_html(wc_format_datetime($order->get_date_created())); ?></strong></div>
   </li>
   <li class="total">
-    <?php esc_html_e('Total:', 'woocommerce'); ?>
+    <?php esc_html_e('Total TTC:', 'woocommerce'); ?>
     <div class="content">
       <strong><?php echo wp_kses_post($order->get_formatted_order_total()); ?></strong>
     </div>

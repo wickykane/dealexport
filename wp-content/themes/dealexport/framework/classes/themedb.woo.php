@@ -1927,7 +1927,7 @@ class ThemedbWoo {
      */
     public static function addColumns($columns) {
         $columns['order_author']=__('Author', 'dealexport'); 
-        
+        $columns['order_total']=__('Total TTC', 'woocommerce'); 
         return $columns;
     }
     
