@@ -5027,7 +5027,7 @@ span.woocommerce-Price-amount {font-size: 1.2em;
     background-color: var(--color-main);
     color: #fff;
     font-weight: 600;
-    font-size: 1.3em;
+    font-size: 1.1em;
     font-family: 'FuturaPTHeavy', sans-serif;
     border-radius: 8px; /* Mark */
 }
@@ -6030,7 +6030,7 @@ div.additional-message, div.additional-message-2 {color: red}
     border-radius: 5px;
     font-size: 16px !important;
     padding: 8px 15px;
-    text-transform: uppercase;
+    text-transform: inherit !important;
 }
 .return-to-shop .element-button {
     font-size: 14px !important;
@@ -6084,6 +6084,7 @@ div.additional-message, div.additional-message-2 {color: red}
     background-color: var(--color-main) !important;
     padding: 8px !important;
     border: none !important;
+    text-transform: inherit !important;
 }
 #payment .payment_box p, #payment label, .woocommerce-form__label-for-checkbox  {
     font-size: 13px !important;
@@ -6607,6 +6608,7 @@ min-width: 120px;
 #PaymentRequest input[type="submit"]{
     padding: 8px !important;
     font-size: 14px !important;
+    text-transform: inherit;
 }
 .order-receipt-details {
     margin-top: 3rem !important;

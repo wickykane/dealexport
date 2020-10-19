@@ -985,7 +985,8 @@ class ThemedbUser {
             $keywords=array(
                 'username' => $data['user_login'],
                 'password' => $data['user_password'],
-                'userrole' => $data['role'],
+                // 'userrole' => $data['role'],
+                'userrole' => __('Buyer', 'dealexport'),
                 'usermail' => $data['user_email']
             );
             
