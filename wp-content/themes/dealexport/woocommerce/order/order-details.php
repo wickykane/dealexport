@@ -35,7 +35,7 @@ $order = wc_get_order($order_id);
   <thead>
     <tr>
       <th class="product-name"><?php _e('Product', 'dealexport'); ?></th>
-      <th class="product-total"><?php _e('Total', 'dealexport'); ?></th>
+      <th class="product-total"><?php _e('Total TTC', 'dealexport'); ?></th>
     </tr>
   </thead>
   <tbody>
