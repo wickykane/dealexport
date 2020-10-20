@@ -14390,7 +14390,7 @@ msgstr "La confirmation d’inscription vous sera envoyée par e-mail."
 #: wp-admin/includes/class-wp-ms-users-list-table.php:199
 #: wp-admin/network/user-new.php:130 wp-admin/network/site-users.php:343
 msgid "Email"
-msgstr "Email"
+msgstr "Adresse de messagerie"
 
 #: wp-login.php:1074 wp-admin/includes/class-wp-users-list-table.php:357
 #: wp-admin/includes/file.php:2108 wp-admin/install.php:119
