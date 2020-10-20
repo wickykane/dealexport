@@ -1,8 +1,8 @@
-<h3>Compte activé</h3>
 <p>
-    Votre compte est activé.
+Bonjour <?php echo $user->first_name ?> <?php echo $user->last_name ?>,
 </p>
+<p>Votre compte est activé.</p>
+<p>Merci de cliquer sur le lien pour accéder au site internet: <a href="<?php echo get_author_posts_url($user->ID);?>"><?php echo get_author_posts_url($user->ID);?></a></p>
 <p>
-    Merci.<br>
-    L’équipe DealExport
+L'équipe DealExport
 </p>

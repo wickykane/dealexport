@@ -145,7 +145,7 @@
                                     <div class="site-popup small">
                                         <form class="site-form element-form" method="POST" action="<?php echo AJAX_URL; ?>">
                                             <div class="field-wrap">
-                                                <input type="text" name="user_login" value="" placeholder="<?php _e('Username', 'dealexport'); ?>" />
+                                                <input type="text" name="user_login" value="" placeholder="<?php _e('Username or Email', 'dealexport'); ?>" />
                                             </div>
                                             <div class="field-wrap">
                                                 <input type="password" name="user_password" value="" placeholder="<?php _e('Password', 'dealexport'); ?>" />

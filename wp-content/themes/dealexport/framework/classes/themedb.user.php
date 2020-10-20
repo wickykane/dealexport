@@ -977,7 +977,7 @@ class ThemedbUser {
             $userId= self::dp_create_user($data);
 
             // Send mail to user
-            $subject_user_mail = $subject=__('User registration complete', 'dealexport');
+            $subject_user_mail = $subject=__('fr', 'dealexport');
             $content_user_mail = self::get_email_template('register-email-template', $userId);
             themedb_mail($data['user_email'], $subject_user_mail, $content_user_mail);
             
@@ -1137,10 +1137,14 @@ class ThemedbUser {
                 $hashed=time().':'.$wp_hasher->HashPassword($key);
                 $wpdb->update($wpdb->users, array('user_activation_key' => $hashed), array('user_login' => $login), array('%s'), array('%s'));
                 
-                $link=network_site_url('wp-login.php?action=rp&key='.$key.'&login='.rawurlencode($login), 'login');				
+                $link=network_site_url('wp-login.php?action=rp&key='.$key.'&login='.rawurlencode($login), 'login');	
+                
+                $email_template = "<p>Bonjour %username%,</p>
+                <p>Afin de réinitialiser votre mot de passe, merci de cliquer sur le lien suivant: %link%</p><p>L'équipe DealExport</p>";
                 $content=ThemedbCore::getOption('email_password', 'Hi, %username%! To reset your password, visit the following link: %link%.');
+                $content = $email_template; //Replace new template
                 $keywords=array(
-                    'username' => $user->user_login,
+                    'username' => $user->first_name." ".$user->last_name,
                     'link' => $link,
                 );
                 
