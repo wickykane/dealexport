@@ -4486,6 +4486,9 @@ msgstr ","
 msgid "Username"
 msgstr "Identifiant"
 
+msgid "Username or Email"
+msgstr "Identifiant ou adresse email"
+
 #: wp-includes/general-template.php:389 wp-login.php:917
 msgid "Password"
 msgstr "Mot de passe"
@@ -8838,7 +8841,13 @@ msgid "Message has been successfully sent"
 msgstr "Votre message a été envoyé avec succès!"
 
 msgid "Account activated"
-msgstr "Compte activé"
+msgstr "DealExport | Activation du compte utilisateur"
 
 msgid "User registration complete"
-msgstr "Activation Compte Utilisateur"
+msgstr "DealExport | Création du compte utilisateur"
+
+msgid "Password reset link is sent"
+msgstr "Le lien de réinitialisation du mot de passe a été envoyé par mail"
+
+msgid "Password Recovery"
+msgstr "DealExport | Réinitialisation du mot de passe"

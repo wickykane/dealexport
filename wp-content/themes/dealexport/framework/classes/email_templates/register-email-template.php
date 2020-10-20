@@ -1,4 +1,4 @@
-<h3>Bonjour <?php echo $user->first_name ?>, <?php echo $user->last_name ?></h3>
+<h3>Bonjour <?php echo $user->first_name ?> <?php echo $user->last_name ?>,</h3>
 <p>
     Je suis ravie de vous accueillir au sein de notre communauté!
 </p>

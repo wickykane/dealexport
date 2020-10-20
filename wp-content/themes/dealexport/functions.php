@@ -1006,9 +1006,9 @@ if (!function_exists('add_woocommerce_template_loop_price')) {
   {
     global $product;
 ?>
-    <?php 
-     $arv_price = get_post_meta($product->id, 'arv_price', true);
-    if ( $arv_price) : ?>
+    <?php
+    $arv_price = get_post_meta($product->id, 'arv_price', true);
+    if ($arv_price) : ?>
       <div class="item-category">
         <?php
         $recentCategory = get_category_by_level(get_the_id(), 0);
@@ -1971,7 +1971,7 @@ add_action('woocommerce_before_cart_table', 'reset_shipping_method');
 function reset_shipping_method()
 {
   $shipingMethod = WC()->session->get('chosen_shipping_methods')[0];
-  if (count(WC()->cart->get_applied_coupons()) == 0 ) {
+  if (count(WC()->cart->get_applied_coupons()) == 0) {
     $packages = WC()->shipping()->get_packages();
     foreach ($packages[0]['rates'] as $key => $package) {
       if ($package->method_id === 'local_pickup' && strpos($shipingMethod, 'free_shipping') === false) {
@@ -2115,3 +2115,33 @@ function checkout_shipping_method_config()
 //   $notification['to'] = 'contact@dealexport.com';
 //   return $notification;
 // }
+
+add_action('after_setup_theme', 'remove_admin_bar');
+function remove_admin_bar()
+{
+  // show admin bar only for admins
+  // if (!current_user_can('manage_options')) {
+  //   add_filter('show_admin_bar', '__return_false');
+  // }
+  // // show admin bar only for admins and editors
+  // if (!current_user_can('edit_posts')) {
+  //   add_filter('show_admin_bar', '__return_false');
+  // }
+
+  if (!current_user_can('administrator') && !is_admin()) {
+    add_filter('show_admin_bar', '__return_false');
+  }
+}
+
+add_filter( 'send_password_change_email', '__return_false' );
+add_action('after_password_reset', 'send_notification_password_changed_to_user');
+function send_notification_password_changed_to_user($user) {
+  if ( 0 !== strcasecmp( $user->user_email, get_option( 'admin_email' ) ) ) {
+    $subject=__('DealExport | Mot de passe changé', 'dealexport');
+    $content_user_mail = "<p>Bonjour ".$user->first_name." ".$user->last_name.",</p>
+    <p>Votre mot de passe a été modifié.</p>
+    <p>Merci.</p>
+    <p>L'équipe DealExport</p>";
+    themedb_mail($user->user_email, $subject, $content_user_mail);
+  }
+}
