@@ -977,7 +977,7 @@ class ThemedbUser {
             $userId= self::dp_create_user($data);
 
             // Send mail to user
-            $subject_user_mail = $subject=__('fr', 'dealexport');
+            $subject_user_mail = $subject=__('User registration complete', 'dealexport');
             $content_user_mail = self::get_email_template('register-email-template', $userId);
             themedb_mail($data['user_email'], $subject_user_mail, $content_user_mail);
             
