@@ -4398,6 +4398,9 @@ display: none;
     border-color: #eeeeee;
 }
 
+.top-header .language-menu {
+    display: none;
+}
 .language-menu ul li a img{
     padding-top: 4px;
 }
