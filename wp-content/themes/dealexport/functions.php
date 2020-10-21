@@ -2145,3 +2145,24 @@ function send_notification_password_changed_to_user($user) {
     themedb_mail($user->user_email, $subject, $content_user_mail);
   }
 }
+
+/**
+ * Output Facebook Open Graph meta.
+ */
+if ( ! function_exists( 'mk_open_graph_meta' ) ) {
+	function mk_open_graph_meta() {
+
+		$output = '<meta property="og:site_name" content="' . get_bloginfo( 'name' ) . '"/>';
+		$output .= '<meta property="og:url" content="' . esc_url( get_permalink() ) . '"/>';
+		$output .= '<meta property="og:title" content="' . the_title_attribute(
+			array(
+				'echo' => false,
+			)
+		) . '"/>';
+		$output .= '<meta property="og:description" content="' . esc_attr( get_the_excerpt() ) . '"/>';
+    $output .= '<meta property="og:type" content="article"/>';
+    $output .= '<meta property="og:image" content="' . esc_url( '' ) . '"/>';
+    echo $output;
+	}
+	add_action( 'wp_head', 'mk_open_graph_meta' );
+}
