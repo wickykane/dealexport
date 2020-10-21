@@ -6629,3 +6629,14 @@ min-width: 120px;
 .order-receipt-details  .content  .amount {
     margin: 0 !important;
 }
+.view-more-btn {
+    margin-top: 10px;
+    padding: .5rem 1rem;
+    color: black;
+    border: 1px solid black;
+}
+.view-more-btn:hover {
+    transition-duration: .5s;
+    color: white;
+    background-color: black;
+}

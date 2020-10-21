@@ -67,7 +67,7 @@ if($woocommerce_loop['view']=='grid') {
             <div class="image-wrap">
                 <a href="<?php the_permalink(); ?>">
                     <?php 
-                        echo generateCustomImageThumbnail(wp_get_attachment_url(get_post_thumbnail_id($product->id)), 300, 300);
+                        echo generateCustomImageThumbnail(wp_get_attachment_url(get_post_thumbnail_id($product->id)), 600, 600);
                     ?>
                 </a>
             </div>
