@@ -1974,7 +1974,7 @@ function reset_shipping_method()
   if (count(WC()->cart->get_applied_coupons()) == 0) {
     $packages = WC()->shipping()->get_packages();
     foreach ($packages[0]['rates'] as $key => $package) {
-      if ($package->method_id === 'local_pickup' && strpos($shipingMethod, 'free_shipping') === false) {
+      if ($package->method_id === 'local_pickup' && strpos($shipingMethod, 'free_shipping') === false && strpos($shipingMethod, 'flat_rate') === false) {
         WC()->session->set('chosen_shipping_methods', array($key));
         break;
       }
@@ -2154,6 +2154,7 @@ if ( ! function_exists( 'mk_open_graph_meta' ) ) {
 
 		$output = '<meta property="og:site_name" content="' . get_bloginfo( 'name' ) . '"/>';
 		$output .= '<meta property="og:url" content="' . esc_url( get_permalink() ) . '"/>';
+
 		$output .= '<meta property="og:description" content="' . esc_attr( get_the_excerpt() ) . '"/>';
     $output .= '<meta property="og:type" content="article"/>';
     $output .= '<meta property="og:image" content="' . esc_url("https://champagne.dealexport.fr/wp-content/uploads/2020/09/dealexport_logo_light.png" ) . '"/>';
@@ -2162,3 +2163,4 @@ $output .= '<link rel="shortcut icon" type="image/png" href="https://champagne.d
 	}
 	add_action( 'wp_head', 'mk_open_graph_meta' );
 }
+ø
