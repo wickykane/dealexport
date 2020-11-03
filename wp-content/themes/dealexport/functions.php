@@ -2158,9 +2158,8 @@ if ( ! function_exists( 'mk_open_graph_meta' ) ) {
 		$output .= '<meta property="og:description" content="' . esc_attr( get_the_excerpt() ) . '"/>';
     $output .= '<meta property="og:type" content="article"/>';
     $output .= '<meta property="og:image" content="' . esc_url("https://champagne.dealexport.fr/wp-content/uploads/2020/09/dealexport_logo_light.png" ) . '"/>';
-$output .= '<link rel="shortcut icon" type="image/png" href="https://champagne.dealexport.fr/wp-content/uploads/2015/12/cropped-logo.png">';
- echo $output;
+    $output .= '<link rel="shortcut icon" type="image/png" href="https://champagne.dealexport.fr/wp-content/uploads/2015/12/cropped-logo.png">';
+    echo $output;
 	}
 	add_action( 'wp_head', 'mk_open_graph_meta' );
 }
-ø
