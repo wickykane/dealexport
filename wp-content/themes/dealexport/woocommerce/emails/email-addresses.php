@@ -22,7 +22,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 $text_align = is_rtl() ? 'right' : 'left';
 $address    = $order->get_formatted_billing_address();
 $shipping   = $order->get_formatted_shipping_address();
-
+$isShowShipInfo = !$order->has_shipping_method('local_pickup');
 ?>
 <table id="addresses" cellspacing="0" cellpadding="0" style="width: 100%; vertical-align: top; margin-bottom: 40px; padding:0;" border="0">
 	<tr>
@@ -48,6 +48,21 @@ $shipping   = $order->get_formatted_shipping_address();
 		<?php endif; ?>
 	</tr>
 </table>
+<?php if($isShowShipInfo) : ?>
+	<table id="addresses" cellspacing="0" cellpadding="0" style="width: 100%; vertical-align: top; margin-bottom: 40px; padding:0;" border="0">
+	<tr>
+		<td style="text-align:<?php echo esc_attr( $text_align ); ?>; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; border:0; padding:0;" valign="top" width="50%">
+			<h2><?php esc_html_e( 'Livraison de la marchandise', 'woocommerce' ); ?></h2>
+			<address class="address">
+			Les livraisons seront effectuées le 4 décembre 2020
+			<br>
+			Le montant de la livraison sera reservé au CHU de Lille
+			<br>
+			</address>
+		</td>
+	</tr>
+</table>
+<?php endif;?>
 <table id="addresses" cellspacing="0" cellpadding="0" style="width: 100%; vertical-align: top; margin-bottom: 40px; padding:0;" border="0">
 	<tr>
 		<td style="text-align:<?php echo esc_attr( $text_align ); ?>; font-family: 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; border:0; padding:0;" valign="top" width="50%">

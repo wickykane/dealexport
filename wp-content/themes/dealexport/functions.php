@@ -2096,13 +2096,13 @@ function checkout_shipping_method_config()
     'flat_rate' => array(
       'icon' => 'fa-truck',
       'name' => ' LIVRAISON À DOMICILE',
-      'des' => '2-5 jours ouvrés',
+      'des' => 'Les livraisons seront effectuées le 4 décembre 2020. Le montant de la livraison sera reversé au CHU de Lille',
       'is_free' =>  'Gratuit',
     ),
     'local_pickup' => array(
       'icon' => 'fa-shopping-cart',
       'name' => 'Point de vente',
-      'des' => '<div>Weréso Lille</div><div>104 rue Nationale, 59800 Lille</div><div>Lundi au vendredi de 9h à 19h</div>',
+      'des' => '<div>Weréso Lille</div><div>104 rue Nationale, 59800 Lille</div><div>Lundi au vendredi de 9h à 18h</div>',
       'is_free' => 'Click & Collect',
     )
   );
