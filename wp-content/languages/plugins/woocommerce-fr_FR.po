@@ -32832,4 +32832,4 @@ msgid "Country"
 msgstr "Pays"
 
 msgid "Thanks for using {site_address}!"
-msgstr "Merci d'avoir acheté chez {site_url}!"
+msgstr "Merci d'avoir acheté chez {site_address}!"
