@@ -31,7 +31,7 @@ $isDisableBtn = (strpos(WC()->session->get('chosen_shipping_methods')[0], 'free_
 	<div class="cart-page-summary">
 		<div class="cart-page-summary-item">
 			<div class="cart-page-summary-item-label a-cart-total-items">
-				<?php echo WC()->cart->get_cart_contents_count() . ' articles'; ?>
+				<?php echo WC()->cart->get_cart_contents_count() . ' article(s)'; ?>
 			</div>
 			<div class="cart-page-summary-item-value a-cart-subtotal-price">
 				<span class="cart-page-table-item-total-price">
@@ -42,7 +42,7 @@ $isDisableBtn = (strpos(WC()->session->get('chosen_shipping_methods')[0], 'free_
 		</div>
 		<div class="cart-page-summary-item">
 			<div class="ui accordion" style="width: 100%;">
-				<span class="title"> <?php _e('afficher les détails', 'dealexport'); ?></span>
+				<span class="title"> <?php _e('Afficher les détails', 'dealexport'); ?></span>
 				<div class="content">
 					<?php
 					do_action('woocommerce_review_order_before_cart_contents');
@@ -80,9 +80,11 @@ $isDisableBtn = (strpos(WC()->session->get('chosen_shipping_methods')[0], 'free_
 				Livraison
 			</div>
 			<div class="cart-page-summary-item-value">
-				<?php
+			<span style="font-size: 22px;">
+			<?php
 				echo $fee;
 				?>
+			</span>
 			</div>
 			<div class="cart-page-summary-item-coupon ui accordion">
 				<?php foreach (WC()->cart->get_applied_coupons() as $code => $coupon) :

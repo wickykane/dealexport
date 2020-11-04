@@ -8649,7 +8649,7 @@ msgid "Shopping Cart"
 msgstr "Mon Panier"
 
 msgid "Owner"
-msgstr "Contact Vigneron"
+msgstr "Contact"
 
 msgid "Their Great Products"
 msgstr "Les produits incontournables"
@@ -8785,6 +8785,12 @@ msgstr "Information du client"
 
 msgid "Customer Address"
 msgstr "Adresse du client"
+
+msgid "Billing Address"
+msgstr "Adresse de facturation"
+
+msgid "Shipping Address"
+msgstr "Adresse de livraison"
 
 msgid "Password Fogot"
 msgstr "Mot de passe oublié"

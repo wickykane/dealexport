@@ -16,7 +16,7 @@ if (!defined('ABSPATH')) {
   <div class="cart-page-summary">
     <div class="cart-page-summary-item">
       <div class="cart-page-summary-item-label a-cart-total-items">
-        <?php echo WC()->cart->get_cart_contents_count() . ' articles'; ?>
+        <?php echo WC()->cart->get_cart_contents_count() . ' article(s)'; ?>
       </div>
       <div class="cart-page-summary-item-value a-cart-subtotal-price">
         <span class="cart-page-table-item-total-price">
@@ -30,9 +30,11 @@ if (!defined('ABSPATH')) {
         Livraison
       </div>
       <div class="cart-page-summary-item-value">
-        <?php
-        echo $fee
-        ?>
+        <span style="font-size: 22px;">
+          <?php
+          echo $fee;
+          ?>
+        </span>
       </div>
       <div class="cart-page-summary-item-coupon ui accordion">
         <?php foreach (WC()->cart->get_applied_coupons() as $code => $coupon) :
